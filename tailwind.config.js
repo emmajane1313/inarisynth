@@ -14,6 +14,9 @@ module.exports = {
       fontFamily: {
         distro: "Distro Mix"
       },
+      transformOrigin: {
+        homeAnim: '0 0'
+      }
     },
   },
   plugins: [],
