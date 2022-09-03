@@ -6,14 +6,14 @@ class Document extends NextDocument {
     return (
       <Html>
         <Head>
-            {/* <meta property="og:url" content="https://inarisynth.xyz/" />
+            <meta property="og:url" content="https://inarisynth.xyz/" />
             <meta property="og:title" content="Inari Synth" />
             <meta
             property="og:description"
             content="An image synth social network that can't be stopped"
             />
             <meta property="og:image" content="" />
-            <meta property="twitter:card" content="summary" /> */}
+            <meta property="twitter:card" content="summary" />
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link
             rel="preconnect"
