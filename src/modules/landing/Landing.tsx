@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 
 export const Landing: FunctionComponent = (): JSX.Element => {
     return (
