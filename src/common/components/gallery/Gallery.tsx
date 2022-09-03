@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react';
 
-const images = [
+const images: string[] = [
   '/images/home/gallery1.png',
   '/images/home/gallery2.png',
   '/images/home/gallery3.png',
@@ -82,12 +82,12 @@ export const HomeAnimation: FunctionComponent = (): JSX.Element => {
               ref={(element) => {
                 itemEls.current[index] = element}
               }
-              onMouseEnter={() => {
+              onMouseEnter={(): void => {
                 console.log('enter');
                 // currentTimer && clearTimeout(currentTimer)
                 isMouseOver[index] = true
               }}
-              onMouseLeave={() => {
+              onMouseLeave={(): void => {
                 console.log('leave');
                 // moveImages()
                 isMouseOver[index] = false
