@@ -1,9 +1,12 @@
 import { NextPage } from "next";
-import React from "react";
+import React from 'react';
 
-export const Feed: NextPage = (): JSX.Element => {
+const Feed: NextPage = (): JSX.Element => {
     return (
-        <div>
-        </div>
+      <div>
+      </div>
     )
-}
+  }
+  
+  export default Feed
+  

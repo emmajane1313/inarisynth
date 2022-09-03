@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
+import React from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
 import { Landing } from '../modules/landing/Landing'
 
 const Home: NextPage = (): JSX.Element => {

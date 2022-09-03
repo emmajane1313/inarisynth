@@ -1,9 +1,13 @@
 import { NextPage } from "next";
-import React from "react";
+import React from 'react';
 
-export const Mobile: NextPage = (): JSX.Element => {
+
+const Mobile: NextPage = (): JSX.Element => {
     return (
-        <div>
-        </div>
+      <div>
+      </div>
     )
-}
+  }
+  
+  export default Mobile
+  
