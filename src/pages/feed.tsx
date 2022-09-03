@@ -1,6 +1,7 @@
-import React, { FunctionComponent } from "react";
+import { NextPage } from "next";
+import React from "react";
 
-export const Feed: FunctionComponent = (): JSX.Element => {
+export const Feed: NextPage = (): JSX.Element => {
     return (
         <div>
         </div>

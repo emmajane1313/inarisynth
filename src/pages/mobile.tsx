@@ -1,6 +1,7 @@
-import React, { FunctionComponent } from "react";
+import { NextPage } from "next";
+import React from "react";
 
-export const Mobile: FunctionComponent = (): JSX.Element => {
+export const Mobile: NextPage = (): JSX.Element => {
     return (
         <div>
         </div>
