@@ -71,12 +71,12 @@ export const HomeAnimation: FunctionComponent = (): JSX.Element => {
   }, [])
 
   return (
-    <div className="absolute overflow-hidden w-full h-screen">
+    <div className="absolute overflow-hidden w-full h-screen z-0">
       {
         images.map((item, index) => {
           return (
             <img 
-              className='absolute top-1/2 left-1/2 origin-homeAnim translate-y-1/2 translate-x-1/2 hover:grayscale'
+              className='cursor-pointer absolute top-1/2 left-1/2 origin-homeAnim translate-y-1/2 translate-x-1/2 hover:grayscale'
               key={index}
               src={item}
               ref={(element) => {
