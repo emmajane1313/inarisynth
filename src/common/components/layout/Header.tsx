@@ -3,6 +3,7 @@ import { ConnectWallet } from "../buttons/ConnectWallet";
 import Image from "next/image";
 import Link from "next/link";
 import { LensSignIn } from "../buttons/LensSignIn";
+import { LensAuth } from "../../../modules/lensauth/LensAuth";
 
 export const Header: FunctionComponent = (): JSX.Element => {
     return (
@@ -23,7 +24,7 @@ export const Header: FunctionComponent = (): JSX.Element => {
                 </Link>
             </div>
             <div className="absolute right-48">
-                <LensSignIn />
+                <LensAuth />
             </div>
         </div>
     )
