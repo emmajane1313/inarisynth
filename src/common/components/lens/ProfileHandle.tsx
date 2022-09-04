@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { useLensSignIn } from "../../hooks/useLensSignIn";
+import { useLensSignIn } from "../../../modules/lensauth/hooks/useLensSignIn";
 
 export const ProfileHandle: React.FC = (): JSX.Element => {
   const { lensProfile } = useLensSignIn();

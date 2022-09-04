@@ -36,4 +36,5 @@ import {
     picture: string;
   };
   export type UseLensSignInResults = {lensProfile: Profile, lensLogin: () => void, hasProfile: boolean}
-  export type UseAuthResult = {auth: string}
+  export type UseAuthResult = {auth: string, setAuth: (e:string) => void}
+  export type UseLensModalResults = {lensModalClose: boolean, handleLensModalOpen: () => void,  handleLensModalClose: () => void}

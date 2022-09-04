@@ -1,6 +1,7 @@
-import React, { FunctionComponent } from "react";
-import { useLensSignIn } from "../../hooks/useLensSignIn";
+import React, { FunctionComponent, useMemo } from "react";
+import { useLensSignIn } from "../../../modules/lensauth/hooks/useLensSignIn";
 import Image from "next/image";
+import { GetProfile } from "../lens/GetProfile";
 
 export const LensSignIn: FunctionComponent = (): JSX.Element => {
   const { lensLogin } = useLensSignIn();
