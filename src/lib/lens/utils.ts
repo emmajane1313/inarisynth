@@ -2,7 +2,7 @@ import { client } from "./client";
 import {STORAGE_KEY} from './constants';
 import REFRESH_LOGIN from "./../../graphql/mutations/refresh"
 
-export const parseJWT = (token) => {
+export const parseJWT = (token: string) => {
   const base64Url = token.split(".")[1];
   const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
   const jsonPayload = decodeURIComponent(
@@ -18,7 +18,7 @@ export const parseJWT = (token) => {
 };
 
 export const refreshAuthToken = async () => {
-  const token = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  const token = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
   if (!token) return;
   try {
     const response = await client
