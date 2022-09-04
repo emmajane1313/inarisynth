@@ -42,9 +42,7 @@ export const HomeAnimation: FunctionComponent = (): JSX.Element => {
   }
 
   const moveImages = (): void => {
-    // console.log('pauseAnimation.current:', pauseAnimation.current)
       !IsMouseOver() && itemEls.current.forEach((item, index) => {
-      // console.log(`item ${index}: `, item)
       scaleItems[index] += 0.003;
       if (scaleItems[index] > 3) {
         scaleItems[index] = scaleItems[index] - 3;
@@ -80,16 +78,13 @@ export const HomeAnimation: FunctionComponent = (): JSX.Element => {
               key={index}
               src={item}
               ref={(element) => {
-                itemEls.current[index] = element}
-              }
+              itemEls.current[index] = element}}
               onMouseEnter={(): void => {
                 console.log('enter');
-                // currentTimer && clearTimeout(currentTimer)
                 isMouseOver[index] = true
               }}
               onMouseLeave={(): void => {
                 console.log('leave');
-                // moveImages()
                 isMouseOver[index] = false
               }}
             />

@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import { ConnectWallet } from "../buttons/ConnectWallet";
 import Image from "next/image";
 import Link from "next/link";
+import { LensSignIn } from "../buttons/LensSignIn";
 
 export const Header: FunctionComponent = (): JSX.Element => {
     return (
@@ -20,6 +21,9 @@ export const Header: FunctionComponent = (): JSX.Element => {
                 <Link href="/">
                     INARI SYNTH
                 </Link>
+            </div>
+            <div className="absolute right-48">
+                <LensSignIn />
             </div>
         </div>
     )
