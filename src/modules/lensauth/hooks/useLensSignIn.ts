@@ -36,8 +36,10 @@ export const useLensSignIn = (): UseLensSignInResults => {
       if (response.data.defaultProfile) {
         setLensProfile(response.data.defaultProfile);
         setHasProfile(true);
+        console.log("there is a profile")
       } else {
         setHasProfile(false);
+        console.log("there is no profile")
       }
     } catch (err: any) {
       console.error(err.message);
