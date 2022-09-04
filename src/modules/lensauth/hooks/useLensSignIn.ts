@@ -13,7 +13,7 @@ export const useLensSignIn = (): UseLensSignInResults => {
   const router = useRouter();
   const [message, setMessage] = useState<string>();
   const [lensProfile, setLensProfile] = useState({});
-  const [hasProfile, setHasProfile] = useState<boolean>(false);
+  const [hasProfile, setHasProfile] = useState<string>("");
 
   const { address } = useAccount();
 
@@ -35,11 +35,9 @@ export const useLensSignIn = (): UseLensSignInResults => {
         .toPromise();
       if (response.data.defaultProfile) {
         setLensProfile(response.data.defaultProfile);
-        setHasProfile(true);
-        console.log("there is a profile")
+        setHasProfile("profile");
       } else {
-        setHasProfile(false);
-        console.log("there is no profile")
+        setHasProfile("no profile");
       }
     } catch (err: any) {
       console.error(err.message);
@@ -102,6 +100,8 @@ export const useLensSignIn = (): UseLensSignInResults => {
       console.error(err.message);
     }
   };
+
+  console.log(hasProfile)
 
   return { lensProfile, lensLogin, hasProfile };
 };
