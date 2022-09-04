@@ -80,11 +80,9 @@ export const HomeAnimation: FunctionComponent = (): JSX.Element => {
               ref={(element) => {
               itemEls.current[index] = element}}
               onMouseEnter={(): void => {
-                console.log('enter');
                 isMouseOver[index] = true
               }}
               onMouseLeave={(): void => {
-                console.log('leave');
                 isMouseOver[index] = false
               }}
             />

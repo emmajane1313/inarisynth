@@ -14,6 +14,7 @@ export const useLensSignIn = (): UseLensSignInResults => {
     const router = useRouter();
     const [message, setMessage] = useState<string>();
     const [lensProfile, setLensProfile] = useState({});
+    const [hasProfile, setHasProfile] = useState<boolean>(false);
 
     const {address} = useAccount();
 
@@ -31,9 +32,12 @@ export const useLensSignIn = (): UseLensSignInResults => {
               ethereumAddress: address
             }
           }).toPromise();
-          console.log(response);
-          setLensProfile(response.data.defaultProfile);
-          
+          if (response) {
+            setLensProfile(response.data.defaultProfile);
+            setHasProfile(true);
+          } else {
+            setHasProfile(false);
+          }
         } catch (err: any) {
           console.error(err.message);
         }
@@ -93,7 +97,7 @@ export const useLensSignIn = (): UseLensSignInResults => {
     }
   }
     
-  return {lensProfile, lensLogin}
+  return {lensProfile, lensLogin, hasProfile}
 
 }
 

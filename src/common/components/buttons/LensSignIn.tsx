@@ -1,13 +1,8 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { useLensSignIn } from "../../hooks/useLensSignIn";
 
-export const LensSignIn: React.FC = (): JSX.Element => {
+export const LensSignIn: FunctionComponent = (): JSX.Element => {
+  const { lensLogin } = useLensSignIn();
 
-    const {lensProfile, lensLogin} = useLensSignIn();
-
-    return (
-        <div>
-            <button onClick={lensLogin}>Sign In to Lens</button>
-        </div>
-    )
-}
+  return <button onClick={lensLogin}>Sign In to Lens</button>;
+};

@@ -35,4 +35,4 @@ import {
     name: string;
     picture: string;
   };
-  export type UseLensSignInResults = {lensProfile: Profile, lensLogin: () => void}
+  export type UseLensSignInResults = {lensProfile: Profile, lensLogin: () => void, hasProfile: boolean}
