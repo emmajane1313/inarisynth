@@ -24,6 +24,7 @@ export const Header: FunctionComponent = (): JSX.Element => {
                 </Link>
             </div>
             <div className="absolute right-48">
+                im here too
                 <LensAuth />
             </div>
         </div>

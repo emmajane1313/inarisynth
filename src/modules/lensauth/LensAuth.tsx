@@ -8,6 +8,8 @@ export const LensAuth = (): JSX.Element | null => {
   const { hasProfile } = useLensSignIn();
   const { isConnected } = useAccount();
 
+  console.log(isConnected)
+
   switch (!isConnected) {
     case isConnected:
       return <LensSignIn />;
