@@ -53,9 +53,7 @@ export const useLensSignIn = (): UseLensSignInResults => {
     refreshAuthToken();
     if (address) {
         getLensProfile(address);
-    } else {
-        alert("Address Not connected display rainbow");
-    }
+    } 
     handleRouteChanges();
   }, [address]);
 

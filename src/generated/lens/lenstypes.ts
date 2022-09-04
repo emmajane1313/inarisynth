@@ -36,3 +36,4 @@ import {
     picture: string;
   };
   export type UseLensSignInResults = {lensProfile: Profile, lensLogin: () => void, hasProfile: boolean}
+  export type UseAuthResult = {auth: string}

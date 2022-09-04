@@ -1,23 +1,20 @@
-import React from "react";
-import { useLensSignIn } from "../../common/hooks/useLensSignIn";
-import { useAccount } from "wagmi";
+import React, { useEffect } from "react";
 import { LensSignIn } from "../../common/components/buttons/LensSignIn";
 import { ProfileHandle } from "../../common/components/lens/ProfileHandle";
+import { useAuth } from "./hooks/useAuth";
 
-export const LensAuth = (): JSX.Element | null => {
-  const { hasProfile } = useLensSignIn();
-  const { isConnected } = useAccount();
+export const LensAuth = (): JSX.Element => {
 
-  console.log(isConnected)
+  const {auth} = useAuth();
 
-  switch (!isConnected) {
-    case isConnected:
+  switch (auth) {
+    case "connected":
       return <LensSignIn />;
 
-    case hasProfile:
+    case "profile":
       return <ProfileHandle />;
 
     default:
-      return null;
+      return <div></div>;
   }
 };
