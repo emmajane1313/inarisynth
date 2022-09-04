@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAccount, useSignMessage } from "wagmi";
-import { client } from "./../../../lib/lens/client";
-import { STORAGE_KEY } from "./../../../lib/lens/constants";
-import USER_PROFILE from "../../../graphql/queries/userProfile";
-import AUTHENTICATE_LOGIN from "../../../graphql/mutations/authenticate";
-import GENERATE_CHALLENGE from "../../../graphql/queries/generateChallenge";
-import { refreshAuthToken, parseJWT } from "../../../lib/lens/utils";
-import { UseLensSignInResults } from "../../../generated/lens/lenstypes";
+import { client } from "./../../lib/lens/client";
+import { STORAGE_KEY } from "./../../lib/lens/constants";
+import USER_PROFILE from "./../../graphql/queries/userProfile";
+import AUTHENTICATE_LOGIN from "./../../graphql/mutations/authenticate";
+import GENERATE_CHALLENGE from "./../../graphql/queries/generateChallenge";
+import { refreshAuthToken, parseJWT } from "./../../lib/lens/utils";
+import { UseLensSignInResults } from "./../../generated/lens/lenstypes";
 
 export const useLensSignIn = (): UseLensSignInResults => {
   const router = useRouter();
   const [message, setMessage] = useState<string>();
   const [lensProfile, setLensProfile] = useState({});
-  const [hasProfile, setHasProfile] = useState<string>("");
+  const [hasProfile, setHasProfile] = useState<boolean | undefined>();
 
   const { address } = useAccount();
 
@@ -35,9 +35,9 @@ export const useLensSignIn = (): UseLensSignInResults => {
         .toPromise();
       if (response.data.defaultProfile) {
         setLensProfile(response.data.defaultProfile);
-        setHasProfile("profile");
+        setHasProfile(true);
       } else {
-        setHasProfile("no profile");
+        setHasProfile(false);
       }
     } catch (err: any) {
       console.error(err.message);
@@ -52,9 +52,6 @@ export const useLensSignIn = (): UseLensSignInResults => {
 
   useEffect(() => {
     refreshAuthToken();
-    if (address) {
-      getLensProfile(address);
-    }
     handleRouteChanges();
   }, [address]);
 
@@ -100,8 +97,6 @@ export const useLensSignIn = (): UseLensSignInResults => {
       console.error(err.message);
     }
   };
-
-  console.log(hasProfile)
 
   return { lensProfile, lensLogin, hasProfile };
 };

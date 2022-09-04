@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useMemo } from "react";
-import { useLensSignIn } from "../../../modules/lensauth/hooks/useLensSignIn";
+import { useLensSignIn } from "./../../hooks/useLensSignIn";
 import Image from "next/image";
 import { GetProfile } from "../lens/GetProfile";
 

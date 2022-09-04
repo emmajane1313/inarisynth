@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React, { FunctionComponent, useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { useLensModal } from "../../../modules/lensauth/hooks/useLensModal";
+import { useLensModal } from "../../hooks/useLensModal";
 
 export const GetProfile: FunctionComponent = (): JSX.Element | null => {
 

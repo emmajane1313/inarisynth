@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { UseLensModalResults } from "../../../generated/lens/lenstypes";
+import { UseLensModalResults } from "../../generated/lens/lenstypes";
 
 export const useLensModal = (): UseLensModalResults => {
 

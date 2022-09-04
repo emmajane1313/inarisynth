@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import { ConnectWallet } from "../buttons/ConnectWallet";
 import Image from "next/image";
 import Link from "next/link";
-import { LensAuth } from "../../../modules/lensauth/components/LensAuth";
+import { LensAuth } from "../lens/LensAuth";
 
 export const Header: FunctionComponent = (): JSX.Element => {
     return (
