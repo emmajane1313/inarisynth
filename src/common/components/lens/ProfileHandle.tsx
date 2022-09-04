@@ -3,7 +3,7 @@ import { useLensSignIn } from "../../../modules/lensauth/hooks/useLensSignIn";
 import { CgProfile } from "react-icons/cg";
 import Image from "next/image";
 
-export const ProfileHandle: React.FC = (): JSX.Element => {
+export const ProfileHandle: FunctionComponent = (): JSX.Element => {
   const { lensProfile } = useLensSignIn();
   const { handle, picture } = lensProfile;
 
