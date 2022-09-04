@@ -1822,7 +1822,7 @@ export type ProfileFollowRevenueQueryRequest = {
   profileId: Scalars['ProfileId'];
 };
 
-export type ProfileMedia = MediaSet | NftImage;
+export type ProfileMedia = Media | NftImage;
 
 export type ProfileOnChainIdentityRequest = {
   profileIds: Array<Scalars['ProfileId']>;

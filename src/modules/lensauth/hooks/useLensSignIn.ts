@@ -35,7 +35,6 @@ export const useLensSignIn = (): UseLensSignInResults => {
         .toPromise();
       if (response.data.defaultProfile) {
         setLensProfile(response.data.defaultProfile);
-        console.log(response.data.defaultProfile);
         setHasProfile(true);
       } else {
         setHasProfile(false);
