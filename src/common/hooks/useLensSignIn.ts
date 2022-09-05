@@ -8,18 +8,18 @@ import AUTHENTICATE_LOGIN from "../../graphql/mutations/authenticate";
 import GENERATE_CHALLENGE from "../../graphql/queries/generateChallenge";
 import { refreshAuthToken, parseJWT } from "../../lib/lens/utils";
 import { UseLensSignInResults } from "./../../generated/lens/lenstypes.types";
+import { Profile } from "../../generated/lens/types.types";
 
 export const useLensSignIn = (): UseLensSignInResults => {
   const router = useRouter();
-  const [message, setMessage] = useState<string>();
-  const [lensProfile, setLensProfile] = useState({});
   const [hasProfile, setHasProfile] = useState<string>("");
   const [modalClose, setModalClose] = useState<boolean>(false);
+
+  let lensProfile: Profile | undefined;
 
   const { address } = useAccount();
 
   const { signMessageAsync } = useSignMessage({
-    message: message,
     onSettled(data, error) {
       console.log("Settled", { data, error });
     },
@@ -35,7 +35,7 @@ export const useLensSignIn = (): UseLensSignInResults => {
         })
         .toPromise();
       if (response.data.defaultProfile) {
-        setLensProfile(response.data.defaultProfile);
+        lensProfile = response.data.defaultProfile;
         console.log("entire response", response)
         console.log("lens prof", response.data.defaultProfile)
         setHasProfile("profile");
@@ -75,9 +75,7 @@ export const useLensSignIn = (): UseLensSignInResults => {
         })
         .toPromise();
 
-      setMessage(challengeResponse.data.challenge.text);
-
-      const signature = await signMessageAsync();
+      const signature = await signMessageAsync({message: challengeResponse.data.challenge.text});
 
       const accessTokens = await client
         .mutation(AUTHENTICATE_LOGIN, {

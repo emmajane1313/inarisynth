@@ -4,7 +4,6 @@ import Image from "next/image";
 import { ProfileHandleProps } from "../../../generated/lens/lenstypes.types";
 
 export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({lensProfile}): JSX.Element => {
-  const { handle, picture } = lensProfile;
 
   console.log("im in profile handle", lensProfile)
 
@@ -41,8 +40,8 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({lensProfil
     }
   };
 
-  console.log("handle", handle);
-  console.log("my pic", picture)
+  console.log("handle", lensProfile?.handle);
+  console.log("my pic", lensProfile?.picture)
 
   return (
         <button
@@ -50,8 +49,8 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({lensProfil
         className="m-0 cursor-pointer justify-center font-sans text-sm bg-lensLight h-10 w-fit py-1 px-2 rounded-lg hover:opacity-90 relative top-1 left-[60px]"
       >
         <div className="w-full justify-center relative flex">
-          <div>{handle}</div>
-          <Image width={"50px"} height={"20px"} src={`${getAvatar(picture)}`} alt="lensLogo" />
+          <div>{lensProfile?.handle}</div>
+          <Image width={"50px"} height={"20px"} src={`${getAvatar(lensProfile?.picture)}`} alt="lensLogo" />
         </div>
       </button>
   );

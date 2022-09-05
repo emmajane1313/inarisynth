@@ -35,8 +35,8 @@ export type UserSuggestion = {
   name: string;
   picture: string;
 };
-export type UseLensSignInResults = {lensProfile: Profile, lensLogin: () => void, hasProfile: string, handleLensModalClose: () => void, modalClose: boolean}
+export type UseLensSignInResults = {lensProfile?: Profile, lensLogin: () => void, hasProfile: string, handleLensModalClose: () => void, modalClose: boolean}
 export type UseAuthResult = {auth: string, setAuth: (e:string) => void}
 export type GetProfileProps = { handleLensModalClose: () => void, modalClose: boolean, lensLogin: () => void}
 export type LensSignInProps = {lensLogin: () => void}
-export type ProfileHandleProps = {lensProfile: Profile}
+export type ProfileHandleProps = {lensProfile?: Profile}
