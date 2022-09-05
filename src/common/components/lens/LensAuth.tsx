@@ -6,7 +6,7 @@ import { useLensSignIn } from "../../hooks/useLensSignIn";
 import { useAccount } from "wagmi";
 
 export const LensAuth = (): JSX.Element => {
-  const { hasProfile, modalClose, handleLensModalClose, lensLogin } =
+  const { hasProfile, modalClose, handleLensModalClose, lensLogin, lensProfile } =
     useLensSignIn();
   const { isConnected } = useAccount();
 
@@ -40,7 +40,7 @@ export const LensAuth = (): JSX.Element => {
 
     case "PROFILE":
       console.log("ON PROFILE CASE")
-      return <ProfileHandle />;
+      return <ProfileHandle lensProfile={lensProfile}/>;
 
     case "NO_PROFILE":
       return (

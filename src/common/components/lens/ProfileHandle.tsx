@@ -1,13 +1,12 @@
 import React, { FunctionComponent } from "react";
-import { useLensSignIn } from "../../hooks/useLensSignIn";
 import { CgProfile } from "react-icons/cg";
 import Image from "next/image";
+import { ProfileHandleProps } from "../../../generated/lens/lenstypes.types";
 
-export const ProfileHandle: FunctionComponent = (): JSX.Element => {
-  const { lensProfile } = useLensSignIn();
+export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({lensProfile}): JSX.Element => {
   const { handle, picture } = lensProfile;
 
-  console.log(lensProfile)
+  console.log("im in profile handle", lensProfile)
 
   const getAvatar = (picture: any) => {
     if (!picture) {

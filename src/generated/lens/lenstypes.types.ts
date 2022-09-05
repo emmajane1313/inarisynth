@@ -39,3 +39,4 @@ export type UseLensSignInResults = {lensProfile: Profile, lensLogin: () => void,
 export type UseAuthResult = {auth: string, setAuth: (e:string) => void}
 export type GetProfileProps = { handleLensModalClose: () => void, modalClose: boolean, lensLogin: () => void}
 export type LensSignInProps = {lensLogin: () => void}
+export type ProfileHandleProps = {lensProfile: Profile}
