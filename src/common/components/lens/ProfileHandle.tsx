@@ -20,6 +20,7 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({
     } else if (picture.original) {
       if (picture.original.url.includes("http")) {
         console.log("http picture")
+        console.log(picture.original.url)
         return (
           <div className="w-8 h-8 rounded-full drop-shadow-md">
             <Image src={picture.original.url} width={"10px"} height={"10px"} />
@@ -29,6 +30,7 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({
         console.log("ipfs picture")
         const cut = picture.original.url.split("/");
         const link = "https://lens.infura-ipfs.io/ipfs/" + cut[cut.length - 1];
+        console.log(link)
         return (
           <div className="w-8 h-8 rounded-full drop-shadow-md">
             <Image src={link} width={"10px"} height={"10px"} />
