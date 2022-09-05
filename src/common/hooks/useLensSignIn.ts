@@ -14,8 +14,7 @@ export const useLensSignIn = (): UseLensSignInResults => {
   const router = useRouter();
   const [hasProfile, setHasProfile] = useState<string>("");
   const [modalClose, setModalClose] = useState<boolean>(false);
-
-  let lensProfile: Profile | undefined;
+  const [lensProfile, setLensProfile] = useState<Profile>({})
 
   const { address } = useAccount();
 
@@ -36,7 +35,8 @@ export const useLensSignIn = (): UseLensSignInResults => {
         .toPromise();
       if (response.data.defaultProfile) {
         setHasProfile("profile");
-        return lensProfile = response.data.defaultProfile;
+        setLensProfile(response.data.defaultProfile)
+        return response.data.defaultProfile;
       } else {
         setHasProfile("no profile");
       }
