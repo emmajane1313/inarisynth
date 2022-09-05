@@ -53,6 +53,8 @@ export const useLensSignIn = (): UseLensSignInResults => {
     });
   };
 
+  console.log("outside function", lensProfile)
+
   useEffect(() => {
     refreshAuthToken();
     // if (address) {
