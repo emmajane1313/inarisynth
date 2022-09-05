@@ -28,6 +28,12 @@ class Document extends NextDocument {
                     font-weight: 400;
                     src: url("./fonts/DISTROM_.ttf");
                 }
+
+                @font-face {
+                  font-family: "Space Grotesk";
+                  font-weight: 400;
+                  src: url("./fonts/SpaceGrotesk-VariableFont_wght.ttf");
+              }
             `,
             }}
             ></style>

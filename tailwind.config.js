@@ -15,10 +15,12 @@ module.exports = {
         grad2: "#B9D6FF",
         grad3: "#DBBFFF",
         grad4: "#EB91F4",
-        lensLight: "#ABFE2C"
+        lensLight: "#ABFE2C",
+        lensDark: "#00501E"
       },
       fontFamily: {
-        distro: "Distro Mix"
+        distro: "Distro Mix",
+        space: "Space Grotesk"
       },
       transformOrigin: {
         homeAnim: '0 0'

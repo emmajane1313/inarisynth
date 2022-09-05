@@ -1,11 +1,10 @@
 import React, { FunctionComponent, useMemo } from "react";
-import { useLensSignIn } from "./../../hooks/useLensSignIn";
 import Image from "next/image";
-import { GetProfile } from "../lens/GetProfile";
+import { LensSignInProps } from "./../../../generated/lens/lenstypes.types";
 
-export const LensSignIn: FunctionComponent = (): JSX.Element => {
-  const { lensLogin } = useLensSignIn();
+export const LensSignIn: FunctionComponent<LensSignInProps> = ({lensLogin}): JSX.Element => {
 
+  console.log("lens sign in")
   return (
     <button
       onClick={lensLogin}

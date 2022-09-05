@@ -1,56 +1,59 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { LensSignIn } from "../buttons/LensSignIn";
 import { ProfileHandle } from "./ProfileHandle";
 import { GetProfile } from "./GetProfile";
-import { useLensSignIn } from "./../../hooks/useLensSignIn";
+import { useLensSignIn } from "../../hooks/useLensSignIn";
 import { useAccount } from "wagmi";
 
 export const LensAuth = (): JSX.Element => {
-
+  const { hasProfile, modalClose, handleLensModalClose, lensLogin } =
+    useLensSignIn();
   const { isConnected } = useAccount();
-  const {hasProfile} = useLensSignIn();
 
-  if (isConnected && hasProfile === undefined) {
-    console.log("case 1")
-    return <LensSignIn />
-  } else if (isConnected && !hasProfile === undefined) {
-    console.log("case 2")
-    return <GetProfile />
+  let action = "NOT_CONNECTED";
+
+  const decideStringAction = () => {
+    if (isConnected && !modalClose) {
+      action = "CONNECTED";
+    }
+
+    if (isConnected && modalClose) {
+      action = "MODAL_CLOSED";
+    }
+
+    if (isConnected && hasProfile === "profile") {
+      action = "PROFILE";
+    }
+
+    if (isConnected && hasProfile === "no profile") {
+      action = "NO_PROFILE";
+      console.log("IS CONNECTED AND NO PROFILE");
+      console.log(isConnected);
+    }
+    console.log("action", action);
+    return action;
+  };
+  console.log("rendered");
+  switch (decideStringAction()) {
+    case "CONNECTED":
+      return <LensSignIn lensLogin={lensLogin} />;
+
+    case "PROFILE":
+      return <ProfileHandle />;
+
+    case "NO_PROFILE":
+      return (
+        <GetProfile
+          modalClose={modalClose}
+          handleLensModalClose={handleLensModalClose}
+          lensLogin={lensLogin}
+        />
+      );
+
+    case "MODAL_CLOSED":
+      return <LensSignIn lensLogin={lensLogin} />;
+
+    default:
+      return <div></div>;
   }
-
-  // switch (authState) {
-  //   case "profile connected":
-  //     console.log(authState)
-  //     return <ProfileHandle />
-
-  //   case "no profile connected":
-  //     console.log(authState)
-  //     console.log("CONNECTED NO PROFILE STATE")
-      
-
-  //   default:
-  //     console.log(authState)
-  //     return <div></div>
-
-  // }
-
-  // if (isConnected && hasProfile === "") {
-  //   console.log("on connected")
-  //   return <LensSignIn />;
-  // } 
-
-  // if (isConnected && hasProfile === "no profile") {
-  //   console.log("get a profile im on connected and no profile")
-  // }
-  // // else if (isConnected && hasProfile === "profile") {
-  // //   console.log("on profile connected")
-  // //   return <ProfileHandle />;
-  // // } 
-  // else if (isConnected && hasProfile === "no profile") {
-  //   console.log("on no profile connected")
-  //   return <GetProfile />
-  // } else {
-  //   console.log("on not connected")
-  //   return <div></div>;
-  // }
 };

@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAccount, useSignMessage } from "wagmi";
-import { client } from "./../../lib/lens/client";
-import { STORAGE_KEY } from "./../../lib/lens/constants";
-import USER_PROFILE from "./../../graphql/queries/userProfile";
-import AUTHENTICATE_LOGIN from "./../../graphql/mutations/authenticate";
-import GENERATE_CHALLENGE from "./../../graphql/queries/generateChallenge";
-import { refreshAuthToken, parseJWT } from "./../../lib/lens/utils";
-import { UseLensSignInResults } from "./../../generated/lens/lenstypes";
+import { client } from "../../lib/lens/client";
+import { STORAGE_KEY } from "../../lib/lens/constants";
+import USER_PROFILE from "../../graphql/queries/userProfile";
+import AUTHENTICATE_LOGIN from "../../graphql/mutations/authenticate";
+import GENERATE_CHALLENGE from "../../graphql/queries/generateChallenge";
+import { refreshAuthToken, parseJWT } from "../../lib/lens/utils";
+import { UseLensSignInResults } from "./../../generated/lens/lenstypes.types";
 
 export const useLensSignIn = (): UseLensSignInResults => {
   const router = useRouter();
   const [message, setMessage] = useState<string>();
   const [lensProfile, setLensProfile] = useState({});
-  const [hasProfile, setHasProfile] = useState<boolean | undefined>();
+  const [hasProfile, setHasProfile] = useState<string>("");
+  const [modalClose, setModalClose] = useState<boolean>(false);
 
   const { address } = useAccount();
 
@@ -35,9 +36,9 @@ export const useLensSignIn = (): UseLensSignInResults => {
         .toPromise();
       if (response.data.defaultProfile) {
         setLensProfile(response.data.defaultProfile);
-        setHasProfile(true);
+        setHasProfile("profile");
       } else {
-        setHasProfile(false);
+        setHasProfile("no profile");
       }
     } catch (err: any) {
       console.error(err.message);
@@ -52,10 +53,15 @@ export const useLensSignIn = (): UseLensSignInResults => {
 
   useEffect(() => {
     refreshAuthToken();
+    // if (address) {
+    //   console.log("calling lens login in use effect")
+    //   getLensProfile(address);
+    // }
     handleRouteChanges();
   }, [address]);
 
   const lensLogin = async () => {
+    console.log("calling lens login")
     try {
       const challengeResponse = await client
         .query(GENERATE_CHALLENGE, {
@@ -98,5 +104,9 @@ export const useLensSignIn = (): UseLensSignInResults => {
     }
   };
 
-  return { lensProfile, lensLogin, hasProfile };
+  const handleLensModalClose = (): void => {
+    setModalClose(true);
+  }
+
+  return { lensProfile, lensLogin, hasProfile, handleLensModalClose, modalClose };
 };
