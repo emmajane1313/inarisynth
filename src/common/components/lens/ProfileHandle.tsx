@@ -40,6 +40,9 @@ export const ProfileHandle: FunctionComponent = (): JSX.Element => {
     }
   };
 
+  console.log("handle", handle);
+  console.log("my pic", picture)
+
   return (
         <button
         type="button"
