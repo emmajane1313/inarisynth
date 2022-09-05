@@ -6,8 +6,8 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
 
   const handlePromptInput = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    const promptValue = e.target.prompt.value;
-    setPrompt(promptValue);
+    // const promptValue = e.target.prompt.value;
+    // setPrompt(promptValue);
   };
 
   return { prompt, handlePromptInput };
