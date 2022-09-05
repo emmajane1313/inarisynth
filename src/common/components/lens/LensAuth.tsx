@@ -39,6 +39,7 @@ export const LensAuth = (): JSX.Element => {
       return <LensSignIn lensLogin={lensLogin} />;
 
     case "PROFILE":
+      console.log("ON PROFILE CASE")
       return <ProfileHandle />;
 
     case "NO_PROFILE":
