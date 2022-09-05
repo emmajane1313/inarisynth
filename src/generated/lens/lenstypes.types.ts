@@ -10,6 +10,7 @@ import {
   Post,
   Profile,
   ProfileFollowModuleSettings,
+  ProfileMedia,
   RevertCollectModuleSettings,
   RevertFollowModuleSettings,
   TimedFeeCollectModuleSettings
