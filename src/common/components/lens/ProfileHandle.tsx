@@ -7,6 +7,8 @@ export const ProfileHandle: FunctionComponent = (): JSX.Element => {
   const { lensProfile } = useLensSignIn();
   const { handle, picture } = lensProfile;
 
+  console.log(lensProfile)
+
   const getAvatar = (picture: any) => {
     if (!picture) {
       return (
