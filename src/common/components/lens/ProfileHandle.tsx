@@ -27,10 +27,8 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({
           </div>
         );
       } else {
-        console.log("ipfs picture")
         const cut = picture.original.url.split("/");
         const link = "https://lens.infura-ipfs.io/ipfs/" + cut[cut.length - 1];
-        console.log(link)
         return (
           <div className="w-8 h-8 rounded-full drop-shadow-md">
             <Image src={link} width={"10px"} height={"10px"} />
@@ -38,7 +36,6 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({
         );
       }
     } else {
-      console.log("uri picture")
       return (
         <div className="w-8 h-8 rounded-full drop-shadow-md">
           <Image src={picture.uri} width={"10px"} height={"10px"} />
@@ -47,8 +44,6 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({
     }
   };
 
-  console.log("get avatar", getAvatar(lensProfile?.picture))
-
   return (
     <button
       type="button"
@@ -56,12 +51,7 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({
     >
       <div className="w-full justify-center relative flex">
         <div>{lensProfile?.handle}</div>
-        <Image
-          width={"50px"}
-          height={"20px"}
-          src={`${getAvatar(lensProfile?.picture)}`}
-          alt="lensLogo"
-        />
+          {getAvatar(lensProfile?.picture)}
       </div>
     </button>
   );
