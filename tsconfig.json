@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/clients/lens/*"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/clients/lens/lensApi.js"],
   "exclude": ["node_modules"]
 }

@@ -27,19 +27,15 @@ export const LensAuth = (): JSX.Element => {
 
     if (isConnected && hasProfile === "no profile") {
       action = "NO_PROFILE";
-      console.log("IS CONNECTED AND NO PROFILE");
-      console.log(isConnected);
     }
-    console.log("action", action);
     return action;
   };
-  console.log("rendered");
+
   switch (decideStringAction()) {
     case "CONNECTED":
       return <LensSignIn lensLogin={lensLogin} />;
 
     case "PROFILE":
-      console.log("ON PROFILE CASE")
       return <ProfileHandle lensProfile={lensProfile}/>;
 
     case "NO_PROFILE":

@@ -1,3 +1,5 @@
-import { FormEvent } from "react"
-
-export type UseEnterPromptResult = {prompt: any, handlePromptInput: (e: FormEvent<HTMLFormElement>) => void}
+export type UseEnterPromptResult = {
+  prompt: any;
+  handlePromptInput: (e: any) => void;
+};
+export type EnterPromptProps = { onPromptInput: (e: any) => void };

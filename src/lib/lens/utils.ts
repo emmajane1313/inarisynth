@@ -47,6 +47,6 @@ export const refreshAuthToken = async () => {
       accessToken,
     };
   } catch (err) {
-    console.log("error:", err);
+    console.error("error:", err);
   }
 };

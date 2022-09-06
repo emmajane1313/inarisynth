@@ -51,19 +51,17 @@ export const useLensSignIn = (): UseLensSignInResults => {
     });
   };
 
-  console.log("outside function", lensProfile)
 
   useEffect(() => {
-    refreshAuthToken();
+    // refreshAuthToken();
     // if (address) {
-    //   console.log("calling lens login in use effect")
+    //   console.log("calling lens login isdn use effect")
     //   getLensProfile(address);
     // }
     handleRouteChanges();
   }, [address]);
 
   const lensLogin = async () => {
-    console.log("calling lens login")
     try {
       const challengeResponse = await client
         .query(GENERATE_CHALLENGE, {

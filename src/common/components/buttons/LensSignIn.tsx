@@ -4,7 +4,6 @@ import { LensSignInProps } from "./../../../generated/lens/lenstypes.types";
 
 export const LensSignIn: FunctionComponent<LensSignInProps> = ({lensLogin}): JSX.Element => {
 
-  console.log("lens sign in")
   return (
     <button
       onClick={lensLogin}

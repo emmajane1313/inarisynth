@@ -6,11 +6,9 @@ import { ProfileHandleProps } from "../../../generated/lens/lenstypes.types";
 export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({
   lensProfile,
 }): JSX.Element => {
-  console.log("im in profile handle", lensProfile);
 
   const getAvatar = (picture: any) => {
     if (!picture) {
-      console.log("no picture")
       return (
         <CgProfile
           color="#00501e"
@@ -20,8 +18,6 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({
       );
     } else if (picture.original) {
       if (picture.original.url.includes("http")) {
-        console.log("http picture")
-        console.log(picture.original.url)
         return (
             <Image src={picture.original.url} width={10} height={10} />
         );
