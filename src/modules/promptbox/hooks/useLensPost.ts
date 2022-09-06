@@ -31,6 +31,8 @@ export const useLensPost = (): useLensPostResult => {
         }).toPromise()
 
         console.log(response)
+        console.log(lensProfile)
+        console.log(lensProfile?.id)
 
 
     } catch (err: any) {
