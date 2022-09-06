@@ -46,9 +46,9 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({
     >
       <div className="w-full justify-center relative flex">
         <div>@{lensProfile?.handle}</div>
-        <div className="absolute rounded-full drop-shadow-md">
+        {/* <div className="absolute rounded-full drop-shadow-md">
           {getAvatar(lensProfile?.picture)}
-          </div>
+          </div> */}
       </div>
     </button>
   );
