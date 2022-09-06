@@ -17,7 +17,7 @@ export const useLensPost = (): useLensPostResult => {
     try {
         const response = await client.mutation(CREATE_POST, {
             request: {
-                profileId: lensProfile?.id,
+                profileId: "0x84ec",
                 contentURI: `ipfs://QmPogtffEF3oAbKERsoR4Ky8aTvLgBF5totp5AuF8YN6vl`,
                 collectModule: {
                     freeCollectModule: {

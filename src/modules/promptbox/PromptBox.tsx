@@ -1,4 +1,6 @@
 import React from "react";
+import { useLensSignIn } from "../../common/hooks/useLensSignIn";
+import { Profile } from "../../generated/lens/types.types";
 import { EnterPrompt } from "./components/EnterPrompt";
 import { ImageSequence } from "./components/ImageSequence";
 import { LensPost } from "./components/LensPost";
@@ -7,7 +9,6 @@ import { useLensPost } from "./hooks/useLensPost";
 
 export const PromptBox = (): JSX.Element => {
   const { handlePromptInput, prompt } = useEnterPrompt();
-
   const {writePublication, handleHashImages, handleFileChange} = useLensPost();
 
   return (
