@@ -6,6 +6,7 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "typeRoots" : ["./node_modules","./node_modules/@types"],
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -13,7 +14,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "noImplicitAny": false
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/clients/lens/lensApi.js"],
   "exclude": ["node_modules"]
