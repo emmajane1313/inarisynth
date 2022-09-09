@@ -7,7 +7,7 @@ import {
 } from "wagmi";
 import LensHubProxy from "./../../../abis/LensHubProxy.json";
 import { LENS_HUB_PROXY_ADDRESS } from "../../../lib/lens/constants";
-import { omit, splitSignature } from "../../../lib/lens/helpers";
+import { splitSignature } from "../../../lib/lens/helpers";
 import createPostTypedData from "../../../graphql/mutations/createPost";
 import getDefaultProfile from "../../../graphql/queries/userProfile";
 
