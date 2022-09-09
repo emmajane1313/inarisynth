@@ -1,7 +1,8 @@
-import {gql} from "@apollo/client"
+import { gql } from "@apollo/client";
+import { apolloClient } from "./../../lib/lens/client";
 
-const CREATE_POST = gql `
-mutation CreatePostTypedData($request: CreatePublicPostRequest!) {
+const CREATE_POST_TYPED_DATA = `
+  mutation($request: CreatePublicPostRequest!) { 
     createPostTypedData(request: $request) {
       id
       expiresAt
@@ -12,25 +13,34 @@ mutation CreatePostTypedData($request: CreatePublicPostRequest!) {
             type
           }
         }
-        domain {
-          name
-          chainId
-          version
-          verifyingContract
-        }
-        value {
-          nonce
-          deadline
-          profileId
-          contentURI
-          collectModule
-          collectModuleInitData
-          referenceModule
-          referenceModuleInitData
-        }
+      domain {
+        name
+        chainId
+        version
+        verifyingContract
+      }
+      value {
+        nonce
+        deadline
+        profileId
+        contentURI
+        collectModule
+        collectModuleInitData
+        referenceModule
+        referenceModuleInitData
       }
     }
-  }
-  `
+   }
+ }
+`;
 
-  export default CREATE_POST;
+const createPostTypedData = (createPostRequest: any) => {
+  return apolloClient.mutate({
+    mutation: gql(CREATE_POST_TYPED_DATA),
+    variables: {
+      request: createPostRequest,
+    },
+  });
+};
+
+export default createPostTypedData;

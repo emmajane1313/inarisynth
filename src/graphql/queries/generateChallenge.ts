@@ -1,11 +1,20 @@
-import {gql} from "@apollo/client";
+import { authClient } from './../../lib/lens/client';
+import { gql } from '@apollo/client'
 
-const GENERATE_CHALLENGE = gql`
-  query Challenge($request: ChallengeRequest!) {
-    challenge(request: $request) {
-      text
-    }
+const GET_CHALLENGE = `
+  query($request: ChallengeRequest!) {
+    challenge(request: $request) { text }
   }
-  `;
+`
 
-export default GENERATE_CHALLENGE;
+export const generateChallenge = (address?: string) => {
+   return authClient.query({
+    query: gql(GET_CHALLENGE),
+    variables: {
+      request: {
+         address,
+      },
+    },
+  })
+}
+export default generateChallenge;

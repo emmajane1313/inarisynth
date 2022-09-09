@@ -16,7 +16,7 @@ import { publicProvider } from 'wagmi/providers/public';
 import { Header } from '../common/components/layout/Header';
 
 const { chains, provider } = configureChains(
-  [chain.polygon],
+  [chain.polygon, chain.polygonMumbai],
   [
     alchemyProvider({ apiKey: process.env.ALCHEMY_ID }),
     publicProvider()

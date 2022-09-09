@@ -1,52 +1,35 @@
-import { client } from "./client";
-import {STORAGE_KEY} from './constants';
-import REFRESH_LOGIN from "./../../graphql/mutations/refresh"
-
-export const parseJWT = (token: string) => {
-  const base64Url = token.split(".")[1];
-  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  const jsonPayload = decodeURIComponent(
-    atob(base64)
-      .split("")
-      .map(function (c) {
-        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-      })
-      .join("")
-  );
-
-  return JSON.parse(jsonPayload);
+interface authToken {
+  token: {
+    accessToken: string;
+    refreshToken: string;
+  };
+}
+export const setAuthenticationToken = async ({ token }: authToken) => {
+  if (typeof window !== "undefined") {
+    sessionStorage.setItem("access_token", token.accessToken);
+    sessionStorage.setItem("refresh_token", token.refreshToken);
+    return;
+  }
 };
 
-export const refreshAuthToken = async () => {
-  const token = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-  if (!token) return;
-  try {
-    const response = await client
-      .mutation(REFRESH_LOGIN, {
-        request: {
-          refreshToken: token.refreshToken,
-        },
-      })
-      .toPromise();
+export const getAuthenticationToken = () => {
+  if (typeof window !== "undefined") {
+    const token = sessionStorage.getItem("access_token");
+    return token;
+  }
+};
 
-    if (!response.data) return;
+export const getRefreshToken = () => {
+  if (typeof window !== "undefined") {
+    const token = sessionStorage.getItem("refresh_token");
+    return token;
+  }
+};
 
-    const { accessToken, refreshToken } = response.data.refresh;
-    const exp = parseJWT(refreshToken).exp;
-
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        accessToken,
-        refreshToken,
-        exp,
-      })
-    );
-
-    return {
-      accessToken,
-    };
-  } catch (err) {
-    console.error("error:", err);
+export const removeAuthenticationToken = async () => {
+  if (typeof window !== "undefined") {
+    sessionStorage.removeItem("access_token");
+    sessionStorage.removeItem("refresh_token");
+    sessionStorage.clear();
   }
 };

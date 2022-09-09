@@ -52,13 +52,13 @@ export type GetProfileProps = {
 export type LensSignInProps = { lensLogin: () => void };
 export type ProfileHandleProps = { lensProfile?: Profile };
 export type useLensPostResult = {
-  writePublication: (e: any) => void;
+  handlePostData: (e: any) => void;
   handleHashImages: (e: any) => void;
   handleFileChange: (e: any) => any[];
 };
 export type LensPostProps = {
   prompt: string;
-  writePublication: (e: any) => void;
+  handlePostData: (e: any) => void;
   onHashImages: (e: any) => void;
   onFileChange: (e: any) => any[];
 };

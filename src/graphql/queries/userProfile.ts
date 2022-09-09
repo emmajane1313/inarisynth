@@ -1,12 +1,12 @@
-import {gql} from "@apollo/client";
+import { gql } from "@apollo/client";
+import { apolloClient } from "./../../lib/lens/client";
 
-const USER_PROFILE = gql`
-  query DefaultProfile($request: DefaultProfileRequest!) {
+const GET_DEFAULT_PROFILES = `
+  query($request: DefaultProfileRequest!) {
     defaultProfile(request: $request) {
       id
       name
       bio
-      isDefault
       attributes {
         displayType
         traitType
@@ -15,13 +15,12 @@ const USER_PROFILE = gql`
       }
       followNftAddress
       metadata
-      handle
+      isDefault
       picture {
         ... on NftImage {
           contractAddress
           tokenId
           uri
-          chainId
           verified
         }
         ... on MediaSet {
@@ -30,13 +29,14 @@ const USER_PROFILE = gql`
             mimeType
           }
         }
+        __typename
       }
+      handle
       coverPicture {
         ... on NftImage {
           contractAddress
           tokenId
           uri
-          chainId
           verified
         }
         ... on MediaSet {
@@ -45,6 +45,7 @@ const USER_PROFILE = gql`
             mimeType
           }
         }
+        __typename
       }
       ownedBy
       dispatcher {
@@ -63,11 +64,10 @@ const USER_PROFILE = gql`
       followModule {
         ... on FeeFollowModuleSettings {
           type
-          contractAddress
           amount {
             asset {
-              name
               symbol
+              name
               decimals
               address
             }
@@ -84,7 +84,17 @@ const USER_PROFILE = gql`
       }
     }
   }
-  `;
-  
-  export default USER_PROFILE;
- 
+`;
+
+const getDefaultProfile = (address?: string) => {
+  return apolloClient.query({
+    query: gql(GET_DEFAULT_PROFILES),
+    variables: {
+      request: {
+        ethereumAddress: address,
+      }
+    },
+  });
+};
+
+export default getDefaultProfile;
