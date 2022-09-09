@@ -52,12 +52,16 @@ export type GetProfileProps = {
 export type LensSignInProps = { lensLogin: () => void };
 export type ProfileHandleProps = { lensProfile?: Profile };
 export type useLensPostResult = {
+  handlePostWrite: () => Promise<void>;
   handlePostData: (e: any) => void;
   handleHashImages: (e: any) => void;
   handleFileChange: (e: any) => any[];
+  showPostButton: boolean;
 };
 export type LensPostProps = {
   prompt: string;
+  showPostButton: boolean;
+  handlePostWrite: () => Promise<void>;
   handlePostData: (e: any) => void;
   onHashImages: (e: any) => void;
   onFileChange: (e: any) => any[];

@@ -1,4 +1,4 @@
-import { useLensPostResult } from "../../../generated/lens/lenstypes.types";
+import { useLensPostResult } from "./../../../generated/lens/lenstypes.types";
 import {
   useAccount,
   usePrepareContractWrite,
@@ -10,8 +10,12 @@ import { LENS_HUB_PROXY_ADDRESS } from "../../../lib/lens/constants";
 import { splitSignature, omit } from "../../../lib/lens/helpers";
 import createPostTypedData from "../../../graphql/mutations/createPost";
 import getDefaultProfile from "../../../graphql/queries/userProfile";
+import { useState } from "react";
 
 export const useLensPost = (): useLensPostResult => {
+  const [args, setArgs] = useState({});
+  const [showPostButton, setShowPostButton] = useState(false);
+  const [enabled, setEnabled] = useState(false);
   const { signTypedDataAsync } = useSignTypedData();
   const { address } = useAccount();
   const { config } = usePrepareContractWrite({
@@ -21,7 +25,16 @@ export const useLensPost = (): useLensPostResult => {
     onError(error) {
       console.log('Error', error)
     },
+    onSettled(error) {
+      console.log('Settled', error, "my args", args)
+    },
+    onSuccess(error) {
+      console.log('Success', error, "my args", args)
+    },
+    enabled: Boolean(enabled),
+    args: [args]
   });
+
   const { writeAsync } = useContractWrite(config);
 
   const handlePostData = async (e: any) => {
@@ -66,13 +79,24 @@ export const useLensPost = (): useLensPostResult => {
         },
       };
 
-      const tx = await writeAsync?.({recklesslySetUnpreparedArgs: postArgs})
-      const res = await tx?.wait()
+      setArgs(postArgs);
+      setShowPostButton(true);
+      console.log("inside", enabled)
+      setEnabled(true);
 
     } catch (err: any) {
       console.error(err.message);
     }
   };
+
+  const handlePostWrite = async (): Promise<void> => {
+    console.log("outside", enabled)
+    console.log("outside", args)
+    const tx = await writeAsync?.()
+    console.log("tx", tx)
+    const res = await tx?.wait()
+    console.log("res",res)
+  }
 
 
   const handleFileChange = (e: any): any[] => {
@@ -90,5 +114,5 @@ export const useLensPost = (): useLensPostResult => {
   const handleHashImages = (e: any): void => {
     e.preventDefault();
   };
-  return { handlePostData, handleHashImages, handleFileChange };
+  return { handlePostWrite, handlePostData, handleHashImages, handleFileChange, showPostButton };
 };

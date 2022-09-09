@@ -3,6 +3,8 @@ import { LensPostProps } from "../../../generated/lens/lenstypes.types";
 
 export const LensPost: FunctionComponent<LensPostProps> = ({
   prompt,
+  showPostButton,
+  handlePostWrite,
   handlePostData,
   onHashImages,
   onFileChange
@@ -46,21 +48,28 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
             accept="image/png, image/jpeg"
             multiple
             type="file" className="flex justify-start overflow-y-scroll p-2 top-16 absolute w-fit"/>
-            <button
+            {/* <button
               onClick={onHashImages}
               className="z-10 absolute p-2 left-[20%] top-[103%] rounded-b-lg text-distro text-white text-base bg-offBlack"
             >
               Hash Images
-            </button>
+            </button> */}
           </div>
         )}
         <button
           type="submit"
           className="top-[103%] left-[76%] absolute p-2 rounded-b-lg text-distro text-white text-base bg-offBlack"
         >
-          POST
+          Create
         </button>
       </form>
+      { showPostButton &&
+          <button
+          className="top-[103%] left-[20%] absolute p-2 rounded-b-lg text-distro text-white text-base bg-offBlack"
+          onClick={handlePostWrite}>
+            post
+          </button>
+        }
     </div>
   );
 };
