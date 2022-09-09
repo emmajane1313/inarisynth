@@ -15,15 +15,15 @@ import getDefaultProfile from "../../../graphql/queries/userProfile";
 export const useLensPost = (): useLensPostResult => {
   const { signTypedDataAsync } = useSignTypedData();
   const { address } = useAccount();
-  const { config } = usePrepareContractWrite({
-    addressOrName: LENS_HUB_PROXY_ADDRESS,
-    contractInterface: LensHubProxy,
-    functionName: "postWithSig",
-    onError(error) {
-      console.log('Error', error)
-    },
-  });
-  const { writeAsync } = useContractWrite(config);
+  // const { config } = usePrepareContractWrite({
+  //   addressOrName: LENS_HUB_PROXY_ADDRESS,
+  //   contractInterface: LensHubProxy,
+  //   functionName: "postWithSig",
+  //   onError(error) {
+  //     console.log('Error', error)
+  //   },
+  // });
+  // const { writeAsync } = useContractWrite(config);
 
   const handlePostData = async (e: any) => {
     e.preventDefault();
@@ -67,8 +67,8 @@ export const useLensPost = (): useLensPostResult => {
         },
       };
 
-      const tx = await writeAsync?.({recklesslySetUnpreparedArgs: postArgs})
-      const res = await tx?.wait()
+      // const tx = await writeAsync?.({recklesslySetUnpreparedArgs: postArgs})
+      // const res = await tx?.wait()
 
     } catch (err: any) {
       console.error(err.message);
