@@ -3,7 +3,7 @@ import { LensPostProps } from "../../../generated/lens/lenstypes.types";
 
 export const LensPost: FunctionComponent<LensPostProps> = ({
   prompt,
-  handlePostData,
+  // handlePostData,
   onHashImages,
   onFileChange
 }): JSX.Element => {
@@ -11,7 +11,7 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
   return (
     <div className="relative left-[50%] bg-offWhite w-[40%] h-[50%] rounded-lg">
       <form
-        onSubmit={handlePostData}
+        // onSubmit={handlePostData}
         className="bg-white rounded-t-lg border-solid border-2 left-[10%] top-[5%] border-offBlack relative  w-[80%] h-[75%]"
       >
         {prompt ? (
