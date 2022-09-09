@@ -6,7 +6,7 @@ import {
   useContractWrite,
 } from "wagmi";
 import LensHubProxy from "./../../../abis/LensHubProxy.json";
-import { LENS_HUB_PROXY_ADDRESS } from "../../../lib/lens/constants";
+import { LENS_HUB_PROXY_ADDRESS_MATIC } from "../../../lib/lens/constants";
 import { splitSignature, omit } from "../../../lib/lens/helpers";
 import createPostTypedData from "../../../graphql/mutations/createPost";
 import getDefaultProfile from "../../../graphql/queries/userProfile";
@@ -19,7 +19,7 @@ export const useLensPost = (): useLensPostResult => {
   const { signTypedDataAsync } = useSignTypedData();
   const { address } = useAccount();
   const { config } = usePrepareContractWrite({
-    addressOrName: LENS_HUB_PROXY_ADDRESS,
+    addressOrName: LENS_HUB_PROXY_ADDRESS_MATIC,
     contractInterface: LensHubProxy,
     functionName: "postWithSig",
     onError(error) {
