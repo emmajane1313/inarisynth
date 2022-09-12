@@ -54,17 +54,15 @@ export type ProfileHandleProps = { lensProfile?: Profile };
 export type useLensPostResult = {
   handlePostWrite: () => Promise<void>;
   handlePostData: (e: any) => void;
-  handleHashImages: (e: any) => void;
-  handleFileChange: (e: any) => any[];
+  handleFileChange: (e: any) => void;
   showPostButton: boolean;
 };
 export type LensPostProps = {
   prompt: string;
   showPostButton: boolean;
-  handlePostWrite: () => Promise<void>;
-  handlePostData: (e: any) => void;
-  onHashImages: (e: any) => void;
-  onFileChange: (e: any) => any[];
+  onPostWrite: () => Promise<void>;
+  onPostData: (e: any) => void;
+  onFileChange: (e: any) => void;
 };
 export type PostData = {
   prompt: string;
@@ -75,3 +73,23 @@ export type PostData = {
     file3: string;
   };
 };
+export type PostArgsType = {
+  profileId: string;
+  contentURI: string;
+  collectModule: string;
+  collectModuleInitData: string;
+  referenceModule: string;
+  referenceModuleInitData: string;
+  sig: {
+    v: number;
+    r: string;
+    s: string;
+    deadline: number;
+  };
+};
+
+export type postContentType = {
+  prompt: string;
+  description: string;
+  files?: string[];
+}

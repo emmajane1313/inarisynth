@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 import { apolloClient } from "./../../lib/lens/client";
 
-const CREATE_POST_TYPED_DATA = `
+export const CREATE_POST_TYPED_DATA = `
   mutation($request: CreatePublicPostRequest!) { 
     createPostTypedData(request: $request) {
       id

@@ -17,6 +17,9 @@
     "jsx": "preserve",
     "incremental": true,
     "noImplicitAny": false,
+		"typeRoots": [
+			"./node_modules/@types",
+		],
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/clients/lens/lensApi.js"],
   "exclude": ["node_modules"]

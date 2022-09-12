@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UseEnterPromptResult } from "../../../generated/stablediffusion/sdtypes.types";
+import { UseEnterPromptResult } from "./../../../generated/stablediffusion/sdtypes.types";
 
 export const useEnterPrompt = (): UseEnterPromptResult => {
   const [prompt, setPrompt] = useState("");

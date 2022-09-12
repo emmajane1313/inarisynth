@@ -7,13 +7,13 @@ import { useLensPost } from "./hooks/useLensPost";
 
 export const PromptBox = (): JSX.Element => {
   const { handlePromptInput, prompt } = useEnterPrompt();
-  const {handlePostWrite, handlePostData, handleHashImages, handleFileChange, showPostButton} = useLensPost();
+  const {handlePostWrite, handlePostData, handleFileChange, showPostButton} = useLensPost();
 
   return (
     <div className="w-[45%] h-[80%] fixed bg-gradient-to-r from-grad1 via-grad2 via-grad3 to-grad4 z-30 absolute rounded-lg top-[10%] left-[27.5%] shadow-2xl shadow-black	">
       <ImageSequence />
       <EnterPrompt onPromptInput={handlePromptInput} />
-      <LensPost prompt={prompt} showPostButton={showPostButton} handlePostWrite={handlePostWrite} handlePostData={handlePostData} onHashImages={handleHashImages} onFileChange={handleFileChange} />
+      <LensPost prompt={prompt} showPostButton={showPostButton} onPostWrite={handlePostWrite} onPostData={handlePostData} onFileChange={handleFileChange} />
     </div>
   );
 };
