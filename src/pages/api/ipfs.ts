@@ -11,9 +11,10 @@ handler.use((req: any, res: any, next) => {
 
 handler.post(async (req: any, res: any) => {
   try {
-    const cid = await makeFileObjects(req.body);
+    const cid: string = await makeFileObjects(req.body);
+    console.log(res, "res")
     return res.json(cid);
-  } catch (err) {
+  } catch (err: any) {
     return res
       .status(500)
       .json({ error: "Error storing the file", success: false });
@@ -27,9 +28,9 @@ const makeFileObjects = async (obj: any) => {
   const blob = new Blob([obj], { type: "application/json" });
   const files = [new File([blob], `metadata.json`)];
   try {
-    const cid = await client.put(files);
+    const cid: string = await client.put(files, {wrapWithDirectory: false});
     return cid;
-  } catch (err) {
+  } catch (err: any) {
     console.error(err.message);
   }
 };

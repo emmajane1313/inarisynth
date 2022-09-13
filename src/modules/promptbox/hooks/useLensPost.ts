@@ -68,7 +68,7 @@ export const useLensPost = (): useLensPostResult => {
       try {
         const response = await fetch("/api/media", {
           method: "POST",
-          body: imageData,
+          body: imageData
         });
         if (response.status !== 200) {
           console.log("ERROR", response);
@@ -86,7 +86,7 @@ export const useLensPost = (): useLensPostResult => {
     setImages(finalImages)
   };
 
-  const uploadFiles = async (e: any): Promise<void> => {
+  const uploadFiles = async (e: any): Promise<string> => {
     let newImages = [];
     images.forEach((image) => {
       newImages.push({
@@ -95,8 +95,6 @@ export const useLensPost = (): useLensPostResult => {
         altTag: "",
       });
     });
-
-    console.log(newImages, "mum mum mum")
 
     const data = {
       version: "2.0.0",
@@ -108,6 +106,7 @@ export const useLensPost = (): useLensPostResult => {
       imageMimeType: "image/png",
       name: e.target.prompt.value,
       mainContentFocus: "IMAGE",
+      contentWarning: null,
       attributes: [
         {
           traitType: "string",
@@ -137,20 +136,21 @@ export const useLensPost = (): useLensPostResult => {
         setContentURI(responseJSON);
         return responseJSON;
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error(err.message);
     }
+    return contentURI;
   };
 
   const handlePostData = async (e: any): Promise<void> => {
     e.preventDefault();
 
     try {
-      await uploadFiles(e);
+      const contentURI: string = await uploadFiles(e);
 
-      const profile = await getDefaultProfile(address);
+      const profile: any = await getDefaultProfile(address);
 
-      const result = await createPostTypedData({
+      const result: any = await createPostTypedData({
         profileId: profile.data.defaultProfile.id,
         contentURI: "ipfs://" + contentURI,
         collectModule: {
@@ -161,9 +161,9 @@ export const useLensPost = (): useLensPostResult => {
         },
       });
 
-      const typedData = result.data.createPostTypedData.typedData;
+      const typedData: any = result.data.createPostTypedData.typedData;
 
-      const signature = await signTypedDataAsync({
+      const signature: any = await signTypedDataAsync({
         domain: omit(typedData?.domain, "__typename"),
         types: omit(typedData?.types, "__typename"),
         value: omit(typedData?.value, "__typename"),
@@ -195,6 +195,7 @@ export const useLensPost = (): useLensPostResult => {
   };
 
   const handlePostWrite = async (): Promise<void> => {
+    console.log(args, ">>> args")
     const tx = await writeAsync?.();
     const res = await tx?.wait();
 

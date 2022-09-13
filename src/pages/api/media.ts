@@ -6,7 +6,7 @@ const { resolve, join, dirname } = require("path");
 
 const handler = nextConnect();
 
-handler.use((req:any, res:any, next) => {
+handler.use((req: any, res: any, next) => {
   const form = new multiparty.Form();
 
   form.parse(req, function (err, fields, files) {
@@ -16,7 +16,7 @@ handler.use((req:any, res:any, next) => {
   });
 });
 
-handler.post(async (req:any, res:any) => {
+handler.post(async (req: any, res: any) => {
   try {
     const files = await makeFileObjects(req.files);
     const cid = await storeFiles(files);
@@ -40,7 +40,7 @@ export default handler;
 async function storeFiles(files) {
   const client = makeStorageClient();
   try {
-    const cid = await client.put(files);
+    const cid = await client.put(files, { wrapWithDirectory: false });
     return cid;
   } catch (error) {
     console.log("ERROR", error);
@@ -56,7 +56,7 @@ async function getNewPath(item: any) {
   }
 }
 
-async function makeFileObjects( myFiles: any) {
+async function makeFileObjects(myFiles: any) {
   let files: any;
   for (let item of Object.values(myFiles)) {
     let newPath = await getNewPath(item);
