@@ -18,10 +18,12 @@
     "multiparty": "^4.2.3",
     "next": "12.2.5",
     "next-connect": "^0.13.0",
+    "node-fetch": "^3.2.10",
     "omit-deep": "^0.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
+    "replicate-js": "github:nicholascelestin/replicate-js",
     "uuid": "^9.0.0",
     "wagmi": "^0.6.4",
     "web3.storage": "^4.4.0"

@@ -1,5 +1,5 @@
 import nextConnect from "next-connect";
-const { Web3Storage, File, Blob, getFilesFromPath } = require("web3.storage");
+const { Web3Storage, File, Blob } = require("web3.storage");
 const bodyParser = require("body-parser");
 
 const handler = nextConnect();
