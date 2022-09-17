@@ -15,8 +15,8 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
     setPrompt(promptValue);
   };
 
-  const handleRunPrompt = async (e: any): Promise<void> => {
-    e.preventDefault();
+  const handleRunPrompt = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    // e.preventDefault();
     const input: InputType = {
       prompt: prompt,
       width: 512,

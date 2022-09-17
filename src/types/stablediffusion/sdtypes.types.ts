@@ -3,7 +3,7 @@ import { FormEventHandler } from "react";
 export type UseEnterPromptResult = {
   prompt: string;
   handlePromptInput: (e: any) => void;
-  handleRunPrompt: (prompt: string) => Promise<void>;
+  handleRunPrompt: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
   promptImages: string[];
   handleImageModalOpen: (image: string) => void;
   imageOpen: boolean;
@@ -14,7 +14,7 @@ export type UseEnterPromptResult = {
 };
 export type EnterPromptProps = {
   onPromptInput: (e: any) => void;
-  onRunPrompt: (prompt: string) => Promise<void>;
+  onRunPrompt: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 };
 
 export type InputType = {
