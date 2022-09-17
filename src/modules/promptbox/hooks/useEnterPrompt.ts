@@ -50,14 +50,14 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
   };
 
   const handleImageSelect = (e: any, image: string, index: any): void => {
-    // let imagesArray = [];
-    // if (imageSelect.includes(image)) {
-    //   imagesArray = imageSelect.filter((images: string) => images !== image);
-    // } else {
-    //   imagesArray = [...imageSelect, image];
-    // }
-    // setImageSelect(imagesArray);
-    // console.log(imagesArray);
+    let imagesArray = [];
+    if (imageSelect.includes(image)) {
+      imagesArray = imageSelect.filter((images: string) => images !== image);
+    } else {
+      imagesArray = [...imageSelect, image];
+    }
+    setImageSelect(imagesArray);
+    console.log(imagesArray);
   };
 
   const handleImageModalClose = (): void => {
