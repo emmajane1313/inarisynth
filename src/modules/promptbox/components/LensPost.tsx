@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { LensPostProps } from "../../../generated/lens/lenstypes.types";
+import { LensPostProps } from "../../../types/lens/lenstypes.types";
 
 export const LensPost: FunctionComponent<LensPostProps> = ({
   prompt,
@@ -10,7 +10,7 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
 }): JSX.Element => {
 
   return (
-    <div className="relative left-[50%] bg-offWhite w-[40%] h-[50%] rounded-lg">
+    <div className="relative left-[50%] bg-gradient-to-r from-grad1 via-grad2 via-grad3 to-grad4 w-[40%] h-[50%] rounded-lg">
       <form
         onSubmit={onPostData}
         className="bg-white rounded-t-lg border-solid border-2 left-[10%] top-[5%] border-offBlack relative  w-[80%] h-[75%]"
@@ -21,7 +21,7 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
             id="prompt">
               {prompt}
             </div>
-            <input
+            <textarea
               placeholder="Include a message with your new synths"
               name={"description"}
               className="flex justify-start overflow-y-scroll p-2 top-16 absolute w-full h-[11.4rem]"
@@ -29,16 +29,14 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
           </div>
         ) : (
           <div>
-            <input
+            <textarea
               placeholder="Share your prompt"
-              type="text"
               name={"prompt"}
               className="absolute border-b-2 border-solid border-offBlack w-full h-16 p-2 flex overflow-scroll"
             />
-            <input
+            <textarea
               placeholder="Post something and upload your synths or make a new one in the prompt box to the left!"
               name={"description"}
-              type="text"
               className="flex justify-start overflow-y-scroll p-2 top-16 absolute w-full h-[11.4rem]"
             />
             <input

@@ -1,13 +1,38 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
+import { ImageSequenceProps } from "../../../types/stablediffusion/sdtypes.types";
+import Image from "next/image";
+import {IoMdExpand} from "react-icons/io"
 
-export const ImageSequence = (): JSX.Element => {
+export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
+  promptImages,
+  onImageModalOpen,
+  onImageSelect,
+  imageSelect
+}): JSX.Element => {
   return (
-  <div className="grid top-0 m-4 grid-cols-3 align-center gap-2 w-full absolute h-full">
-  <div className="w-48 bg-black h-64">
-  </div>
-  <div className="w-48 bg-black h-64">
-  </div>
-  <div className="w-48 bg-black h-64">
-  </div>
-  </div>);
+    <div>
+      <div className="grid top-0 m-3 grid-cols-4 align-center gap-1 w-full absolute h-full">
+        {promptImages?.map((image, index) => {
+          return (
+            <div
+              key={index}
+              id={image}
+              className="w-36 h-64 cursor-pointer"
+            >
+              <img
+                src={image}
+                className={`hover:opacity-90 active:border-4 active:border-themeBlue ${
+                  imageSelect ? "border-4 border-grad3" : "border-4 border-themeBlue"
+                }`}
+                onClick={() => onImageSelect(image, index)}
+              />
+              <IoMdExpand 
+              onClick={() => onImageModalOpen(image)}
+              color="white"/>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 };

@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAccount, useSignMessage } from "wagmi";
 import { ACCESS_KEY, REFRESH_KEY, EXP } from "../../lib/lens/constants";
 import getDefaultProfile from "../../graphql/queries/userProfile";
 import authenticate from "../../graphql/mutations/authenticate";
 import generateChallenge from "../../graphql/queries/generateChallenge";
-import { UseLensSignInResults } from "./../../generated/lens/lenstypes.types";
-import { Profile } from "../../generated/lens/types.types";
+import { UseLensSignInResults } from "../../types/lens/lenstypes.types";
+import { Profile } from "../../types/lens/types.types";
 import { setAuthenticationToken } from "../../lib/lens/utils";
 
 export const useLensSignIn = (): UseLensSignInResults => {

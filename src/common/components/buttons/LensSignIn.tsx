@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useMemo } from "react";
 import Image from "next/image";
-import { LensSignInProps } from "./../../../generated/lens/lenstypes.types";
+import { LensSignInProps } from "../../../types/lens/lenstypes.types";
 
 export const LensSignIn: FunctionComponent<LensSignInProps> = ({lensLogin}): JSX.Element => {
 

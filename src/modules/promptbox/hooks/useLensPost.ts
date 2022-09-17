@@ -2,7 +2,7 @@ import {
   PostArgsType,
   postContentType,
   useLensPostResult,
-} from "./../../../generated/lens/lenstypes.types";
+} from "../../../types/lens/lenstypes.types";
 import { v4 as uuidv4 } from "uuid";
 import {
   useAccount,

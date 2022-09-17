@@ -2,7 +2,7 @@ import Link from "next/link";
 import React, { FunctionComponent, useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { LensSignIn } from "../buttons/LensSignIn";
-import {GetProfileProps} from "./../../../generated/lens/lenstypes.types"
+import {GetProfileProps} from "../../../types/lens/lenstypes.types"
 
 export const GetProfile: FunctionComponent<GetProfileProps> = ({handleLensModalClose, modalClose, lensLogin}): JSX.Element | null => {
 

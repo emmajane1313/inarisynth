@@ -11,9 +11,9 @@ handler.use((req: any, res: any, next) => {
 
 handler.post(async (req: any, res: any) => {
   try {
-    const image = await makePromptRequest(req.body);
-    console.log(image, "images");
-    // return res.json(image);
+    console.log(JSON.parse(req.body));
+    const images = await makePromptRequest(JSON.parse(req.body));
+    return res.json(images);
   } catch (err: any) {
     return res
       .status(500)
@@ -25,15 +25,15 @@ export default handler;
 
 const makePromptRequest = async (obj: any) => {
   const client = makeReplicateClient();
-  console.log(client, "success")
-  console.log(obj)
+  console.log("obh", obj)
   try {
-    const model: any = await client.models.get("stability-ai/stable-diffusion", "a9758cbfbd5f3c2094457d996681af52552901775aa2d6dd0b17fd15df959bef")
-    console.log("made it to model", JSON.stringify(model))
-    const prediction: string = await model.predict({
-        prompt: "small cat",
-  })
-    console.log("made it to prediction", prediction)
+    const model: any = await client.models.get(
+      "stability-ai/stable-diffusion",
+      "a9758cbfbd5f3c2094457d996681af52552901775aa2d6dd0b17fd15df959bef"
+    );
+    console.log(model, "model")
+    const prediction = await model.predict(obj);
+    console.log(prediction, "pred")
     return prediction;
   } catch (err: any) {
     console.error(err.message);
@@ -41,5 +41,5 @@ const makePromptRequest = async (obj: any) => {
 };
 
 function makeReplicateClient() {
-  return new Replicate({token: process.env.REPLICATE_KEY});
+  return new Replicate({ token: process.env.REPLICATE_KEY });
 }

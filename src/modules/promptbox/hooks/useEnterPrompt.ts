@@ -1,14 +1,17 @@
 import { useState } from "react";
-import { InputType } from "zlib";
-import { UseEnterPromptResult } from "./../../../generated/stablediffusion/sdtypes.types";
+import { InputType } from "./../../../types/stablediffusion/sdtypes.types";
+import { UseEnterPromptResult } from "./../../../types/stablediffusion/sdtypes.types";
 
 export const useEnterPrompt = (): UseEnterPromptResult => {
   const [prompt, setPrompt] = useState<string>("");
-  const [promptImage, setPromptImage] = useState();
+  const [promptImages, setPromptImages] = useState<string[]>([]);
+  const [imageOpen, setImageOpen] = useState<boolean>(false);
+  const [imageSelect, setImageSelect] = useState<boolean>(false);
+  const [expandedImage, setExpandedImage] = useState<string>("");
+  const [imageIndex, setImageIndex] = useState<any>();
 
   const handlePromptInput = (e: any): void => {
     e.preventDefault();
-    console.log(e.target.value);
     const promptValue: string = e.target.value;
     setPrompt(promptValue);
   };
@@ -16,15 +19,14 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
   const handleRunPrompt = async (e: any): Promise<void> => {
     e.preventDefault();
     const input: InputType = {
-        prompt: prompt,
-        width: 768,
-        height: 768,
-        num_outputs: 3,
-        num_inference_steps: 75,
-        guidance_scale: 10,
+      prompt: prompt,
+      width: 512,
+      height: 768,
+      num_outputs: 4,
+      num_inference_steps: 75,
+      guidance_scale: 10,
+      safety: false,
     };
-
-    console.log(input, "diz")
 
     try {
       const response = await fetch("/api/prompt", {
@@ -34,10 +36,8 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
       if (response.status !== 200) {
         console.log("ERROR", response);
       } else {
-        console.log("Prediction successfully submitted!");
         let responseJSON = await response.json();
-        console.log("Prediction:", responseJSON);
-        // setPromptImage(responseJSON);
+        setPromptImages(responseJSON);
         return responseJSON;
       }
     } catch (err: any) {
@@ -45,5 +45,33 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
     }
   };
 
-  return { prompt, handlePromptInput, handleRunPrompt };
+  const handleImageModalOpen = (image: string): void => {
+    setImageOpen(true);
+    setExpandedImage(image);
+    console.log("open", imageOpen);
+    console.log(image, "expanded");
+  };
+
+  const handleImageSelect = (image: string, index: any): void => {
+    imageSelect ? setImageSelect(false) : setImageSelect(true);
+    setImageIndex(index);
+    console.log(imageSelect);
+  };
+
+  const handleImageModalClose = (): void => {
+    setImageOpen(false);
+  };
+
+  return {
+    prompt,
+    handlePromptInput,
+    handleRunPrompt,
+    promptImages,
+    handleImageModalOpen,
+    imageOpen,
+    handleImageSelect,
+    imageSelect,
+    expandedImage,
+    handleImageModalClose,
+  };
 };

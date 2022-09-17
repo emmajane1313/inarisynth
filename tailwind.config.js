@@ -16,7 +16,8 @@ module.exports = {
         grad3: "#DBBFFF",
         grad4: "#EB91F4",
         lensLight: "#ABFE2C",
-        lensDark: "#00501E"
+        lensDark: "#00501E",
+        themeBlue: "#9FD4FB"
       },
       fontFamily: {
         distro: "Distro Mix",
