@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { InputType } from "./../../../types/stablediffusion/sdtypes.types";
 import { UseEnterPromptResult } from "./../../../types/stablediffusion/sdtypes.types";
 
@@ -6,7 +6,7 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
   const [prompt, setPrompt] = useState<string>("");
   const [promptImages, setPromptImages] = useState<string[]>([]);
   const [imageOpen, setImageOpen] = useState<boolean>(false);
-  const [imageSelect, setImageSelect] = useState<boolean>(false);
+  const [imageSelect, setImageSelect] = useState<any>({});
   const [expandedImage, setExpandedImage] = useState<string>("");
   const [imageIndex, setImageIndex] = useState<any>();
 
@@ -48,15 +48,13 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
   const handleImageModalOpen = (image: string): void => {
     setImageOpen(true);
     setExpandedImage(image);
-    console.log("open", imageOpen);
-    console.log(image, "expanded");
   };
 
-  const handleImageSelect = (image: string, index: any): void => {
-    imageSelect ? setImageSelect(false) : setImageSelect(true);
-    setImageIndex(index);
-    console.log(imageSelect);
+  const handleImageSelect = (e: any, image: string, index: any): void => {
+    setImageSelect({selected: image})
+    console.log(imageSelect)
   };
+
 
   const handleImageModalClose = (): void => {
     setImageOpen(false);
