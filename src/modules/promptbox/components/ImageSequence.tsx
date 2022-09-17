@@ -22,11 +22,10 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
               <img
                 src={image}
                 className={"hover:opacity-90 active:border-4 active:border-themeBlue"}
-                onClick={(e) => onImageSelect(e, image, index)}
-              />
-              <IoMdExpand 
-              onClick={() => onImageModalOpen(image)}
-              color="white"/>
+                onClick={(e) => onImageSelect(e, image, index)} />
+                <IoMdExpand 
+            onClick={() => onImageModalOpen(image)}
+            color="white"/>
             </div>
           );
         })}

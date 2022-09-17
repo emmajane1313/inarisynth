@@ -6,9 +6,8 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
   const [prompt, setPrompt] = useState<string>("");
   const [promptImages, setPromptImages] = useState<string[]>([]);
   const [imageOpen, setImageOpen] = useState<boolean>(false);
-  const [imageSelect, setImageSelect] = useState<any>({});
+  const [imageSelect, setImageSelect] = useState<any>([]);
   const [expandedImage, setExpandedImage] = useState<string>("");
-  const [imageIndex, setImageIndex] = useState<any>();
 
   const handlePromptInput = (e: any): void => {
     e.preventDefault();
@@ -51,10 +50,15 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
   };
 
   const handleImageSelect = (e: any, image: string, index: any): void => {
-    setImageSelect({selected: image})
-    console.log(imageSelect)
+    // let imagesArray = [];
+    // if (imageSelect.includes(image)) {
+    //   imagesArray = imageSelect.filter((images: string) => images !== image);
+    // } else {
+    //   imagesArray = [...imageSelect, image];
+    // }
+    // setImageSelect(imagesArray);
+    // console.log(imagesArray);
   };
-
 
   const handleImageModalClose = (): void => {
     setImageOpen(false);
