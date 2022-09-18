@@ -4,9 +4,9 @@ import { EnterPromptProps } from "../../../types/stablediffusion/sdtypes.types";
 export const EnterPrompt: FunctionComponent<EnterPromptProps> = ({onPromptInput, onRunPrompt}): JSX.Element => {
 
   return (
-    <div className="relative left-[10%] top-[30%] bg-gradient-to-r from-grad1 via-grad2 via-grad3 to-grad4 w-[35%] h-[43%] rounded-lg">
+    <div className="relative w-full h-fit p-1 rounded-lg">
       <form onSubmit={(e) => onRunPrompt(e)} className="m-0 p-0 box-border">
-      <textarea name="prompt" className="resize-none bg-white rounded-t-lg border-solid border-2 -left-[0.1rem] box-border align-top p-4 top-3 border-offBlack relative w-52 h-48"
+      <textarea name="prompt" className="resize-none bg-white rounded-t-lg border-solid border-8 box-border align-top p-4 -left-5 border-grad3 from-grad1 via-grad2 via-grad3 to-grad4 relative w-full h-16"
       onChange={onPromptInput}
       />
         <button

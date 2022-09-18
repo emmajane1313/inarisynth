@@ -8,7 +8,6 @@ export type UseEnterPromptResult = {
   handleImageModalOpen: (image: string) => void;
   imageOpen: boolean;
   handleImageSelect: (image: string) => void;
-  imageSelect: any;
   expandedImage: string;
   handleImageModalClose: () => void;
 };
@@ -32,6 +31,7 @@ export type ImageSequenceProps = {
   onImageModalOpen: (image: string) => void;
   onImageSelect: (image: string) => void;
   imageSelect: string[];
+  onImageClick: (image: string) => any;
 };
 
 export type ImageExpandProps = {

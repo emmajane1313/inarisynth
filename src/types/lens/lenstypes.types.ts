@@ -54,15 +54,15 @@ export type ProfileHandleProps = { lensProfile?: Profile };
 export type useLensPostResult = {
   handlePostWrite: () => Promise<void>;
   handlePostData: (e: any) => void;
-  handleFileChange: (e: any) => void;
   showPostButton: boolean;
+  onImageClick: (image: string) => any;
+  imageSelect: any;
 };
 export type LensPostProps = {
   prompt: string;
   showPostButton: boolean;
   onPostWrite: () => Promise<void>;
   onPostData: (e: any) => void;
-  onFileChange: (e: any) => void;
   imageSelect: string[]
 };
 export type PostData = {

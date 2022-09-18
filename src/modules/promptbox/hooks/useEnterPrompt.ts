@@ -8,6 +8,7 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
   const [imageOpen, setImageOpen] = useState<boolean>(false);
   const [imageSelect, setImageSelect] = useState<string[]>([]);
   const [expandedImage, setExpandedImage] = useState<string>("");
+  const [promptFile, setPromptFile] = useState<any>();
 
   const handlePromptInput = (e: any): void => {
     e.preventDefault();
@@ -15,7 +16,9 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
     setPrompt(promptValue);
   };
 
-  const handleRunPrompt = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleRunPrompt = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
     const input: InputType = {
       prompt: prompt,
@@ -57,7 +60,42 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
       imagesArray = [...imageSelect, image];
     }
     setImageSelect(imagesArray);
-    console.log(imagesArray);
+    let newImageArray = [{}]
+    imagesArray.map( async (img, index) => {
+      const base64: any = await getBase64FromUrl(img);
+      const file: any = await base64ToFile(base64, "fileone.png");
+      console.log(file);
+      newImageArray.push(file)
+      console.log(file, "at", index)
+      console.log(newImageArray, "at", index)
+      
+    })
+    setPromptFile(newImageArray);
+  };
+
+  const base64ToFile = async (dataurl: any, filename: any) => {
+    let arr = dataurl.split(","),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  };
+
+  const getBase64FromUrl = async (url: string) => {
+    const data = await fetch(url);
+    const blob = await data.blob();
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onloadend = () => {
+        const base64data = reader.result;
+        resolve(base64data);
+      };
+    });
   };
 
   const handleImageModalClose = (): void => {
@@ -72,7 +110,6 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
     handleImageModalOpen,
     imageOpen,
     handleImageSelect,
-    imageSelect,
     expandedImage,
     handleImageModalClose,
   };

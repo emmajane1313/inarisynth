@@ -7,7 +7,8 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
   promptImages,
   onImageModalOpen,
   onImageSelect,
-  imageSelect
+  imageSelect,
+  onImageClick
 }): JSX.Element => {
   return (
     <div>
@@ -22,7 +23,7 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
               <img
                 src={image}
                 className={`hover:opacity-90 active:border-4 active:border-themeBlue ${imageSelect.includes(image) && "border-4 border-themeBlue"}`}
-                onClick={() => onImageSelect(image)}
+                onClick={() => onImageClick(image)}// change this to handleFileChange
               />   
               <IoMdExpand
                 onClick={() => onImageModalOpen(image)}
@@ -31,6 +32,7 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
             </div>
           );
         })}
+        <button className="text-white">Click Me please!</button>
       </div>
     </div>
   );

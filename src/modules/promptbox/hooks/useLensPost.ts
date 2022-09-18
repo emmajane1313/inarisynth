@@ -1,6 +1,5 @@
 import {
   PostArgsType,
-  postContentType,
   useLensPostResult,
 } from "../../../types/lens/lenstypes.types";
 import { v4 as uuidv4 } from "uuid";
@@ -20,6 +19,7 @@ import createPostTypedData from "../../../graphql/mutations/createPost";
 import getDefaultProfile from "../../../graphql/queries/userProfile";
 import checkIndexed from "../../../graphql/queries/indexer";
 import { useState } from "react";
+import { useEnterPrompt } from "./useEnterPrompt";
 
 export const useLensPost = (): useLensPostResult => {
   const [args, setArgs] = useState<PostArgsType | undefined>();
@@ -29,6 +29,7 @@ export const useLensPost = (): useLensPostResult => {
   const [contentURI, setContentURI] = useState<string>("");
   const { signTypedDataAsync } = useSignTypedData();
   const { address } = useAccount();
+  const [imageSelect, setImageSelect] = useState<string[]>([]);
 
   const { config } = usePrepareContractWrite({
     addressOrName: LENS_HUB_PROXY_ADDRESS_MUMBAI,
@@ -49,26 +50,35 @@ export const useLensPost = (): useLensPostResult => {
 
   const { writeAsync } = useContractWrite(config);
 
-  const handleFileChange = (e: any): void => {
-    e.preventDefault();
-    let filesArray: any[] = [];
-    if (e.target.files.length > 3) {
-      alert("Maximum of 3 image uploads");
+  const onImageClick = async (image: string): Promise<void> => {
+    let imagesArray = [];
+    if (imageSelect.includes(image)) {
+      imagesArray = imageSelect.filter((images: string) => images !== image);
     } else {
-      for (let i = 0; i < e.target.files.length; i++) {
-        filesArray.push(e.target.files[i]);
-      }
+      imagesArray = [...imageSelect, image];
     }
+    setImageSelect(imagesArray);
+    if (imagesArray.length !== 0) {
+      const finalImages: any = await mapNewImageArray(imagesArray);
+      console.log(finalImages);
+    }
+  };
 
+  const mapNewImageArray = async (imagesArray: string[]): Promise<any> => {
     let finalImages: any[] = [];
+    imagesArray.map(async (img: any, index: number) => {
+      const base64: any = await getBase64FromUrl(img);
+      const res: Response = await fetch(base64);
+      const blob: Blob = await res.blob();
+      const file = new File([blob], "imageone", { type: "image/png" });
 
-    filesArray.forEach(async (image, index) => {
       let imageData = new FormData();
-      imageData.append(`image${index}`, image);
+      imageData.append(`image${index}`, file);
       try {
+        console.log("im trying");
         const response = await fetch("/api/media", {
           method: "POST",
-          body: imageData
+          body: imageData,
         });
         if (response.status !== 200) {
           console.log("ERROR", response);
@@ -81,13 +91,29 @@ export const useLensPost = (): useLensPostResult => {
         }
       } catch (err) {
         console.error(err.message);
-      } 
+      }
     });
-    setImages(finalImages)
+    setImages(finalImages);
+    console.log("array of final images", finalImages);
+    return finalImages;
+  };
+
+  const getBase64FromUrl = async (url: string) => {
+    const data = await fetch(url);
+    const blob = await data.blob();
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onloadend = () => {
+        const base64data = reader.result;
+        resolve(base64data);
+      };
+    });
   };
 
   const uploadFiles = async (e: any): Promise<string> => {
     let newImages = [];
+    // console.log('this is description', e.target.description, "this is prompt", e.target.prompt)
     images.forEach((image) => {
       newImages.push({
         item: "ipfs://" + image,
@@ -102,9 +128,9 @@ export const useLensPost = (): useLensPostResult => {
       description: e.target.description.value,
       content: e.target.description.value,
       external_url: "https://www.inarisynth.xyz/",
-      image: images[0] ? "ipfs://"+images[0] : null,
+      image: images[0] ? "ipfs://" + images[0] : null,
       imageMimeType: "image/png",
-      name: e.target.prompt.value,
+      name: "e.target.prompt.value",
       mainContentFocus: "IMAGE",
       contentWarning: null,
       attributes: [
@@ -120,7 +146,7 @@ export const useLensPost = (): useLensPostResult => {
       appId: "inarisynth",
     };
 
-    console.log(JSON.stringify(data), "push this!!!")
+    console.log(JSON.stringify(data), "push this!!!");
 
     try {
       const response = await fetch("/api/ipfs", {
@@ -147,6 +173,7 @@ export const useLensPost = (): useLensPostResult => {
 
     try {
       const contentURI: string = await uploadFiles(e);
+      console.log("content uri here", contentURI)
 
       const profile: any = await getDefaultProfile(address);
 
@@ -195,7 +222,7 @@ export const useLensPost = (): useLensPostResult => {
   };
 
   const handlePostWrite = async (): Promise<void> => {
-    console.log(args, ">>> args")
+    console.log(args, ">>> args");
     const tx = await writeAsync?.();
     const res = await tx?.wait();
 
@@ -208,7 +235,8 @@ export const useLensPost = (): useLensPostResult => {
   return {
     handlePostWrite,
     handlePostData,
-    handleFileChange,
     showPostButton,
+    onImageClick,
+    imageSelect,
   };
 };

@@ -6,10 +6,8 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
   showPostButton,
   onPostWrite,
   onPostData,
-  onFileChange,
-  imageSelect
+  imageSelect,
 }): JSX.Element => {
-
   return (
     <div className="relative left-[50%] bg-gradient-to-r from-grad1 via-grad2 via-grad3 to-grad4 w-[40%] h-[50%] rounded-lg">
       <form
@@ -18,8 +16,10 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
       >
         {prompt ? (
           <div>
-            <div className="absolute border-b-2 border-solid border-offBlack w-full h-16 p-2 flex overflow-scroll"
-            id="prompt">
+            <div
+              className="absolute border-b-2 border-solid border-offBlack w-full h-16 p-2 flex overflow-scroll"
+              id="prompt"
+            >
               {prompt}
             </div>
             <textarea
@@ -41,12 +41,13 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
               className="flex justify-start overflow-y-scroll p-2 top-16 absolute w-full h-[11.4rem]"
             />
             <input
-            name={"file"}
-            onChange={(e) => onFileChange(e)}
-            accept="image/*"
-            multiple
-            id="filesInput"
-            type="file" className="flex justify-start overflow-y-scroll p-2 top-16 absolute w-fit"/>
+              name={"file"}
+              accept="image/*"
+              multiple
+              id="filesInput"
+              type="file"
+              className="flex justify-start overflow-y-scroll p-2 top-16 absolute w-fit"
+            />
           </div>
         )}
         <button
@@ -56,14 +57,7 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
           CREATE
         </button>
       </form>
-      { showPostButton &&
-          <button
-          className="top-[103%] left-[20%] absolute p-2 rounded-b-lg text-distro text-white text-base bg-offBlack"
-          onClick={onPostWrite}>
-            POST
-          </button>
-        }
-        <div className="grid top-6 left-6 m-0 auto-cols-min gap-1 grid-flow-col align-center w-28 relative h-full overflow-x-scroll h-fit scrollbar-thin scrollbar-thumb-offWhite">
+      <div className="grid top-6 left-6 m-0 auto-cols-min gap-1 grid-flow-col align-center w-28 relative h-full overflow-x-scroll h-fit scrollbar-thin scrollbar-thumb-offWhite">
         {imageSelect &&
           imageSelect.map((image: string, index: any) => {
             return (
@@ -71,9 +65,15 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
                 <img src={image} />
               </div>
             );
-          }) 
-          } 
-
+          })}
+        {showPostButton && (
+          <button
+            className="top-[10%] left-[10%] absolute p-2 rounded-b-lg text-distro text-white text-base bg-offBlack"
+            onClick={onPostWrite}
+          >
+            POST
+          </button>
+        )}
       </div>
     </div>
   );

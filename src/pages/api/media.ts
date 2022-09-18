@@ -37,7 +37,7 @@ export const config = {
 
 export default handler;
 
-async function storeFiles(files) {
+async function storeFiles(files: any) {
   const client = makeStorageClient();
   try {
     const cid = await client.put(files, { wrapWithDirectory: false });
@@ -57,12 +57,14 @@ async function getNewPath(item: any) {
 }
 
 async function makeFileObjects(myFiles: any) {
+  console.log("my files")
   let files: any;
   for (let item of Object.values(myFiles)) {
     let newPath = await getNewPath(item);
     files = await getFilesFromPath(newPath);
+    console.log(files)
   }
-
+  console.log("these files", files)
   return files;
 }
 
