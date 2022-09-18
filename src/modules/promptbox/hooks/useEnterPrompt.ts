@@ -6,7 +6,7 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
   const [prompt, setPrompt] = useState<string>("");
   const [promptImages, setPromptImages] = useState<string[]>([]);
   const [imageOpen, setImageOpen] = useState<boolean>(false);
-  const [imageSelect, setImageSelect] = useState<any>([]);
+  const [imageSelect, setImageSelect] = useState<string[]>([]);
   const [expandedImage, setExpandedImage] = useState<string>("");
 
   const handlePromptInput = (e: any): void => {
@@ -49,7 +49,7 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
     setExpandedImage(image);
   };
 
-  const handleImageSelect = (e: any, image: string, index: any): void => {
+  const handleImageSelect = (image: string): void => {
     let imagesArray = [];
     if (imageSelect.includes(image)) {
       imagesArray = imageSelect.filter((images: string) => images !== image);

@@ -63,6 +63,7 @@ export type LensPostProps = {
   onPostWrite: () => Promise<void>;
   onPostData: (e: any) => void;
   onFileChange: (e: any) => void;
+  imageSelect: string[]
 };
 export type PostData = {
   prompt: string;

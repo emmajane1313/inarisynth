@@ -6,7 +6,8 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
   showPostButton,
   onPostWrite,
   onPostData,
-  onFileChange
+  onFileChange,
+  imageSelect
 }): JSX.Element => {
 
   return (
@@ -24,7 +25,7 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
             <textarea
               placeholder="Include a message with your new synths"
               name={"description"}
-              className="flex justify-start overflow-y-scroll p-2 top-16 absolute w-full h-[11.4rem]"
+              className="resize-none flex justify-start overflow-y-scroll p-2 top-16 absolute w-full h-[11.4rem]"
             />
           </div>
         ) : (
@@ -52,16 +53,28 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
           type="submit"
           className="top-[103%] left-[76%] absolute p-2 rounded-b-lg text-distro text-white text-base bg-offBlack"
         >
-          Create
+          CREATE
         </button>
       </form>
       { showPostButton &&
           <button
           className="top-[103%] left-[20%] absolute p-2 rounded-b-lg text-distro text-white text-base bg-offBlack"
           onClick={onPostWrite}>
-            post
+            POST
           </button>
         }
+        <div className="grid top-6 left-6 m-0 auto-cols-min gap-1 grid-flow-col align-center w-28 relative h-full overflow-x-scroll h-fit scrollbar-thin scrollbar-thumb-offWhite">
+        {imageSelect &&
+          imageSelect.map((image: string, index: any) => {
+            return (
+              <div key={index} id={image} className="w-6 h-10">
+                <img src={image} />
+              </div>
+            );
+          }) 
+          } 
+
+      </div>
     </div>
   );
 };

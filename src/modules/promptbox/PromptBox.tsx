@@ -14,7 +14,7 @@ export const PromptBox = (): JSX.Element => {
     <div className="w-[45%] h-[80%] fixed bg-offBlack z-30 absolute rounded-lg top-[10%] left-[27.5%] shadow-2xl shadow-black backdrop-blur-lg">
       <ImageSequence promptImages={promptImages} onImageModalOpen={handleImageModalOpen} onImageSelect={handleImageSelect} imageSelect={imageSelect}/>
       <EnterPrompt onPromptInput={handlePromptInput} onRunPrompt={handleRunPrompt} />
-      <LensPost prompt={prompt} showPostButton={showPostButton} onPostWrite={handlePostWrite} onPostData={handlePostData} onFileChange={handleFileChange} />
+      <LensPost prompt={prompt} showPostButton={showPostButton} onPostWrite={handlePostWrite} onPostData={handlePostData} onFileChange={handleFileChange} imageSelect={imageSelect}/>
       <ImageExpand onImageModalClose={handleImageModalClose} expandedImage={expandedImage} imageOpen={imageOpen} />
     </div>
   );
