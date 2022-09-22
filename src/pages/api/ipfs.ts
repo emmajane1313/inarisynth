@@ -12,7 +12,10 @@ handler.use((req: any, res: any, next) => {
 handler.post(async (req: any, res: any) => {
   try {
     const cid: string = await makeFileObjects(req.body);
+<<<<<<< HEAD
     console.log(res, "res")
+=======
+>>>>>>> newer/main
     return res.json(cid);
   } catch (err: any) {
     return res

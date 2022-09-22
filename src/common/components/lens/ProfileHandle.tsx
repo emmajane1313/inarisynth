@@ -7,6 +7,7 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({
   lensProfile,
 }): JSX.Element => {
 
+<<<<<<< HEAD
   const getAvatar = (picture: any) => {
     if (!picture) {
       return (
@@ -35,6 +36,8 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({
     }
   };
 
+=======
+>>>>>>> newer/main
   return (
     <button
       type="button"
@@ -42,9 +45,12 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({
     >
       <div className="w-full justify-center relative flex">
         <div>@{lensProfile?.handle}</div>
+<<<<<<< HEAD
         {/* <div className="absolute rounded-full drop-shadow-md">
           {getAvatar(lensProfile?.picture)}
           </div> */}
+=======
+>>>>>>> newer/main
       </div>
     </button>
   );

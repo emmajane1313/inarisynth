@@ -6,7 +6,11 @@ export const LensSignIn: FunctionComponent<LensSignInProps> = ({lensLogin}): JSX
 
   return (
     <button
+<<<<<<< HEAD
       onClick={lensLogin}
+=======
+      onClick={() => lensLogin()}
+>>>>>>> newer/main
       type="button"
       className="m-0 cursor-pointer justify-center font-sans text-sm bg-lensLight h-10 w-fit py-1 px-2 rounded-lg hover:opacity-90 relative top-1 left-[60px]"
     >

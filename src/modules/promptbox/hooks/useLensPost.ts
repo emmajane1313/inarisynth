@@ -19,7 +19,10 @@ import createPostTypedData from "../../../graphql/mutations/createPost";
 import getDefaultProfile from "../../../graphql/queries/userProfile";
 import checkIndexed from "../../../graphql/queries/indexer";
 import { useState } from "react";
+<<<<<<< HEAD
 import { useEnterPrompt } from "./useEnterPrompt";
+=======
+>>>>>>> newer/main
 
 export const useLensPost = (): useLensPostResult => {
   const [args, setArgs] = useState<PostArgsType | undefined>();
@@ -28,8 +31,16 @@ export const useLensPost = (): useLensPostResult => {
   const [images, setImages] = useState<any[]>([]);
   const [contentURI, setContentURI] = useState<string>("");
   const { signTypedDataAsync } = useSignTypedData();
+<<<<<<< HEAD
   const { address } = useAccount();
   const [imageSelect, setImageSelect] = useState<string[]>([]);
+=======
+  const { address, isConnected } = useAccount();
+  const [imageSelect, setImageSelect] = useState<string[]>([]);
+  const [loadingIPFS, setLoadingIPFS] = useState<boolean>();
+  const [loadingPost, setLoadingPost] = useState<boolean>();
+  const [indexed, setIndexed] = useState<boolean>();
+>>>>>>> newer/main
 
   const { config } = usePrepareContractWrite({
     addressOrName: LENS_HUB_PROXY_ADDRESS_MUMBAI,
@@ -60,7 +71,10 @@ export const useLensPost = (): useLensPostResult => {
     setImageSelect(imagesArray);
     if (imagesArray.length !== 0) {
       const finalImages: any = await mapNewImageArray(imagesArray);
+<<<<<<< HEAD
       console.log(finalImages);
+=======
+>>>>>>> newer/main
     }
   };
 
@@ -94,7 +108,10 @@ export const useLensPost = (): useLensPostResult => {
       }
     });
     setImages(finalImages);
+<<<<<<< HEAD
     console.log("array of final images", finalImages);
+=======
+>>>>>>> newer/main
     return finalImages;
   };
 
@@ -111,9 +128,22 @@ export const useLensPost = (): useLensPostResult => {
     });
   };
 
+<<<<<<< HEAD
   const uploadFiles = async (e: any): Promise<string> => {
     let newImages = [];
     // console.log('this is description', e.target.description, "this is prompt", e.target.prompt)
+=======
+  const removeFromImageArray = (image: string) => {
+    let imagesArray = [];
+    if (imageSelect.includes(image)) {
+      imagesArray = imageSelect.filter((images: string) => images !== image);
+    }
+    setImageSelect(imagesArray);
+  };
+
+  const uploadFiles = async (e: any): Promise<string> => {
+    let newImages = [];
+>>>>>>> newer/main
     images.forEach((image) => {
       newImages.push({
         item: "ipfs://" + image,
@@ -122,6 +152,7 @@ export const useLensPost = (): useLensPostResult => {
       });
     });
 
+<<<<<<< HEAD
     const data = {
       version: "2.0.0",
       metadata_id: uuidv4(),
@@ -131,6 +162,30 @@ export const useLensPost = (): useLensPostResult => {
       image: images[0] ? "ipfs://" + images[0] : null,
       imageMimeType: "image/png",
       name: "e.target.prompt.value",
+=======
+    const promptValue = sessionStorage.getItem("prompt");
+
+    const allContent =
+      "Prompt: " + promptValue + "\n\n" + e.target.description.value;
+
+    enum postTags {
+      INARISYNTH = "INARISYNTH",
+      DIYSYNTH = "DIYSYNTH",
+      IMAGESYNTHESIS = "IMAGESYNTHESIS",
+      AIART = "AIART",
+      PROMPTENGINEERING = "PROMPTENGINEERING",
+    }
+
+    const data = {
+      version: "2.0.0",
+      metadata_id: uuidv4(),
+      description: allContent ? allContent : "",
+      content: allContent ? allContent : "",
+      external_url: "https://www.inarisynth.xyz/",
+      image: images[0] ? "ipfs://" + images[0] : null,
+      imageMimeType: "image/png",
+      name: promptValue,
+>>>>>>> newer/main
       mainContentFocus: "IMAGE",
       contentWarning: null,
       attributes: [
@@ -142,6 +197,10 @@ export const useLensPost = (): useLensPostResult => {
       ],
       media: newImages,
       locale: "en",
+<<<<<<< HEAD
+=======
+      postTags: postTags,
+>>>>>>> newer/main
       createdOn: new Date(),
       appId: "inarisynth",
     };
@@ -170,10 +229,17 @@ export const useLensPost = (): useLensPostResult => {
 
   const handlePostData = async (e: any): Promise<void> => {
     e.preventDefault();
+<<<<<<< HEAD
 
     try {
       const contentURI: string = await uploadFiles(e);
       console.log("content uri here", contentURI)
+=======
+    setLoadingIPFS(true);
+    try {
+      const contentURI: string = await uploadFiles(e);
+      console.log("content uri here", contentURI);
+>>>>>>> newer/main
 
       const profile: any = await getDefaultProfile(address);
 
@@ -219,6 +285,7 @@ export const useLensPost = (): useLensPostResult => {
     } catch (err: any) {
       console.error(err.message);
     }
+<<<<<<< HEAD
   };
 
   const handlePostWrite = async (): Promise<void> => {
@@ -228,6 +295,26 @@ export const useLensPost = (): useLensPostResult => {
 
     setTimeout(async () => {
       const result = await checkIndexed(tx?.hash);
+=======
+    setLoadingIPFS(false);
+    setIndexed(false);
+  };
+
+  const handlePostWrite = async (): Promise<void> => {
+    setLoadingPost(true);
+    console.log(args, ">>> args");
+    const tx = await writeAsync?.();
+    const res = await tx?.wait();
+    setLoadingPost(false);
+    setTimeout(async () => {
+      const result = await checkIndexed(tx?.hash);
+      if (result.data) {
+        console.log(result.data)
+        setIndexed(true);
+      } else {
+        setIndexed(false);
+      }
+>>>>>>> newer/main
       console.log(result);
     }, 10000);
   };
@@ -238,5 +325,13 @@ export const useLensPost = (): useLensPostResult => {
     showPostButton,
     onImageClick,
     imageSelect,
+<<<<<<< HEAD
+=======
+    removeFromImageArray,
+    loadingIPFS,
+    loadingPost,
+    isConnected,
+    indexed
+>>>>>>> newer/main
   };
 };

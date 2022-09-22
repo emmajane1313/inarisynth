@@ -11,7 +11,11 @@ const Home: NextPage = (): JSX.Element => {
         <meta name="description" content="Inari Synth" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+<<<<<<< HEAD
       <Landing/>
+=======
+      <Landing />
+>>>>>>> newer/main
     </div>
   )
 }

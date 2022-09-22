@@ -11,7 +11,10 @@ handler.use((req: any, res: any, next) => {
 
 handler.post(async (req: any, res: any) => {
   try {
+<<<<<<< HEAD
     console.log(JSON.parse(req.body));
+=======
+>>>>>>> newer/main
     const images = await makePromptRequest(JSON.parse(req.body));
     return res.json(images);
   } catch (err: any) {
@@ -25,15 +28,22 @@ export default handler;
 
 const makePromptRequest = async (obj: any) => {
   const client = makeReplicateClient();
+<<<<<<< HEAD
   console.log("obh", obj)
+=======
+>>>>>>> newer/main
   try {
     const model: any = await client.models.get(
       "stability-ai/stable-diffusion",
       "a9758cbfbd5f3c2094457d996681af52552901775aa2d6dd0b17fd15df959bef"
     );
+<<<<<<< HEAD
     console.log(model, "model")
     const prediction = await model.predict(obj);
     console.log(prediction, "pred")
+=======
+    const prediction = await model.predict(obj);
+>>>>>>> newer/main
     return prediction;
   } catch (err: any) {
     console.error(err.message);
