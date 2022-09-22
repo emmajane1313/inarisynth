@@ -57,21 +57,11 @@ async function getNewPath(item: any) {
 }
 
 async function makeFileObjects(myFiles: any) {
-<<<<<<< HEAD
-  console.log("my files")
-=======
->>>>>>> newer/main
   let files: any;
   for (let item of Object.values(myFiles)) {
     let newPath = await getNewPath(item);
     files = await getFilesFromPath(newPath);
-<<<<<<< HEAD
-    console.log(files)
   }
-  console.log("these files", files)
-=======
-  }
->>>>>>> newer/main
   return files;
 }
 

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React from "react";
-=======
 import React, { useContext } from "react";
->>>>>>> newer/main
 import { LensSignIn } from "../buttons/LensSignIn";
 import { ProfileHandle } from "./ProfileHandle";
 import { GetProfile } from "./GetProfile";
@@ -10,11 +6,7 @@ import { useLensSignIn } from "../../hooks/useLensSignIn";
 import { useAccount } from "wagmi";
 
 export const LensAuth = (): JSX.Element => {
-<<<<<<< HEAD
-  const { hasProfile, modalClose, handleLensModalClose, lensLogin, lensProfile } =
-=======
   const { modalClose, handleLensModalClose, lensLogin, lensProfile, hasProfile } =
->>>>>>> newer/main
     useLensSignIn();
   const { isConnected } = useAccount();
 

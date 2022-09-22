@@ -1,38 +1,11 @@
 import React, { FunctionComponent } from "react";
 import { ImageSequenceProps } from "../../../types/stablediffusion/sdtypes.types";
-<<<<<<< HEAD
-import Image from "next/image";
-import {IoMdExpand} from "react-icons/io"
-=======
 import { IoMdExpand, IoMdDownload } from "react-icons/io";
 import { AiOutlineLoading } from "react-icons/ai";
->>>>>>> newer/main
 
 export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
   promptImages,
   onImageModalOpen,
-<<<<<<< HEAD
-  onImageSelect,
-  imageSelect,
-  onImageClick
-}): JSX.Element => {
-  return (
-    <div>
-      <div className="grid top-0 m-3 grid-cols-4 align-center gap-1 w-full absolute h-full">
-        {promptImages?.map((image, index) => {
-          return (
-            <div
-              key={index}
-              id={image}
-              className="w-36 h-64 cursor-pointer"
-            >
-              <img
-                src={image}
-                className={`hover:opacity-90 active:border-4 active:border-themeBlue ${imageSelect.includes(image) && "border-4 border-themeBlue"}`}
-                onClick={() => onImageClick(image)}// change this to handleFileChange
-              />   
-              <IoMdExpand
-=======
   imageSelect,
   onImageClick,
   onReSynth,
@@ -106,17 +79,12 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
               />
               <IoMdExpand
                 className="relative -top-10 left-0"
->>>>>>> newer/main
                 onClick={() => onImageModalOpen(image)}
                 color="white"
               />
             </div>
           );
         })}
-<<<<<<< HEAD
-        <button className="text-white">Click Me please!</button>
-=======
->>>>>>> newer/main
       </div>
     </div>
   );

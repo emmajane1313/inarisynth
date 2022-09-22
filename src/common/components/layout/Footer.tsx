@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-import React, { FunctionComponent } from "react";
-
-export const Footer: FunctionComponent = (): JSX.Element => {
-    return (
-        <div>
-        </div>
-    )
-}
-=======
 import Link from "next/link";
 import React, { FunctionComponent } from "react";
 import { GrTwitter } from "react-icons/gr";
@@ -37,4 +27,3 @@ export const Footer: FunctionComponent = (): JSX.Element => {
     </div>
   );
 };
->>>>>>> newer/main

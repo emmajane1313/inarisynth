@@ -39,15 +39,9 @@ export type UserSuggestion = {
 export type UseLensSignInResults = {
   lensProfile?: Profile;
   lensLogin: () => void;
-<<<<<<< HEAD
-  hasProfile: string;
-  handleLensModalClose: () => void;
-  modalClose: boolean;
-=======
   handleLensModalClose: () => void;
   modalClose: boolean;
   hasProfile: string;
->>>>>>> newer/main
 };
 export type UseAuthResult = { auth: string; setAuth: (e: string) => void };
 export type GetProfileProps = {
@@ -63,23 +57,17 @@ export type useLensPostResult = {
   showPostButton: boolean;
   onImageClick: (image: string) => any;
   imageSelect: any;
-<<<<<<< HEAD
-=======
   removeFromImageArray: (image: string) => void;
   loadingIPFS: boolean;
   loadingPost: boolean;
   isConnected: boolean;
   indexed: boolean;
->>>>>>> newer/main
 };
 export type LensPostProps = {
   prompt: string;
   showPostButton: boolean;
   onPostWrite: () => Promise<void>;
   onPostData: (e: any) => void;
-<<<<<<< HEAD
-  imageSelect: string[]
-=======
   imageSelect: string[];
   removeFromImageArray: (image: string) => void;
   promptImages: string[];
@@ -87,7 +75,6 @@ export type LensPostProps = {
   loadingPost: boolean;
   indexed: boolean;
   height: number;
->>>>>>> newer/main
 };
 export type PostData = {
   prompt: string;
@@ -117,9 +104,6 @@ export type postContentType = {
   prompt: string;
   description: string;
   files?: string[];
-<<<<<<< HEAD
-}
-=======
 };
 
 export type useFeedTimelineResult = {
@@ -152,4 +136,3 @@ export type PostSwitchProps = {
   onPostWrite: () => Promise<void>;
   indexed: boolean;
 };
->>>>>>> newer/main

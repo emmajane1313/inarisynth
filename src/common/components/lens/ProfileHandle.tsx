@@ -7,37 +7,6 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({
   lensProfile,
 }): JSX.Element => {
 
-<<<<<<< HEAD
-  const getAvatar = (picture: any) => {
-    if (!picture) {
-      return (
-        <CgProfile
-          color="#00501e"
-          width={10}
-          height={10}
-        />
-      );
-    } else if (picture.original) {
-      if (picture.original.url.includes("http")) {
-        return (
-            <Image src={picture.original.url} width={10} height={10} />
-        );
-      } else {
-        const cut = picture.original.url.split("/");
-        const link = "https://lens.infura-ipfs.io/ipfs/" + cut[cut.length - 1];
-        return (
-            <Image src={link} width={10} height={10} />
-        );
-      }
-    } else {
-      return (
-          <Image src={picture.uri} width={10} height={10} />
-      );
-    }
-  };
-
-=======
->>>>>>> newer/main
   return (
     <button
       type="button"
@@ -45,12 +14,6 @@ export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({
     >
       <div className="w-full justify-center relative flex">
         <div>@{lensProfile?.handle}</div>
-<<<<<<< HEAD
-        {/* <div className="absolute rounded-full drop-shadow-md">
-          {getAvatar(lensProfile?.picture)}
-          </div> */}
-=======
->>>>>>> newer/main
       </div>
     </button>
   );

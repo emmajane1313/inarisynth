@@ -21,12 +21,8 @@ module.exports = {
       },
       fontFamily: {
         distro: "Distro Mix",
-<<<<<<< HEAD
-        space: "Space Grotesk"
-=======
         space: "Space Grotesk",
         sourceReg: "Source Code Pro"
->>>>>>> newer/main
       },
       transformOrigin: {
         homeAnim: '0 0'
