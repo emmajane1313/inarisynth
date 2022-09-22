@@ -1,0 +1,4 @@
+{
+  "extends": "next/core-web-vitals",
+  "react/no-unknown-property": "[<enabled>, { ignore: <ignore> }]"
+}
