@@ -31,6 +31,7 @@ Upcoming releases will focus on:
 
 * Full implementation of Lens mirror and collection post types and reactions
 * UI enhancements to User Stream
+* User on-chain synth histories
 * Batch release profile sign up waitlist
 * Inaugural NFT collection for early waitlist and DIY API access
 * Fine grained custom token access to personalised User timelines - allows you to curate your own micro community DAOs
