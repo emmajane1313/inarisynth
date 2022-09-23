@@ -53,7 +53,7 @@ export const HomeAnimation: FunctionComponent = (): JSX.Element => {
         yPos[index] += ySteps[index]
       }
 
-      if (item) {
+      if (item) { 
         item.style=`transform: scale(${scaleItems[index] > 0 ? scaleItems[index] : 0}) translate(${xPos[index]}%, ${yPos[index]}%)`;
       }
     })
