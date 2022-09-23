@@ -4,9 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { LensAuth } from "../lens/LensAuth";
 import { useAccount } from "wagmi";
+import { useRouter } from "next/router";
 
 export const Header: FunctionComponent = (): JSX.Element => {
   const { isConnected } = useAccount();
+  const router = useRouter();
   return (
     <div className="w-full inline-flex p-5 bg-transparent absolute z-30">
       <div className="absolute right-6 top-8">
@@ -31,13 +33,22 @@ export const Header: FunctionComponent = (): JSX.Element => {
       <div className="absolute right-48">
         <LensAuth />
       </div>
+      {}
       {isConnected ? (
         <div className="absolute right-60 text-offBlack top-8 right-60 underline font-sourceReg">
-          <Link href="/stream">STREAM</Link>
+          {router.pathname === "/" ? (
+            <Link href="/stream">STREAM</Link>
+          ) : (
+            <Link href="/">SYNTH</Link>
+          )}
         </div>
       ) : (
         <div className="absolute right-[12rem] text-offBlack top-8 right-60 underline font-sourceReg">
-          <Link href="/stream">STREAM</Link>
+          {router.pathname === "/" ? (
+            <Link href="/stream">STREAM</Link>
+          ) : (
+            <Link href="/">SYNTH</Link>
+          )}
         </div>
       )}
     </div>

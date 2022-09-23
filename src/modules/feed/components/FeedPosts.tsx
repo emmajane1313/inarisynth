@@ -1,10 +1,13 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import { FeedPostsProps } from "../../../types/lens/lenstypes.types";
 import { Comments } from "./reactions/Comments";
 import { FaComments, FaRetweet } from "react-icons/fa";
 import { HiCollection } from "react-icons/hi";
 import moment from "moment";
 import JSONPretty from "react-json-pretty";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { LoadingFeed } from "./../../../common/components/lens/LoadingFeed";
+
 
 export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
   publicationsFeed,
@@ -12,19 +15,27 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
   checkImage,
   imageURL,
   profilePicture,
+  getMoreFeed
 }): JSX.Element => {
+
   return (
+    <InfiniteScroll
+    dataLength={publicationsFeed.length}
+    next={getMoreFeed}
+    hasMore={true}
+    loader={<LoadingFeed />}
+  >
     <div className="bg-white w-full h-[40rem] overflow-y-scroll overlow-x-hidden">
-      {publicationsFeed.map((publication: any) => {
+      {publicationsFeed.map((publication: any, index: number) => {
         return (
-          <div key={publication.id}>
+          <div key={index}>
             <div className="w-12 float-left">
               <a
                 href={`https://lenster.xyz/u/${publication.profile.handle}`}
                 target="_blank"
                 rel="noreferrer"
               >
-                {getAvatar(publication.profile)}
+                {/* {getAvatar(publication.profile)} */}
               </a>
             </div>
             <div>
@@ -47,11 +58,11 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
                 className="break-words"
               />
               <div className="block relative -left-[10px]">
-                {publication.metadata.media.map((media: any, index: number) =>
+                {/* {publication.metadata.media.map((media: any, index: number) =>
                   media.original.mimeType.includes("image")
                     ? checkImage(media)
                     : null
-                )}
+                )} */}
               </div>
               <ul className="mt-2 inline-block cursor-pointer font-sourceReg text-sm sm:text-base">
                 <li className="float-left ml-0 sm:m-1">
@@ -78,5 +89,6 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
         );
       })}
     </div>
+    </InfiniteScroll>
   );
 };

@@ -51,16 +51,14 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
           />
         </div>
       </form>
-      <div className="grid top-6 left-5 m-0 auto-cols-min grid-flow-row align-center w-10 absolute overflow-y-scroll h-40 scrollbar-thin scrollbar-thumb-offWhite">
+      <div className="grid top-6 left-5 m-0 auto-rows-min grid-flow-row align-center w-10 absolute overflow-y-scroll h-40 scrollbar-thin scrollbar-thumb-offWhite">
         {imageSelect &&
           imageSelect.map((image: string, index: any) => {
             return (
-              <div key={index}>
-                <div id={image} className={`w-6 h-${height} mt-1`}>
+                <div id={image} key={index} className={`w-6 h-fit m-0`}>
                   <img src={image} />
-                </div>
                 <AiFillCloseCircle
-                  className="hover:opacity-100 opacity-0 relative -top-3 left-1.5 w-fit h-fit cursor-pointer z-100"
+                  className="hover:opacity-100 opacity-0 relative -top-6 left-1.5 w-fit h-fit cursor-pointer z-100"
                   color="white"
                   onClick={() => removeFromImageArray(image)}
                 />

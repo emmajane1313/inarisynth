@@ -1,34 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Inari Synth 
+Inari Synth is an interface for decentralized social media, built on top of [`Lens Protocol`](https://docs.lens.xyz/) and [`Stable Diffusion`](https://github.com/CompVis/stable-diffusion), with image synthesis built in. It removes barriers so you can decentralize content creation and protocol operation yourself. Each post builds incrementally towards greater ownership of your self-expression and ability to run your own nodes.
 
-## Getting Started
+## Requirements
+A [`Lens profile`](https://docs.lens.xyz/docs/creating-a-profile) is needed to sign in to Inari Synth. If you already have one, you are good to get started. If not, you can check whether you are eligible to claim your profile at [`claim.lens.xyz`](https://claim.lens.xyz/). 
 
-First, run the development server:
+A waitlist for future batch releases of profiles is coming to [Inari Synth](#to-do) soon.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+![image](public/images/readme/gallery.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How It Works 
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+1.  Integrates Lens Protocol & Stable Diffusion behind a simple interface
+    
+2.  Sign in with Lens profile or sign up for waitlist
+    
+3.  Craft prompts for synthed images you'd like to post
+    
+4.  Collect:
+    * NFTs
+    * Likes
+    * Friends
+    * [`DIY Contributions`](http://diysynth.xyz/)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## To Do
+For the first release, Inari Synth focuses on showcasing the bare metal integration of [`Lens Protocol`](https://lens.xyz) for decentralized social media and [`Stable Diffusion`](https://github.com/CompVis/stable-diffusion) for on the fly image synthesis within a simple social interface.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+However, creative freedom that is finally both social and enables you to decentralize the important bits yourself is capable of so much more. 
 
-## Learn More
+Upcoming releases will focus on:
 
-To learn more about Next.js, take a look at the following resources:
+* Full implementation of Lens mirror and collection post types and reactions
+* UI enhancements to User Stream
+* Batch release profile sign up waitlist
+* Inaugural NFT collection for early waitlist and DIY API access
+* Fine grained custom token access to personalised User timelines - allows you to curate your own micro community DAOs
+* Machine to machine API to run custom notebooks & bypass Replicate API limits
+* [`DIY Synth plugin ecosystem`](www.diysynth.xyz/docs/plugins)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Decentralize It Yourself
+To learn more about Inari Synth and get further hooked on the do it yourself ethos, take a look at the open source community research and documentation platform, [`DIY SYNTH`](http://diysynth.xyz/). From here, it’s a small jump to run your own node & contribute to web3 open source. 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contributing
+If you're interested in contributing, please (/.github/CONTRIBUTING.md)

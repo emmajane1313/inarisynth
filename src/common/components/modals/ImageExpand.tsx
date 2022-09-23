@@ -10,10 +10,10 @@ export const ImageExpand: FunctionComponent<ImageExpandProps> = ({
   height
 }): JSX.Element => {
   console.log(height)
-  return imageOpen ? (
+  return imageOpen && (
     <div className="flex absolute">
       <div className="fixed inset-0 bg-black backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-100 w-full h-full top-1 rounded cursor-pointer" onClick={() => onImageModalClose()}>
-        <div className="relative p-4 cursor-pointer rounded w-full cursor-zoom-in">
+        <div className="relative p-4 cursor-pointer rounded w-fit cursor-zoom-in">
           <ReactImageZoom
             zoomLensStyle={"opacity: 0"}
             height={String(height)}
@@ -29,7 +29,5 @@ export const ImageExpand: FunctionComponent<ImageExpandProps> = ({
         </div>
       </div>
     </div>
-  ) : (
-    <></>
-  );
+  )
 };
