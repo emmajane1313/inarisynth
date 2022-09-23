@@ -295,7 +295,7 @@ export type CreateCollectEip712TypedDataValue = {
 export type CreateCollectRequest = {
   publicationId: Scalars['InternalPublicationId'];
 };
-
+ 
 /** The broadcast item */
 export type CreateCommentBroadcastItemResult = {
   __typename?: 'CreateCommentBroadcastItemResult';
