@@ -74,7 +74,6 @@ export type LensPostProps = {
   loadingIPFS: boolean;
   loadingPost: boolean;
   indexed: boolean;
-  height: number;
 };
 export type PostData = {
   prompt: string;

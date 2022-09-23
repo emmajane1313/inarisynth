@@ -39,7 +39,6 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
         {promptImages?.map((image, index) => {
           return (
             <div key={index} id={image} className="w-full h-fit cursor-pointer">
-              <div>
               <img
                 src={image}
                 className={`hover:opacity-40 active:border-4 active:border-themeBlue ${
@@ -47,7 +46,7 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
                 }`}
                 onClick={() => onImageClick(image)} 
               />
-                <div className="absolute bg-opacity-70 -left-[3.65rem] w-full h-fit">
+                <div className="relative -top-40 bg-opacity-70 -left-[3.65rem] w-full h-fit">
                   <button
                     className="absolute bg-grad2 rounded-lg w-3/4 text-offBlack hover:opacity-80 focus:border-2 focus:border-solid focus:border-color-grad1 text-xs top-10"
                     onClick={() => onReSynth(image)}
@@ -70,15 +69,14 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
                   </div> : <div className="text-white text-sm absolute top-36 w-full whitespace-nowrap left-14">
                     Strength: 0.5
                   </div>}
-                </div>
               </div>
               <IoMdDownload
-                className="relative top-52 left-2"
+                className="relative -top-40 left-2"
                 color="white"
                 onClick={() => downloadImage(image)}
               />
               <IoMdExpand
-                className="relative top-48 left-7"
+                className="relative -top-40 left-7"
                 onClick={() => onImageModalOpen(image)}
                 color="white"
               />

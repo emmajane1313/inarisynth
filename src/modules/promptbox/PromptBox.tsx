@@ -31,7 +31,7 @@ export const PromptBox = (): JSX.Element => {
     cudaMemoryModal,
     nsfwModal,
     setNsfwModal,
-    height
+    height,
   } = useEnterPrompt();
   const {
     handlePostWrite,
@@ -79,14 +79,15 @@ export const PromptBox = (): JSX.Element => {
         loadingIPFS={loadingIPFS}
         loadingPost={loadingPost}
         indexed={indexed}
-        height={height}
       />
-      <ImageExpand
-        onImageModalClose={handleImageModalClose}
-        expandedImage={expandedImage}
-        imageOpen={imageOpen}
-        height={height}
-      />
+      {imageOpen && (
+        <ImageExpand
+          onImageModalClose={handleImageModalClose}
+          expandedImage={expandedImage}
+          height={height}
+        />
+      )}
+
       {cudaMemoryModal && (
         <CudaMemory setCudaMemoryModal={setCudaMemoryModal} />
       )}

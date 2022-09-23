@@ -14,12 +14,11 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
   loadingIPFS,
   loadingPost,
   indexed,
-  height,
 }): JSX.Element => {
   return (
     <div
       className={`relative text-xs font-sourceReg bg-grad3 w-full h-[31%] top-72 rounded-lg ${
-        promptImages.length == 0 && "hidden none"
+        promptImages?.length == 0 || promptImages == null && "hidden none"
       }`}
     >
       <form

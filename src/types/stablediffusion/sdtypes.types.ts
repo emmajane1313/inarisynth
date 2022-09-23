@@ -58,7 +58,6 @@ export type ImageSequenceProps = {
 
 export type ImageExpandProps = {
   expandedImage: string;
-  imageOpen: boolean;
   onImageModalClose: () => void;
   height: number;
 };

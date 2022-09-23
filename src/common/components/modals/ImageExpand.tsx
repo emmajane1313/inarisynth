@@ -5,12 +5,11 @@ import ReactImageZoom from "react-image-zoom";
 
 export const ImageExpand: FunctionComponent<ImageExpandProps> = ({
   expandedImage,
-  imageOpen,
   onImageModalClose,
   height
 }): JSX.Element => {
   console.log(height)
-  return imageOpen && (
+  return (
     <div className="flex absolute">
       <div className="fixed inset-0 bg-black backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-100 w-full h-full top-1 rounded cursor-pointer" onClick={() => onImageModalClose()}>
         <div className="relative p-4 cursor-pointer rounded w-fit cursor-zoom-in">
