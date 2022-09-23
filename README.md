@@ -6,7 +6,7 @@ A [`Lens profile`](https://docs.lens.xyz/docs/creating-a-profile) is needed to s
 
 A waitlist for future batch releases of profiles is coming to [Inari Synth](#to-do) soon.
 
-<img src="./public/images/readme/gallery.png" height="400px">
+<img src="./public/images/readme/gallery.png" height="330px">
 
 ## How It Works 
 
