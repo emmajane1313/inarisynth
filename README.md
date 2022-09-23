@@ -35,7 +35,7 @@ Upcoming releases will focus on:
 * Inaugural NFT collection for early waitlist and DIY API access
 * Fine grained custom token access to personalised User timelines - allows you to curate your own micro community DAOs
 * Machine to machine API to run custom notebooks & bypass Replicate API limits
-* [`DIY Synth plugin ecosystem`](www.diysynth.xyz/docs/plugins)
+* [`DIY Synth plugin ecosystem`](http://diysynth.xyz/docs/plugins)
 
 ## Decentralize It Yourself
 To learn more about Inari Synth and get further hooked on the do it yourself ethos, take a look at the open source community research and documentation platform, [`DIY SYNTH`](http://diysynth.xyz/). From here, it’s a small jump to run your own node & contribute to web3 open source. 
