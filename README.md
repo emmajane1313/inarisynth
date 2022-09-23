@@ -41,4 +41,6 @@ Upcoming releases will focus on:
 To learn more about Inari Synth and get further hooked on the do it yourself ethos, take a look at the open source community research and documentation platform, [`DIY SYNTH`](http://diysynth.xyz/). From here, it’s a small jump to run your own node & contribute to web3 open source. 
 
 ## Contributing
-If you're interested in contributing, please (/.github/CONTRIBUTING.md)
+If you're interested in submitting new features requests, synthesis research, bug fixes, or desired enhancements to decentralized interfaces, DIY nodes, and Stable Diffusion integrations, please follow the contribution steps before submitting a pull request:
+
+See [`How to Contribute`](/.github/CONTRIBUTING.md) 🛠
