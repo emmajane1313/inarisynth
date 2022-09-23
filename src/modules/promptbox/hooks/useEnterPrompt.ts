@@ -123,5 +123,6 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
     nsfwModal,
     setNsfwModal,
     height,
+    init
   };
 };

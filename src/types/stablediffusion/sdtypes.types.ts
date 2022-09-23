@@ -21,6 +21,7 @@ export type UseEnterPromptResult = {
   nsfwModal: boolean;
   setNsfwModal: (e: boolean) => void;
   height: number;
+  init: any;
 };
 export type EnterPromptProps = {
   onPromptInput: (e: any) => void;
@@ -54,6 +55,7 @@ export type ImageSequenceProps = {
   strength: number;
   loading: boolean;
   downloadImage: (image: string) => void;
+  init: any;
 };
 
 export type ImageExpandProps = {

@@ -13,6 +13,7 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
   strength,
   loading,
   downloadImage,
+  init
 }): JSX.Element => {
   if (loading) {
     return (
@@ -35,23 +36,28 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
 
   return (
     <div>
-      <div className="grid top-52 grid-cols-4 align-center gap-4 w-fit absolute h-fit font-sourceReg">
+      <div className="grid top-52 grid-cols-4 align-center gap-4 w-fit absolute max-h-fit font-sourceReg">
         {promptImages?.map((image, index) => {
           return (
-            <div key={index} id={image} className="w-full h-fit cursor-pointer relative">
+            <div
+              key={index}
+              id={image}
+              className="w-full h-fit cursor-pointer relative"
+            >
               <img
                 src={image}
-                className={`hover:opacity-40 active:border-4 active:border-themeBlue ${
+                className={`active:border-4 active:border-themeBlue block w-full h-fit ${
                   imageSelect.includes(image) && "border-4 border-themeBlue"
                 }`}
-                onClick={() => onImageClick(image)} 
+                onClick={() => onImageClick(image)}
               />
-                <div className="relative -top-40 bg-opacity-70 -left-[3.65rem] w-full h-fit">
+              <div className="group absolute top-0 left-0 w-full h-full">
+                <div className="bg-offBlack bg-opacity-70 w-full h-full align-center justify-center flex-col invisible flex group-hover:visible">
                   <button
-                    className="absolute bg-grad2 rounded-lg w-3/4 text-offBlack hover:opacity-80 focus:border-2 focus:border-solid focus:border-color-grad1 text-xs top-10"
+                    className={`absolute bg-grad2 rounded-lg w-3/4 text-offBlack hover:opacity-80 focus:bg-grad3 active:bg-grad3 text-xs top-10 left-5 && ${init===image && "bg-grad3"}`}
                     onClick={() => onReSynth(image)}
                   >
-                    Add as Init to RESYNTH
+                    ADD AS INIT TO RESYNTH
                   </button>
                   <input
                     type="range"
@@ -61,27 +67,31 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
                     id="strength"
                     defaultValue="0.5"
                     name="strength"
-                    className="absolute top-32 left-[4.5rem]"
+                    className="absolute left-3 w-5/6"
                     onChange={(e: any) => setStrength(e.target.value)}
                   />
-                  { strength ? <div className="text-white text-sm absolute top-36 w-full whitespace-nowrap left-14">
-                    Strength: {strength}
-                  </div> : <div className="text-white text-sm absolute top-36 w-full whitespace-nowrap left-14">
-                    Strength: 0.5
-                  </div>}
+                  {strength ? (
+                    <div className="text-white top-28 absolute text-sm w-full whitespace-nowrap">
+                      Strength: {strength}
+                    </div>
+                  ) : (
+                    <div className="text-white top-28 absolute text-sm w-full whitespace-nowrap">
+                      Strength: 0.5
+                    </div>
+                  )}
+                  <IoMdDownload
+                    className="relative top-24 left-1"
+                    color="white"
+                    onClick={() => downloadImage(image)}
+                  />
+                  <IoMdExpand
+                    className="relative top-20 left-6"
+                    onClick={() => onImageModalOpen(image)}
+                    color="white"
+                  />
+                </div>
               </div>
-              <IoMdDownload
-                className="relative -top-40 left-2"
-                color="white"
-                onClick={() => downloadImage(image)}
-              />
-              <IoMdExpand
-                className="relative -top-40 left-7"
-                onClick={() => onImageModalOpen(image)}
-                color="white"
-              />
-
-              </div>
+            </div>
           );
         })}
       </div>

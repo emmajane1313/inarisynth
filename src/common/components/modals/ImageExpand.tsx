@@ -15,7 +15,7 @@ export const ImageExpand: FunctionComponent<ImageExpandProps> = ({
         <div className="relative p-4 cursor-pointer rounded w-fit cursor-zoom-in">
           <ReactImageZoom
             zoomLensStyle={"opacity: 0"}
-            height={String(height)}
+            height={Number(height)}
             offset={{ vertical: 10, horizontal: 10 }}
             scale={0.5}
             zoomPosition={"left"}

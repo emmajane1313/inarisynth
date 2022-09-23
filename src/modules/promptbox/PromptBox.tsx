@@ -32,6 +32,7 @@ export const PromptBox = (): JSX.Element => {
     nsfwModal,
     setNsfwModal,
     height,
+    init
   } = useEnterPrompt();
   const {
     handlePostWrite,
@@ -58,6 +59,7 @@ export const PromptBox = (): JSX.Element => {
         onImageClick={onImageClick}
         loading={loading}
         downloadImage={downloadImage}
+        init={init}
       />
       <EnterPrompt
         setSteps={setSteps}
