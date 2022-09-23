@@ -38,7 +38,7 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
       <div className="grid top-52 grid-cols-4 align-center gap-4 w-fit absolute h-fit font-sourceReg">
         {promptImages?.map((image, index) => {
           return (
-            <div key={index} id={image} className="w-full h-fit cursor-pointer">
+            <div key={index} id={image} className="w-full h-fit cursor-pointer relative">
               <img
                 src={image}
                 className={`hover:opacity-40 active:border-4 active:border-themeBlue ${
