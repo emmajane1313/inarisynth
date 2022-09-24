@@ -8,6 +8,7 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { Header } from "../common/components/layout/Header";
 import { Footer } from "../common/components/layout/Footer";
+import 'tailwindcss/tailwind.css'
 
 export const GlobalProfileContextDefault = {
   profileExists: false,
