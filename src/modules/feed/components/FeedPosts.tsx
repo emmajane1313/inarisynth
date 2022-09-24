@@ -1,16 +1,15 @@
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent } from "react";
 import { FeedPostsProps } from "../../../types/lens/lenstypes.types";
-import { Comments } from "./reactions/Comments";
 import { FaComments, FaRetweet } from "react-icons/fa";
 import { HiCollection } from "react-icons/hi";
 import moment from "moment";
-import JSONPretty from "react-json-pretty";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { LoadingFeed } from "./../../../common/components/lens/LoadingFeed";
 
 export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
   publicationsFeed,
   getMoreFeed,
+  setStream,
+  setId
 }): JSX.Element => {
   return (
     <InfiniteScroll
@@ -71,7 +70,7 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
                 </div>
               )}
             </div>
-            <div className="mt-6 mb-24 rounded pt-4 pl-8 pr-8 pb-4 border-solid text-xs sm:text-base border drop-shadow-md">
+            <div className="mt-6 mb-24 rounded pt-4 pl-8 pr-8 pb-4 text-xs sm:text-base  shadow-md shadow-grad2">
               <div className="text-black text-sm m-2 font-sourceSemi">
                 {prompt}
               </div>
@@ -84,7 +83,7 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
                     (media: any, index: number) => {
                       const newLink = media.original.url.split("/");
                       return (
-                        <div key={index} className="mt-6">
+                        <div key={index} className="mt-6 mb-4">
                           <img
                             src={"https://" + newLink[2] + ".ipfs.dweb.link/"}
                           />
@@ -95,19 +94,35 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
                 </div>
               )}
               <ul className="mt-2 inline-block cursor-pointer font-sourceReg text-sm sm:text-base">
-                <li className="float-left ml-0 sm:m-1">
+                <li className="float-left ml-0 sm:m-1"
+                onClick={() => {
+                  setStream("Collects");
+                  setId(publication.id);
+                }}
+                >
                   <HiCollection className="float-left relative top-[0.15rem] m-2 ml-0 align-middle" />
                   <span className="relative top-2 text-xs sm:top-1">
                     {publication.stats.totalAmountOfCollects}
                   </span>
                 </li>
-                <li className="float-left sm:m-1">
+                <li className="float-left sm:m-1"
+                onClick={() => {
+                  setStream("Comments");
+                  setId(publication.id);
+                }}
+                >
                   <FaComments className="float-left relative top-1 text-xs m-2 align-middle" />
                   <span className="relative top-2 text-xs sm:top-1">
                     {publication.stats.totalAmountOfComments}
                   </span>
                 </li>
-                <li className="float-left sm:m-1">
+                <li
+                  className="float-left sm:m-1"
+                  onClick={() => {
+                    setStream("Mirrors");
+                    setId(publication.id);
+                  }}
+                >
                   <FaRetweet className="float-left relative top-1 text-xs m-2 align-middle" />
                   <span className="relative top-2 text-xs sm:top-1">
                     {publication.stats.totalAmountOfMirrors}

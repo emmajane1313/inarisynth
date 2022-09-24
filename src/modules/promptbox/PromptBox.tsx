@@ -43,6 +43,8 @@ export const PromptBox = (): JSX.Element => {
     removeFromImageArray,
     loadingIPFS,
     loadingPost,
+    changed,
+    setChanged,
   } = useLensPost();
 
   return (
@@ -78,6 +80,8 @@ export const PromptBox = (): JSX.Element => {
           imageSelect={imageSelect}
           loadingIPFS={loadingIPFS}
           loadingPost={loadingPost}
+          changed={changed}
+          setChanged={setChanged}
         />
       )}
 

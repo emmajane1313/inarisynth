@@ -61,6 +61,8 @@ export type useLensPostResult = {
   loadingIPFS: boolean;
   loadingPost: boolean;
   isConnected: boolean;
+  changed: boolean;
+  setChanged: (e: boolean) => void;
 };
 export type LensPostProps = {
   prompt: string;
@@ -71,6 +73,8 @@ export type LensPostProps = {
   removeFromImageArray: (image: string) => void;
   loadingIPFS: boolean;
   loadingPost: boolean;
+  changed: boolean;
+  setChanged: (e: boolean) => void;
 };
 export type PostData = {
   prompt: string;
@@ -107,14 +111,56 @@ export type useFeedTimelineResult = {
   getMoreFeed: () => Promise<any>;
   pageInfo: any;
   getFeedData: () => Promise<any>;
+  stream: string;
+  setStream: (e: string) => void;
+  setId: (e: string) => void;
+  getMoreCollected: () => Promise<any>;
+  collectsFeed: any[];
+  getMoreMirrored: () => Promise<any>;
+  mirrorsFeed: any[];
+  getMoreCommented: () => Promise<any>;
+  commentsFeed: any[];
+};
+
+export type TimelineSwitchProps = {
+  stream: string;
+  publicationsFeed: any[];
+  getMoreFeed: () => Promise<any>;
+  setStream: (e: string) => void;
+  setId: (e: string) => void;
+  collectsFeed: any[];
+  getMoreCollected: () => Promise<any>;
+  getMoreMirrored: () => Promise<any>;
+  mirrorsFeed: any[];
+  getMoreCommented: () => Promise<any>;
+  commentsFeed: any[];
 };
 
 export type FeedPostsProps = {
   publicationsFeed: any[];
   getMoreFeed: () => Promise<any>;
+  setStream: (e: string) => void;
+  setId: (e: string) => void;
 };
 
 export type GlobalProfileState = {
   profileExists: boolean;
   setProfileExists: (e: boolean) => void;
+};
+
+export type CollectsProps = {
+  getMoreCollected: () => Promise<any>;
+  collectsFeed: any[];
+};
+
+export type CommentsProps = {
+  getMoreCommented: () => Promise<any>;
+  commentsFeed: any[];
+  setStream: (e: string) => void;
+  setId: (e: string) => void;
+};
+
+export type MirrorsProps = {
+  getMoreMirrored: () => Promise<any>;
+  mirrorsFeed: any[];
 };

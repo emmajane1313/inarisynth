@@ -31,6 +31,7 @@ export const useLensPost = (): useLensPostResult => {
   const [imageSelect, setImageSelect] = useState<string[]>([]);
   const [loadingIPFS, setLoadingIPFS] = useState<boolean>();
   const [loadingPost, setLoadingPost] = useState<boolean>();
+  const [changed, setChanged] = useState<boolean>(false);
 
   const { config } = usePrepareContractWrite({
     addressOrName: LENS_HUB_PROXY_ADDRESS_MUMBAI,
@@ -62,6 +63,7 @@ export const useLensPost = (): useLensPostResult => {
     if (imagesArray.length !== 0) {
       const finalImages: any = await mapNewImageArray(imagesArray);
     }
+    setChanged(true);
   };
 
   const mapNewImageArray = async (imagesArray: string[]): Promise<any> => {
@@ -116,6 +118,7 @@ export const useLensPost = (): useLensPostResult => {
       imagesArray = imageSelect.filter((images: string) => images !== image);
     }
     setImageSelect(imagesArray);
+    setChanged(true);
   };
 
   const uploadFiles = async (e: any): Promise<string> => {
@@ -236,6 +239,7 @@ export const useLensPost = (): useLensPostResult => {
       setArgs(postArgs);
       setEnabled(true);
       setShowPostButton(true);
+      setChanged(false);
     } catch (err: any) {
       console.error(err.message);
       setShowPostButton(false);
@@ -278,5 +282,7 @@ export const useLensPost = (): useLensPostResult => {
     loadingIPFS,
     loadingPost,
     isConnected,
+    changed,
+    setChanged
   };
 };

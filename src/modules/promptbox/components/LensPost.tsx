@@ -11,6 +11,8 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
   removeFromImageArray,
   loadingIPFS,
   loadingPost,
+  changed,
+  setChanged,
 }): JSX.Element => {
   return (
     <div className="relative text-xs font-sourceReg bg-grad3 w-full h-[31%] top-72 rounded-lg">
@@ -31,16 +33,17 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
             className={
               "resize-none flex justify-start overflow-y-scroll p-4 top-16 absolute w-full h-[6.5rem] focus:outline-0"
             }
+            onChange={() => setChanged(true)}
           />
         </div>
-        {!showPostButton && (
+        {(!showPostButton || changed) && (
           <div className="absolute z-100 right-[4.5rem] top-[8.65rem]">
             <button
               type="submit"
               className="absolute p-2 text-white w-[4.5rem] h-10 text-base bg-offBlack"
             >
               {" "}
-              {loadingIPFS && !showPostButton ? (
+              {loadingIPFS && (!showPostButton || changed) ? (
                 <div className="animate-spin inline-flex">
                   <AiOutlineLoading
                     color="white"
@@ -55,7 +58,7 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
           </div>
         )}
       </form>
-      {showPostButton && (
+      {showPostButton && !changed && (
         <div className="absolute z-100 right-[5.8rem] top-[9.45rem]">
           <button
             onClick={onPostWrite}
