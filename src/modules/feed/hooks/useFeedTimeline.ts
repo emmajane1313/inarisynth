@@ -5,8 +5,6 @@ import exploreInariPublications from "../../../graphql/queries/explorePublicatio
 export const useFeedTimeline = (): useFeedTimelineResult => {
   const [publicationsFeed, setPublicationsFeed] = useState<any[]>([]);
   const [pageInfo, setPageInfo] = useState<any>([]);
-  const [imageURL, setImageURL] = useState<string>();
-  const [profilePicture, setProfilePicture] = useState<any>();
 
   useEffect(() => {
     getFeedData();
@@ -49,37 +47,12 @@ export const useFeedTimeline = (): useFeedTimelineResult => {
       );
       setPublicationsFeed([...publicationsFeed, ...sortedArr]);
       setPageInfo(response.data.explorePublications.pageInfo);
+      console.log("info pages", response.data.explorePublications.pageInfo)
       return pageInfo;
     } catch (err) {
       console.error(err.message);
     }
   };
 
-  const checkImage = (media: any): void => {
-    if (media.original.url.includes("http")) {
-      setImageURL(media.original.url);
-    } else {
-      const cut = media.original.url.split("/");
-      const link = "https://lens.infura-ipfs.io/ipfs/" + cut[cut.length - 1];
-      setImageURL(link);
-    }
-  };
-
-  const getAvatar = (profile: any): any => {
-    if (!profile.picture) {
-      setProfilePicture("default");
-    } else if (profile.picture.original) {
-      if (profile.picture.original.url.includes("http")) {
-        setProfilePicture(profile.picture.original.url);
-      } else {
-        const cut = profile.picture.original.url.split("/");
-        const link = "https://lens.infura-ipfs.io/ipfs/" + cut[cut.length - 1];
-        setProfilePicture(link);
-      }
-    } else {
-      setProfilePicture(profile.picture.uri);
-    }
-  };
-
-  return { publicationsFeed, getMoreFeed, getAvatar, checkImage, imageURL, profilePicture };
+  return { publicationsFeed, getMoreFeed, pageInfo, getFeedData };
 };

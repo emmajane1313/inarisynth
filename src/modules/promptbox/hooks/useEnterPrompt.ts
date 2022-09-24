@@ -69,7 +69,7 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
           const previousImages = sessionStorage.getItem("images");
           setPromptImages(JSON.parse(previousImages));
         } else {
-          sessionStorage.setItem("images", responseJSON);
+          sessionStorage.setItem("images", JSON.stringify(responseJSON));
           setPromptImages(responseJSON);
         }
         console.log(nsfwModal);
@@ -123,6 +123,6 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
     nsfwModal,
     setNsfwModal,
     height,
-    init
+    init,
   };
 };

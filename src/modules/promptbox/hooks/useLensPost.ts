@@ -31,7 +31,6 @@ export const useLensPost = (): useLensPostResult => {
   const [imageSelect, setImageSelect] = useState<string[]>([]);
   const [loadingIPFS, setLoadingIPFS] = useState<boolean>();
   const [loadingPost, setLoadingPost] = useState<boolean>();
-  const [indexed, setIndexed] = useState<boolean>();
 
   const { config } = usePrepareContractWrite({
     addressOrName: LENS_HUB_PROXY_ADDRESS_MUMBAI,
@@ -130,7 +129,6 @@ export const useLensPost = (): useLensPostResult => {
     });
 
     const promptValue = sessionStorage.getItem("prompt");
-
     const allContent =
       "Prompt: " + promptValue + "\n\n" + e.target.description.value;
 
@@ -150,7 +148,7 @@ export const useLensPost = (): useLensPostResult => {
       external_url: "https://www.inarisynth.xyz/",
       image: images[0] ? "ipfs://" + images[0] : null,
       imageMimeType: "image/png",
-      name: promptValue,
+      name: promptValue !== "" ? "Inari Synth" : promptValue,
       mainContentFocus: "IMAGE",
       contentWarning: null,
       attributes: [
@@ -168,6 +166,7 @@ export const useLensPost = (): useLensPostResult => {
     };
 
     console.log(JSON.stringify(data), "push this!!!");
+
 
     try {
       const response = await fetch("/api/ipfs", {
@@ -235,31 +234,38 @@ export const useLensPost = (): useLensPostResult => {
       };
 
       setArgs(postArgs);
-      setShowPostButton(true);
       setEnabled(true);
+      setShowPostButton(true);
     } catch (err: any) {
       console.error(err.message);
+      setShowPostButton(false);
     }
     setLoadingIPFS(false);
-    setIndexed(false);
   };
 
   const handlePostWrite = async (): Promise<void> => {
     setLoadingPost(true);
-    console.log(args, ">>> args");
-    const tx = await writeAsync?.();
-    const res = await tx?.wait();
+    try {
+      console.log(args, ">>> args");
+      
+      const tx = await writeAsync?.();
+      const res = await tx?.wait();
+
+      setTimeout(async () => {
+        const result = await checkIndexed(tx?.hash);
+        if (result.data) {
+          console.log(result.data);
+        } else {
+          alert("Transaction failed please try again");
+        }
+        console.log(result);
+      }, 10000);
+    } catch (err) {
+      console.error(err);
+      setLoadingPost(false);
+    }
     setLoadingPost(false);
-    setTimeout(async () => {
-      const result = await checkIndexed(tx?.hash);
-      if (result.data) {
-        console.log(result.data)
-        setIndexed(true);
-      } else {
-        setIndexed(false);
-      }
-      console.log(result);
-    }, 10000);
+    setShowPostButton(false);
   };
 
   return {
@@ -272,6 +278,5 @@ export const useLensPost = (): useLensPostResult => {
     loadingIPFS,
     loadingPost,
     isConnected,
-    indexed
   };
 };

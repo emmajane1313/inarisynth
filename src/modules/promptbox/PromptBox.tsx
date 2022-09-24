@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CudaMemory } from "../../common/components/modals/CudaMemory";
 import { ImageExpand } from "../../common/components/modals/ImageExpand";
 import { NSFWContent } from "../../common/components/modals/NSFWContent";
@@ -32,7 +32,7 @@ export const PromptBox = (): JSX.Element => {
     nsfwModal,
     setNsfwModal,
     height,
-    init
+    init,
   } = useEnterPrompt();
   const {
     handlePostWrite,
@@ -43,8 +43,6 @@ export const PromptBox = (): JSX.Element => {
     removeFromImageArray,
     loadingIPFS,
     loadingPost,
-    isConnected,
-    indexed,
   } = useLensPost();
 
   return (
@@ -70,18 +68,19 @@ export const PromptBox = (): JSX.Element => {
         onRunPrompt={handleRunPrompt}
         prompt={prompt}
       />
-      <LensPost
-        promptImages={promptImages}
-        removeFromImageArray={removeFromImageArray}
-        prompt={prompt}
-        showPostButton={showPostButton}
-        onPostWrite={handlePostWrite}
-        onPostData={handlePostData}
-        imageSelect={imageSelect}
-        loadingIPFS={loadingIPFS}
-        loadingPost={loadingPost}
-        indexed={indexed}
-      />
+      {(promptImages?.length !== 0 || sessionStorage.getItem("images")) && (
+        <LensPost
+          removeFromImageArray={removeFromImageArray}
+          prompt={prompt}
+          showPostButton={showPostButton}
+          onPostWrite={handlePostWrite}
+          onPostData={handlePostData}
+          imageSelect={imageSelect}
+          loadingIPFS={loadingIPFS}
+          loadingPost={loadingPost}
+        />
+      )}
+
       {imageOpen && (
         <ImageExpand
           onImageModalClose={handleImageModalClose}

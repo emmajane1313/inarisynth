@@ -61,7 +61,6 @@ export type useLensPostResult = {
   loadingIPFS: boolean;
   loadingPost: boolean;
   isConnected: boolean;
-  indexed: boolean;
 };
 export type LensPostProps = {
   prompt: string;
@@ -70,10 +69,8 @@ export type LensPostProps = {
   onPostData: (e: any) => void;
   imageSelect: string[];
   removeFromImageArray: (image: string) => void;
-  promptImages: string[];
   loadingIPFS: boolean;
   loadingPost: boolean;
-  indexed: boolean;
 };
 export type PostData = {
   prompt: string;
@@ -108,30 +105,16 @@ export type postContentType = {
 export type useFeedTimelineResult = {
   publicationsFeed: any[];
   getMoreFeed: () => Promise<any>;
-  getAvatar: (e: any) => any;
-  checkImage: (e: any) => void;
-  imageURL: string;
-  profilePicture: any;
+  pageInfo: any;
+  getFeedData: () => Promise<any>;
 };
 
 export type FeedPostsProps = {
   publicationsFeed: any[];
   getMoreFeed: () => Promise<any>;
-  getAvatar: (e: any) => any;
-  checkImage: (e: any) => void;
-  imageURL: string;
-  profilePicture: any;
 };
 
 export type GlobalProfileState = {
   profileExists: boolean;
   setProfileExists: (e: boolean) => void;
-};
-
-export type PostSwitchProps = {
-  loadingIPFS: boolean;
-  showPostButton: boolean;
-  loadingPost: boolean;
-  onPostWrite: () => Promise<void>;
-  indexed: boolean;
 };

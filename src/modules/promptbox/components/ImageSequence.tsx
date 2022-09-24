@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import { ImageSequenceProps } from "../../../types/stablediffusion/sdtypes.types";
 import { IoMdExpand, IoMdDownload } from "react-icons/io";
 import { AiOutlineLoading } from "react-icons/ai";
@@ -13,7 +13,7 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
   strength,
   loading,
   downloadImage,
-  init
+  init,
 }): JSX.Element => {
   if (loading) {
     return (
@@ -34,10 +34,17 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
     );
   }
 
+  let promptImagesToShow: any;
+  if (sessionStorage.getItem("images")) {
+    promptImagesToShow = JSON.parse(sessionStorage.getItem("images"));
+  } else {
+    promptImagesToShow = promptImages;
+  }
+
   return (
     <div>
       <div className="grid top-52 grid-cols-4 align-center gap-4 w-fit absolute max-h-fit font-sourceReg">
-        {promptImages?.map((image, index) => {
+        {promptImagesToShow?.map((image: any, index: any) => {
           return (
             <div
               key={index}
@@ -54,7 +61,9 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
               <div className="group absolute bottom-0 left-0 w-full h-2/3">
                 <div className="bg-offBlack bg-opacity-70 w-full h-full align-center justify-center flex-col invisible flex group-hover:visible">
                   <button
-                    className={`absolute bg-grad2 rounded-lg w-3/4 text-offBlack hover:opacity-80 focus:bg-grad3 active:bg-grad3 text-xs top-2 left-5 && ${init===image && "bg-grad3"}`}
+                    className={`absolute bg-grad2 rounded-lg w-3/4 text-offBlack hover:opacity-80 focus:bg-grad3 active:bg-grad3 text-xs top-2 left-5 && ${
+                      init === image && "bg-grad3"
+                    }`}
                     onClick={() => onReSynth(image)}
                   >
                     ADD AS INIT TO RESYNTH
@@ -71,21 +80,21 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
                     onChange={(e: any) => setStrength(e.target.value)}
                   />
                   {strength ? (
-                    <div className="text-white top-20 absolute text-sm w-full whitespace-nowrap">
+                    <div className="text-white top-24 absolute text-sm w-full whitespace-nowrap">
                       Strength: {strength}
                     </div>
                   ) : (
-                    <div className="text-white top-20 absolute text-sm w-full whitespace-nowrap">
+                    <div className="text-white top-24 absolute text-sm w-full whitespace-nowrap">
                       Strength: 0.5
                     </div>
                   )}
                   <IoMdDownload
-                    className="relative top-14 left-1"
+                    className="relative top-[4.5rem] left-1"
                     color="white"
                     onClick={() => downloadImage(image)}
                   />
                   <IoMdExpand
-                    className="relative top-10 left-6"
+                    className="relative top-[3.5rem] left-6"
                     onClick={() => onImageModalOpen(image)}
                     color="white"
                   />

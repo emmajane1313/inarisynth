@@ -40,6 +40,12 @@ class Document extends NextDocument {
                 font-weight: 400;
                 src: url("./fonts/SourceCodePro-Regular.ttf");
             }
+
+            @font-face {
+              font-family: "Source Code Semi";
+              font-weight: 400;
+              src: url("./fonts/SourceCodePro-SemiBold.ttf");
+          }
             `,
             }}
           ></style>
