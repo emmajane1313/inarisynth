@@ -1,4 +1,3 @@
-// export const BASE_URL: string = "https://api.lens.dev";
 export const BASE_URL: string = "https://api.lens.dev";
 
 export const ACCESS_KEY: string = "access-token"; 
