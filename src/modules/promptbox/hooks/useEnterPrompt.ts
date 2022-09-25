@@ -53,8 +53,6 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
     setHeight(heightValue);
     setWidth(widthValue);
 
-    console.log(JSON.stringify(input))
-
     try {
       const response = await fetch("/api/prompt", {
         method: "POST",
@@ -64,7 +62,6 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
         console.log("ERROR", response);
       } else {
         let responseJSON = await response.json();
-        console.log(responseJSON)
         setLoading(false);
         if (responseJSON === null) {
           setNsfwModal(true);
@@ -74,7 +71,6 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
           sessionStorage.setItem("images", JSON.stringify(responseJSON));
           setPromptImages(responseJSON);
         }
-        console.log(nsfwModal);
         return responseJSON;
       }
     } catch (err: any) {
@@ -98,7 +94,6 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
   const downloadImage = (image: string): void => {
     const splitImage = image.split("/");
     const name = splitImage.pop();
-    console.log(name);
     saveAs(image, "inarisynth/" + name);
   };
 

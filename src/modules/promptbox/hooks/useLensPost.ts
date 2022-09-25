@@ -34,7 +34,7 @@ export const useLensPost = (): useLensPostResult => {
   const [changed, setChanged] = useState<boolean>(false);
 
   const { config } = usePrepareContractWrite({
-    addressOrName: LENS_HUB_PROXY_ADDRESS_MUMBAI,
+    addressOrName: LENS_HUB_PROXY_ADDRESS_MATIC,
     contractInterface: LensHubProxy,
     functionName: "postWithSig",
     onError(error) {
@@ -77,7 +77,6 @@ export const useLensPost = (): useLensPostResult => {
       let imageData = new FormData();
       imageData.append(`image${index}`, file);
       try {
-        console.log("im trying");
         const response = await fetch("/api/media", {
           method: "POST",
           body: imageData,
@@ -85,10 +84,8 @@ export const useLensPost = (): useLensPostResult => {
         if (response.status !== 200) {
           console.log("ERROR", response);
         } else {
-          console.log("File successfully submitted!");
           let responseJSON = await response.json();
           finalImages.push(responseJSON.cid);
-          console.log("CID:", responseJSON.cid);
           return finalImages;
         }
       } catch (err) {
@@ -168,9 +165,6 @@ export const useLensPost = (): useLensPostResult => {
       appId: "inarisynth",
     };
 
-    console.log(JSON.stringify(data), "push this!!!");
-
-
     try {
       const response = await fetch("/api/ipfs", {
         method: "POST",
@@ -179,9 +173,7 @@ export const useLensPost = (): useLensPostResult => {
       if (response.status !== 200) {
         console.log("ERROR", response);
       } else {
-        console.log("Form successfully submitted!");
         let responseJSON = await response.json();
-        console.log("CID:", responseJSON);
         setContentURI(responseJSON);
         return responseJSON;
       }

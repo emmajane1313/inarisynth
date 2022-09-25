@@ -40,7 +40,6 @@ export const useLensSignIn = (): UseLensSignInResults => {
       if (profile.data.defaultProfile !== null) {
         setHasProfile("profile");
         setProfileExists(true);
-        console.log(profile.data.defaultProfile, "profile");
         setLensProfile(profile.data.defaultProfile);
         return profile.data.defaultProfile;
       } else if (profile.data.defaultProfile === null) {

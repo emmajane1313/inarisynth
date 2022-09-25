@@ -124,7 +124,6 @@ export const useFeedTimeline = (): useFeedTimelineResult => {
       );
       setMirrorsFeed(sortedArr);
       setPageInfo(response.data.profiles.pageInfo);
-      console.log(sortedArr)
       return sortedArr;
     } catch (err) {
       console.error(err.message);

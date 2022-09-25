@@ -12,8 +12,7 @@ handler.use((req: any, res: any, next) => {
 handler.post(async (req: any, res: any) => {
   try {
     const images = await makePromptRequest(JSON.parse(req.body));
-    console.log(images)
-    // return res.json(images);
+    return res.json(images);
   } catch (err: any) {
     return res
       .status(500)
@@ -31,7 +30,6 @@ const makePromptRequest = async (obj: any) => {
       "a9758cbfbd5f3c2094457d996681af52552901775aa2d6dd0b17fd15df959bef"
     );
     const prediction = await model.predict(obj);
-    console.log(prediction)
     return prediction;
   } catch (err: any) {
     console.log(err)
