@@ -69,7 +69,7 @@ export const HomeAnimation: FunctionComponent = (): JSX.Element => {
   }, [])
 
   return (
-    <div className="absolute overflow-hidden w-full h-screen z-0">
+    <div id="animationGallery" className="absolute overflow-hidden w-full h-screen z-0">
       {
         images.map((item, index) => {
           return (

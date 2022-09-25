@@ -15,10 +15,10 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
   setChanged,
 }): JSX.Element => {
   return (
-    <div className="relative text-xs font-sourceReg bg-grad3 w-full h-[31%] top-72 rounded-lg">
+    <div className="relative text-xs font-sourceReg bg-grad3 w-full tablet:h-[31%] rounded-lg tablet:top-[19rem] md:top-[40vw] h-[30vw] tablet:mt-0 mt-4">
       <form
         onSubmit={onPostData}
-        className="bg-white rounded-t-lg border-solid border-2 left-[10%] top-[5%] border-offBlack relative w-[87%] h-[11.3rem]"
+        className="bg-white rounded-t-lg border-solid border-2 left-[10%] top-[5%] border-offBlack relative w-[87%] h-[27vw] tablet:h-[11.3rem]"
       >
         <div>
           <div
@@ -37,7 +37,8 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
           />
         </div>
         {(!showPostButton || changed) && (
-          <div className="absolute z-100 right-[4.5rem] top-[8.65rem]">
+          <div className="absolute z-100 right-[4.5rem] bottom-[4.5vw] tablet:top-[8.65rem]">
+             {/* <div className="absolute z-100 tablet:-right-56 -right-[36vw] bottom-[4.5vw] w-full h-full tablet:top-[8.65rem] flex flex-col justify-end"></div> */}
             <button
               type="submit"
               className="absolute p-2 text-white w-[4.5rem] h-10 text-base bg-offBlack"

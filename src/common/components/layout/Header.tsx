@@ -27,7 +27,7 @@ export const Header: FunctionComponent = (): JSX.Element => {
           </a>
         </Link>
       </div>
-      <div className="cursor-pointer left-20 top-8 text-distro text-offBlack sm:text-base absolute">
+      <div className="cursor-pointer hidden md:block left-20 top-8 text-distro text-offBlack sm:text-base absolute">
         <Link href="/">INARI SYNTH</Link>
       </div>
       <div className="absolute right-48">

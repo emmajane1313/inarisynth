@@ -5,25 +5,27 @@ import { GrTwitter } from "react-icons/gr";
 export const Footer: FunctionComponent = (): JSX.Element => {
   return (
     <div className="bg-offBlack h-52 w-full font-sourceReg">
-      <div className="text-white pb-2 text-2xl pt-16 pl-10">
+      <div className="text-white pb-2 text-sm pl-6 md:text-lg lg:text-2xl pt-16 md:pl-10">
         An image synthesis social network.
       </div>
-      <div className="text-white p-1 pl-10 text-xl">
+      <div className="text-white p-1 pl-6 pr-6 md:pr-0 md:pl-10 text-xs md:text-base lg:text-xl">
         Make it easy to run your own node, one prompt at a time.
       </div>
+      <div className="flex justify-end">
       <a href="diysynth">
-        <div className="text-white text-base absolute right-20 -bottom-[11.2rem] cursor-pointer underline">
+        <div className="text-white text-base absolute right-20 flex justify-end tablet:-bottom-[11.2rem] cursor-pointer underline">
           DIY SYNTH
         </div>
       </a>
       <Link href={"https://twitter.com"} rel="noreferrer" target="_blank">
-        <a>
+        <a className="absolute right-10 tablet:flex tablet:-bottom-44">
           <GrTwitter
             color="white"
-            className="absolute right-10 -bottom-44 cursor-pointer"
+            className="cursor-pointer inline-flex"
           />
         </a>
       </Link>
+      </div>
     </div>
   );
 };

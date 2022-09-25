@@ -18,11 +18,11 @@ export const EnterPrompt: FunctionComponent<EnterPromptProps> = ({
       >
         <textarea
           name="prompt"
-          className="resize-none bg-white rounded-t-lg border-solid border-8 box-border align-top p-4 -left-5 border-grad3 relative w-full h-16 left-[0.02rem] focus:outline-0 text-offBlack pr-16"
+          className="resize-none bg-white rounded-t-lg border-solid border-8 box-border align-top p-4  border-grad3 relative w-full h-16 sm:left-[0.02rem] focus:outline-0 text-offBlack pr-16"
           onChange={onPromptInput}
           placeholder="Craft what you want to create, with words first. Add modifiers for more spectacular results."
         />
-        <div className="w-full p-4 pt-8 pl-8">
+        <div className="sm:w-full sm:p-4 sm:pt-8 sm:pl-8 w-3/4">
           {steps ? (
             <div className="text-white float-left absolute">
               Inference Steps: {steps}

@@ -48,7 +48,7 @@ export const PromptBox = (): JSX.Element => {
   } = useLensPost();
 
   return (
-    <div className="w-[45%] h-[80%] fixed bg-offBlack z-30 absolute rounded-lg top-[10%] left-[27.5%] shadow-2xl shadow-black backdrop-blur-lg">
+    <div className="tablet:w-[45%] w-full md:h-[80vw] tablet:h-[80%] fixed bg-offBlack z-30 absolute rounded-lg tablet:left-[27.5%] left-0 tablet:top-[10%] top-[10%] shadow-2xl shadow-black backdrop-blur-lg">
       <ImageSequence
         setStrength={setStrength}
         strength={strength}
@@ -61,30 +61,29 @@ export const PromptBox = (): JSX.Element => {
         downloadImage={downloadImage}
         init={init}
       />
-      <EnterPrompt
-        setSteps={setSteps}
-        setScale={setScale}
-        scale={scale}
-        steps={steps}
-        onPromptInput={handlePromptInput}
-        onRunPrompt={handleRunPrompt}
-        prompt={prompt}
-      />
-      {(promptImages?.length !== 0 || sessionStorage.getItem("images")) && (
-        <LensPost
-          removeFromImageArray={removeFromImageArray}
+        <EnterPrompt
+          setSteps={setSteps}
+          setScale={setScale}
+          scale={scale}
+          steps={steps}
+          onPromptInput={handlePromptInput}
+          onRunPrompt={handleRunPrompt}
           prompt={prompt}
-          showPostButton={showPostButton}
-          onPostWrite={handlePostWrite}
-          onPostData={handlePostData}
-          imageSelect={imageSelect}
-          loadingIPFS={loadingIPFS}
-          loadingPost={loadingPost}
-          changed={changed}
-          setChanged={setChanged}
         />
-      )}
-
+        {(promptImages?.length !== 0 || sessionStorage.getItem("images")) && (
+          <LensPost
+            removeFromImageArray={removeFromImageArray}
+            prompt={prompt}
+            showPostButton={showPostButton}
+            onPostWrite={handlePostWrite}
+            onPostData={handlePostData}
+            imageSelect={imageSelect}
+            loadingIPFS={loadingIPFS}
+            loadingPost={loadingPost}
+            changed={changed}
+            setChanged={setChanged}
+          />
+        )}
       {imageOpen && (
         <ImageExpand
           onImageModalClose={handleImageModalClose}

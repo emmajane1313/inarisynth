@@ -43,17 +43,17 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
 
   return (
     <div>
-      <div className="grid top-52 grid-cols-4 align-center gap-4 w-fit absolute max-h-fit font-sourceReg">
+      <div className="grid top-52 grid-cols-2 md:grid-cols-4 align-center gap-4 w-full absolute max-h-fit font-sourceReg justify-items-center">
         {promptImagesToShow?.map((image: any, index: any) => {
           return (
             <div
               key={index}
               id={image}
-              className="w-full h-fit cursor-pointer relative"
+              className="w-full h-fit m-2 sm:m-0 cursor-pointer relative"
             >
               <img
                 src={image}
-                className={`active:border-4 active:border-themeBlue block w-full h-fit ${
+                className={`active:border-4 active:border-themeBlue block w-fit tablet:w-full h-fit ${
                   imageSelect.includes(image) && "border-4 border-themeBlue"
                 }`}
                 onClick={() => onImageClick(image)}

@@ -27,6 +27,9 @@ module.exports = {
       },
       transformOrigin: {
         homeAnim: '0 0'
+      },
+      screens: {
+        tablet: '1270px'
       }
     },
   },
