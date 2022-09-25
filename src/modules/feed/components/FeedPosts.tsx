@@ -71,8 +71,8 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
               )}
             </div>
             <div className="mt-6 mb-24 rounded pt-4 pl-8 pr-8 pb-4 text-xs sm:text-base  shadow-md shadow-grad2">
-              <div className="text-black text-sm m-2 font-sourceSemi">
-                {prompt}
+              <div className="text-black text-sm m-2 font-sourceReg">
+                <b>{prompt}</b>
               </div>
               <div className="text-sm mt-10 text-offBlack font-sourceReg">
                 {description}
