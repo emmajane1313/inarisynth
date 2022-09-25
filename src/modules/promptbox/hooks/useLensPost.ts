@@ -242,7 +242,6 @@ export const useLensPost = (): useLensPostResult => {
   const handlePostWrite = async (): Promise<void> => {
     setLoadingPost(true);
     try {
-      console.log(args, ">>> args");
       
       const tx = await writeAsync?.();
       const res = await tx?.wait();
