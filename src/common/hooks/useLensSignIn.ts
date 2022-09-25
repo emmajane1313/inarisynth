@@ -1,4 +1,4 @@
-import { useState, useContext} from "react";
+import { useState, useContext } from "react";
 import { useAccount, useSignMessage } from "wagmi";
 import getDefaultProfile from "../../graphql/queries/userProfile";
 import authenticate from "../../graphql/mutations/authenticate";
@@ -6,16 +6,16 @@ import generateChallenge from "../../graphql/queries/generateChallenge";
 import { UseLensSignInResults } from "../../types/lens/lenstypes.types";
 import { Profile } from "../../types/lens/types.types";
 import { setAuthenticationToken } from "../../lib/lens/utils";
-import {GlobalContext} from "../../pages/_app";
+import { GlobalContext } from "../../pages/_app";
 
 export const useLensSignIn = (): UseLensSignInResults => {
-  const {setProfileExists} = useContext(GlobalContext)
+  const { setProfileExists } = useContext(GlobalContext);
   const [hasProfile, setHasProfile] = useState<string>("");
   const [modalClose, setModalClose] = useState<boolean>(false);
   const [lensProfile, setLensProfile] = useState<Profile>({});
 
   const { address } = useAccount();
- 
+
   const { signMessageAsync } = useSignMessage({
     onSettled(data, error) {
       console.log("Settled", { data, error });
@@ -37,12 +37,13 @@ export const useLensSignIn = (): UseLensSignInResults => {
         await setAuthenticationToken({ token: accessTokens.data.authenticate });
       }
       const profile = await getDefaultProfile(address);
-      if (profile) {
+      if (profile.data.defaultProfile !== null) {
         setHasProfile("profile");
         setProfileExists(true);
+        console.log(profile.data.defaultProfile, "profile");
         setLensProfile(profile.data.defaultProfile);
         return profile.data.defaultProfile;
-      } else {
+      } else if (profile.data.defaultProfile === null) {
         setHasProfile("no profile");
         setProfileExists(false);
         return null;

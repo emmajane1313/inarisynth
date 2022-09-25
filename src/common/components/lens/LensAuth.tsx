@@ -12,6 +12,8 @@ export const LensAuth = (): JSX.Element => {
 
   let action = "NOT_CONNECTED";
 
+  console.log(hasProfile, "has profile")
+
   const decideStringAction = () => {
     if (isConnected && !modalClose) {
       action = "CONNECTED";
