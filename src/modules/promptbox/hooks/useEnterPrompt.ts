@@ -11,7 +11,7 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
   const [steps, setSteps] = useState<number>();
   const [scale, setScale] = useState<number>();
   const [init, setInit] = useState<any>();
-  const [strength, setStrength] = useState<number>();
+  const [strength, setStrength] = useState<number>(0.5);
   const [loading, setLoading] = useState<boolean>();
   const [cudaMemoryModal, setCudaMemoryModal] = useState<boolean>();
   const [nsfwModal, setNsfwModal] = useState<boolean>();
