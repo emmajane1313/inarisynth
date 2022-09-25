@@ -51,9 +51,9 @@ class Document extends NextDocument {
           ></style>
         </Head>
         <body>
-          <script> </script>
           <Main />
           <NextScript />
+          <script> </script>
         </body>
       </Html>
     );

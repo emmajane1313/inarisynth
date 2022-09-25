@@ -40,7 +40,6 @@ export type InputType = {
   num_outputs: number;
   num_inference_steps: number;
   guidance_scale: number;
-  safety: boolean;
   init_image: string;
   prompt_strength: number;
 };

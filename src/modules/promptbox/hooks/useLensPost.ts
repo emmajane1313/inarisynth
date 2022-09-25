@@ -34,7 +34,7 @@ export const useLensPost = (): useLensPostResult => {
   const [changed, setChanged] = useState<boolean>(false);
 
   const { config } = usePrepareContractWrite({
-    addressOrName: LENS_HUB_PROXY_ADDRESS_MATIC,
+    addressOrName: LENS_HUB_PROXY_ADDRESS_MUMBAI,
     contractInterface: LensHubProxy,
     functionName: "postWithSig",
     onError(error) {

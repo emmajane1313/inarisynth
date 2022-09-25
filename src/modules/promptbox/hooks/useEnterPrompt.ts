@@ -46,13 +46,14 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
       num_outputs: 4,
       num_inference_steps: steps ? Number(steps) : 75,
       guidance_scale: scale ? Number(scale) : 10,
-      safety: false,
       init_image: init ? init : undefined,
       prompt_strength: init ? Number(strength) : undefined,
     };
 
     setHeight(heightValue);
     setWidth(widthValue);
+
+    console.log(JSON.stringify(input))
 
     try {
       const response = await fetch("/api/prompt", {
@@ -63,6 +64,7 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
         console.log("ERROR", response);
       } else {
         let responseJSON = await response.json();
+        console.log(responseJSON)
         setLoading(false);
         if (responseJSON === null) {
           setNsfwModal(true);

@@ -35,7 +35,7 @@ export const Header: FunctionComponent = (): JSX.Element => {
       </div>
       {}
       {isConnected ? (
-        <div className="absolute right-60 text-offBlack top-8 right-60 underline font-sourceReg">
+        <div className="absolute text-offBlack top-8 right-72 underline font-sourceReg">
           {router.pathname === "/" ? (
             <Link href="/stream">STREAM</Link>
           ) : (
