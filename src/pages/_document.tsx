@@ -45,6 +45,7 @@ class Document extends NextDocument {
               font-family: "Source Code Semi";
               font-weight: 400;
               src: url("./fonts/SourceCodePro-SemiBold.ttf");
+              src: url("./fonts/SourceCodePro-SemiBold.woff");
           }
             `,
             }}
