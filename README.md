@@ -1,6 +1,8 @@
 # Inari Synth 
 Inari Synth is an interface for decentralized social media, built on top of [`Lens Protocol`](https://docs.lens.xyz/) and [`Stable Diffusion`](https://github.com/CompVis/stable-diffusion), with image synthesis built in. It removes barriers so you can decentralize content creation and protocol operation yourself. Each post builds incrementally towards greater ownership of your self-expression and ability to run your own nodes.
 
+Inari Synth currently supports both text2image and image2image.
+
 ## Requirements
 A [`Lens profile`](https://docs.lens.xyz/docs/creating-a-profile) is needed to sign in to Inari Synth. If you already have one, you are good to get started. If not, you can check whether you are eligible to claim your profile at [`claim.lens.xyz`](https://claim.lens.xyz/). 
 
@@ -31,7 +33,9 @@ Upcoming releases will focus on:
 
 * Full implementation of Lens mirror and collection post types and reactions
 * Full mobile responsiveness
+* Stream refresh fix
 * UI enhancements to User Stream
+* Inpainting and outpainting capabilities
 * User on-chain synth histories
 * Batch release profile sign up waitlist
 * Inaugural NFT collection for early waitlist and DIY API access
