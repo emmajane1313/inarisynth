@@ -1,6 +1,4 @@
 import React, { FunctionComponent } from "react";
-import { CgProfile } from "react-icons/cg";
-import Image from "next/image";
 import { ProfileHandleProps } from "../../../types/lens/lenstypes.types";
 
 export const ProfileHandle: FunctionComponent<ProfileHandleProps> = ({

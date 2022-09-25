@@ -18,7 +18,7 @@ export const GlobalProfileContextDefault = {
 export const GlobalContext = createContext(GlobalProfileContextDefault);
 
 const { chains, provider } = configureChains(
-  [chain.polygon, chain.polygonMumbai],
+  [chain.polygon],
   [alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), publicProvider()]
 );
 
