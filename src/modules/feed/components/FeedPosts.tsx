@@ -21,9 +21,10 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
       scrollableTarget="scrollableDiv"
     >
       {publicationsFeed.map((publication: any, index: number) => {
-        const splitContent = publication.metadata.content.split("\n");
+        const splitContent = publication.metadata.content.split("\n", + 10);
+        console.log(splitContent)
         const prompt = splitContent[0];
-        const description = splitContent[2];
+        const description = splitContent.slice(2,10);
         let profileImage: any;
         if (!publication.profile.picture) {
           profileImage = <></>;
