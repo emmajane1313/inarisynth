@@ -57,10 +57,6 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
       const response = await fetch("/api/prompt", {
         method: "POST",
         body: JSON.stringify(input),
-        headers: {
-          "Authorization": `Token ${process.env.REPLICATE_KEY}`,
-          "Content-Type": "application/json",
-        },
       });
       if (response.status !== 200) {
         console.log("ERROR", response);
