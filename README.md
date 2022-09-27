@@ -33,7 +33,8 @@ Upcoming releases will focus on:
 
 * Full implementation of Lens mirror and collection post types and reactions
 * Full mobile responsiveness
-* Stream refresh fix
+* Stream image optimisation
+* Implement Apollo Retry Link for Lens Api Issue
 * UI enhancements to User Stream
 * Inpainting and outpainting capabilities
 * User on-chain synth histories
