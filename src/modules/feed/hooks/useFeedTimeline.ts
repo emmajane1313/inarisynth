@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useFeedTimelineResult } from "../../../types/lens/lenstypes.types";
 import exploreInariPublications from "../../../graphql/queries/explorePublications";
 import whoCollectedPublications from "../../../graphql/queries/whoCollectedPublication";
@@ -41,11 +41,12 @@ export const useFeedTimeline = (): useFeedTimelineResult => {
         sortCriteria: "LATEST",
         noRandomize: true,
       });
-      console.log("sorting")
+      console.log(response);
       const arr: any[] = [...response.data.explorePublications.items];
       const sortedArr: any[] = arr.sort(
         (a: any, b: any) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
       );
+      console.log(sortedArr);
       setPublicationsFeed(sortedArr);
       setPageInfo(response.data.explorePublications.pageInfo);
       return sortedArr;
@@ -113,7 +114,7 @@ export const useFeedTimeline = (): useFeedTimelineResult => {
     }
   };
 
-  const getMirrored = async () => {
+  const getMirrored = async (): Promise<any> => {
     try {
       const response = await whoMirroredPublications({
         whoMirroredPublicationId: id,
@@ -131,7 +132,7 @@ export const useFeedTimeline = (): useFeedTimelineResult => {
     }
   };
 
-  const getMoreMirrored = async () => {
+  const getMoreMirrored = async (): Promise<any> => {
     try {
       const response = await whoMirroredPublications({
         whoMirroredPublicationId: id,
@@ -150,7 +151,7 @@ export const useFeedTimeline = (): useFeedTimelineResult => {
     }
   };
 
-  const getCommented = async () => {
+  const getCommented = async (): Promise<any> => {
     try {
       const response = await whoCommentedPublications({
         commentsOf: id,
@@ -168,7 +169,7 @@ export const useFeedTimeline = (): useFeedTimelineResult => {
     }
   };
 
-  const getMoreCommented = async () => {
+  const getMoreCommented = async (): Promise<any> => {
     try {
       const response = await whoCommentedPublications({
         commentsOf: id,

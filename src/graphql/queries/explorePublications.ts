@@ -315,6 +315,7 @@ const exploreInariPublications = (request: any) => {
     variables: {
       request: request,
     },
+    fetchPolicy: "network-only",
   });
 };
 

@@ -17,7 +17,7 @@ const Stream: NextPage = (): JSX.Element => {
     getMoreMirrored,
     mirrorsFeed,
     getMoreCommented,
-    commentsFeed
+    commentsFeed,
   } = useFeedTimeline();
   return (
     <div className="flex text-center w-full min-h-screen items-center">
@@ -27,11 +27,11 @@ const Stream: NextPage = (): JSX.Element => {
             id="scrollableDiv"
             className="bg-white h-full w-full item-center rounded-lg overflow-y-hidden p-8 mr-4 ml-4 select-text overflow-x-clip"
           >
-            <div
-              className="relative flex justify-end -top-3 cursor-pointer"
-            >
-              <IoIosRefreshCircle color="#86EEB4" size={30} 
-              onClick={() => getFeedData()}
+            <div className="relative flex justify-end -top-3 cursor-pointer">
+              <IoIosRefreshCircle
+                color="#86EEB4"
+                size={30}
+                onClick={getFeedData}
               />
             </div>
             {(stream === "Mirrors" ||

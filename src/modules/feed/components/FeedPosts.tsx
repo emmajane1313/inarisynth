@@ -13,14 +13,14 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
 }): JSX.Element => {
   return (
     <InfiniteScroll
-      dataLength={publicationsFeed.length}
+      dataLength={publicationsFeed?.length}
       next={getMoreFeed}
       hasMore={true}
       loader={""}
       height={"40rem"}
       scrollableTarget="scrollableDiv"
     >
-      {publicationsFeed.map((publication: any, index: number) => {
+      {publicationsFeed?.map((publication: any, index: number) => {
         const splitContent = publication.metadata.content.split("\n", + 10);
         const prompt = splitContent[0];
         const description = splitContent.slice(2,10);
