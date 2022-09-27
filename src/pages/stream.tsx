@@ -29,9 +29,10 @@ const Stream: NextPage = (): JSX.Element => {
           >
             <div
               className="relative flex justify-end -top-3 cursor-pointer"
-              onClick={() => getFeedData()}
             >
-              <IoIosRefreshCircle color="#86EEB4" size={30} />
+              <IoIosRefreshCircle color="#86EEB4" size={30} 
+              onClick={() => getFeedData()}
+              />
             </div>
             {(stream === "Mirrors" ||
               stream === "Comments" ||

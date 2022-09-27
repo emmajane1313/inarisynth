@@ -41,6 +41,7 @@ export const useFeedTimeline = (): useFeedTimelineResult => {
         sortCriteria: "LATEST",
         noRandomize: true,
       });
+      console.log("sorting")
       const arr: any[] = [...response.data.explorePublications.items];
       const sortedArr: any[] = arr.sort(
         (a: any, b: any) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
