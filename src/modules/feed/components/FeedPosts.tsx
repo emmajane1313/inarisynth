@@ -17,7 +17,7 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
       next={getMoreFeed}
       hasMore={true}
       loader={""}
-      height={"40rem"}
+      height={"50rem"}
       scrollableTarget="scrollableDiv"
     >
       {publicationsFeed?.map((publication: any, index: number) => {
@@ -71,10 +71,10 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
               )}
             </div>
             <div className="mt-6 mb-24 rounded pt-4 pl-8 pr-8 pb-4 text-xs sm:text-base  shadow-md shadow-grad2">
-              <div className="text-black text-sm m-2 font-sourceReg">
+              <div className="text-black text-base m-2 font-sourceReg">
                 <b>{prompt}</b>
               </div>
-              <div className="text-sm mt-10 text-offBlack font-sourceReg">
+              <div className="text-base mt-10 text-offBlack font-sourceReg">
                 {description}
               </div>
               {publication.metadata.media.length !== 0 && (
@@ -83,7 +83,7 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
                     (media: any, index: number) => {
                       const newLink = media.original.url.split("/");
                       return (
-                        <div key={index} className="mt-6 mb-4">
+                        <div key={index} className="mt-6 mb-4 relative flex justify-center">
                           <img
                             src={"https://" + newLink[2] + ".ipfs.dweb.link/"}
                           />

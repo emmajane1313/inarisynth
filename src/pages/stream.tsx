@@ -20,9 +20,9 @@ const Stream: NextPage = (): JSX.Element => {
     commentsFeed,
   } = useFeedTimeline();
   return (
-    <div className="flex text-center w-full min-h-screen items-center">
+    <div className="flex text-center w-full min-h-screen h-[70vw] items-center">
       <div className="justify-center items-center flex">
-        <div className="w-[45%] h-[80%] bg-offBlack z-30 absolute rounded-lg top-[10%] left-[27.5%] shadow-2xl shadow-black backdrop-blur-lg flex fixed">
+        <div className="w-[70%] h-[60vw] bg-offBlack z-30 absolute rounded-lg top-[10%] left-[14%] shadow-2xl shadow-black backdrop-blur-lg flex fixed">
           <div
             id="scrollableDiv"
             className="bg-white h-full w-full item-center rounded-lg overflow-y-hidden p-8 mr-4 ml-4 select-text overflow-x-clip"

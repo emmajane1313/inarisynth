@@ -61,7 +61,7 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
               <div className="group absolute bottom-0 left-0 w-full h-2/3">
                 <div className="bg-offBlack bg-opacity-70 w-full h-full align-center justify-center flex-col invisible flex group-hover:visible">
                   <button
-                    className={`absolute bg-grad2 rounded-lg w-3/4 text-offBlack hover:opacity-80 focus:bg-grad3 active:bg-grad3 text-xs top-2 left-5 && ${
+                    className={`absolute bg-grad2 rounded-lg w-3/4 text-offBlack hover:opacity-80 focus:bg-grad3 active:bg-grad3 text-base top-6 left-8 && ${
                       init === image && "bg-grad3"
                     }`}
                     onClick={() => onReSynth(image)}
@@ -76,25 +76,25 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
                     id="strength"
                     defaultValue="0.5"
                     name="strength"
-                    className="absolute left-3 w-5/6"
+                    className="absolute bottom-24 left-5 w-5/6"
                     onChange={(e: any) => setStrength(e.target.value)}
                   />
                   {strength ? (
-                    <div className="text-white top-24 absolute text-sm w-full whitespace-nowrap">
+                    <div className="text-white top-28 absolute text-base w-full whitespace-nowrap">
                       Strength: {strength}
                     </div>
                   ) : (
-                    <div className="text-white top-24 absolute text-sm w-full whitespace-nowrap">
+                    <div className="text-white top-28 absolute text-base w-full whitespace-nowrap">
                       Strength: 0.5
                     </div>
                   )}
                   <IoMdDownload
-                    className="relative top-[4.5rem] left-1"
+                    className="relative top-[7.3rem] left-1"
                     color="white"
                     onClick={() => downloadImage(image)}
                   />
                   <IoMdExpand
-                    className="relative top-[3.5rem] left-6"
+                    className="relative top-[6.3rem] left-6"
                     onClick={() => onImageModalOpen(image)}
                     color="white"
                   />
