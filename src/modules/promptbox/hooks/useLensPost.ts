@@ -18,7 +18,7 @@ import { splitSignature, omit } from "../../../lib/lens/helpers";
 import createPostTypedData from "../../../graphql/mutations/createPost";
 import getDefaultProfile from "../../../graphql/queries/userProfile";
 import checkIndexed from "../../../graphql/queries/indexer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useLensPost = (): useLensPostResult => {
   const [args, setArgs] = useState<PostArgsType | undefined>();
@@ -32,6 +32,7 @@ export const useLensPost = (): useLensPostResult => {
   const [loadingIPFS, setLoadingIPFS] = useState<boolean>();
   const [loadingPost, setLoadingPost] = useState<boolean>();
   const [changed, setChanged] = useState<boolean>(false);
+  const [imageUploadLoading, setImageUploadLoading] = useState<boolean>();
 
   const { config } = usePrepareContractWrite({
     addressOrName: LENS_HUB_PROXY_ADDRESS_MATIC,
@@ -53,6 +54,7 @@ export const useLensPost = (): useLensPostResult => {
   const { writeAsync } = useContractWrite(config);
 
   const onImageClick = async (image: string): Promise<void> => {
+    setImageUploadLoading(true);
     let imagesArray = [];
     if (imageSelect.includes(image)) {
       imagesArray = imageSelect.filter((images: string) => images !== image);
@@ -69,6 +71,7 @@ export const useLensPost = (): useLensPostResult => {
   const mapNewImageArray = async (imagesArray: string[]): Promise<any> => {
     let finalImages: any[] = [];
     imagesArray.map(async (img: any, index: number) => {
+      
       const base64: any = await getBase64FromUrl(img);
       const res: Response = await fetch(base64);
       const blob: Blob = await res.blob();
@@ -83,15 +86,18 @@ export const useLensPost = (): useLensPostResult => {
         });
         if (response.status !== 200) {
           console.log("ERROR", response);
+          setImageUploadLoading(false);
         } else {
           let responseJSON = await response.json();
           finalImages.push(responseJSON.cid);
+          setImageUploadLoading(false);
           return finalImages;
         }
       } catch (err) {
         console.error(err.message);
       }
     });
+    
     setImages(finalImages);
     return finalImages;
   };
@@ -242,7 +248,6 @@ export const useLensPost = (): useLensPostResult => {
   const handlePostWrite = async (): Promise<void> => {
     setLoadingPost(true);
     try {
-      
       const tx = await writeAsync?.();
       const res = await tx?.wait();
 
@@ -274,6 +279,7 @@ export const useLensPost = (): useLensPostResult => {
     loadingPost,
     isConnected,
     changed,
-    setChanged
+    setChanged,
+    imageUploadLoading,
   };
 };

@@ -63,6 +63,7 @@ export type useLensPostResult = {
   isConnected: boolean;
   changed: boolean;
   setChanged: (e: boolean) => void;
+  imageUploadLoading: boolean;
 };
 export type LensPostProps = {
   prompt: string;
@@ -75,6 +76,7 @@ export type LensPostProps = {
   loadingPost: boolean;
   changed: boolean;
   setChanged: (e: boolean) => void;
+  imageUploadLoading: boolean;
 };
 export type PostData = {
   prompt: string;
