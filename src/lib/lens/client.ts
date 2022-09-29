@@ -7,8 +7,15 @@ import {
 import { BASE_URL } from "./constants";
 import { getAuthenticationToken, getRefreshToken } from "./utils";
 import jwt_decode from "jwt-decode";
+import { RetryLink } from "@apollo/client/link/retry";
 
 const httpLink = new HttpLink({ uri: BASE_URL });
+
+const retryLink = new RetryLink();
+
+let link: any;
+
+link = ApolloLink.from([retryLink, httpLink]);
 
 type decodedType = {
   exp: number;
@@ -20,6 +27,7 @@ let decoded: decodedType;
 
 // auth client
 export const authClient = new ApolloClient({
+  link: link,
   uri: BASE_URL,
   cache: new InMemoryCache(),
 });
@@ -30,7 +38,6 @@ const authLink = new ApolloLink((operation, forward) => {
   // const refreshToken = getRefreshToken() as string;
   if (token) decoded = jwt_decode(token as string);
 
-
   operation.setContext({
     headers: {
       "x-access-token": token ? `Bearer ${token}` : "",
@@ -40,8 +47,10 @@ const authLink = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 
+link = ApolloLink.from([retryLink, authLink.concat(httpLink)]);
+
 export const apolloClient = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: link,
   uri: BASE_URL,
   cache: new InMemoryCache(),
 });
