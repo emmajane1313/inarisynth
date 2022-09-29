@@ -31,19 +31,19 @@ However, creative freedom that is finally both social and enables you to decentr
 
 Upcoming releases will focus on:
 
-* Full implementation of Lens mirror and collection post types and reactions
-* Full mobile responsiveness
-* Stream image optimisation
-* Implement Apollo Retry Link for Lens Api Issue
-* UI enhancements to User Stream
-* Inpainting and outpainting capabilities
-* User on-chain synth histories
-* Batch release profile sign up waitlist
-* Inaugural NFT collection for early waitlist and DIY API access
-* Fine grained custom token access to personalised User timelines - allows you to curate your own micro community DAOs
-* Machine to machine API to run custom notebooks & bypass Replicate API limits
-* [`DIY Synth plugin ecosystem`](https://diysynth.xyz/docs/plugins)
-* Resolve Next.js FOUC on initial page load for all edge cases
+- [ ] Full implementation of Lens mirror and collection post types and reactions
+- [ ] Full mobile responsiveness
+- [ ] Stream image optimisation
+- [x] Implement Apollo Retry Link for Lens Api Issue
+- [ ] UI enhancements to User Stream
+- [ ] Inpainting and outpainting capabilities
+- [ ] User on-chain synth histories
+- [ ] Batch release profile sign up waitlist
+- [ ] Inaugural NFT collection for early waitlist and DIY API access
+- [ ] Fine grained custom token access to personalised User timelines - allows you to curate your own micro community DAOs
+- [ ] Machine to machine API to run custom notebooks & bypass Replicate API limits
+- [ ] [`DIY Synth plugin ecosystem`](https://diysynth.xyz/docs/plugins)
+- [ ] Resolve Next.js FOUC on initial page load for all edge cases
 
 ## Decentralize It Yourself
 To learn more about Inari Synth and get further hooked on the do it yourself ethos, take a look at the open source community research and documentation platform, [`DIY SYNTH`](https://diysynth.xyz/). From here, it’s a small jump to run your own node & contribute to web3 open source. 
