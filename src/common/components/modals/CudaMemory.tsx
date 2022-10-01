@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React, { FunctionComponent } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { CudaMemoryProps } from "../../../types/stablediffusion/sdtypes.types";

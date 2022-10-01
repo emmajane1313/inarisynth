@@ -8,7 +8,7 @@ import { RiArrowUpLine } from "react-icons/ri";
 export const Landing: FunctionComponent = (): JSX.Element => {
   const { profileExists } = useContext(GlobalContext);
   return (
-    <div className="flex text-center relative w-full tablet:h-[70vw] min-h-screen h-[120vw]">
+    <div className="flex text-center relative w-full tablet:h-[80vw] min-h-screen h-[120vw]">
       <HomeAnimation />
       {!profileExists && (
         <div>

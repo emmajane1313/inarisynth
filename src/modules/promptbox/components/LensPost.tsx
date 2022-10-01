@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect } from "react";
 import { LensPostProps } from "../../../types/lens/lenstypes.types";
 import { AiFillCloseCircle, AiOutlineLoading } from "react-icons/ai";
+import { CollectionSettings } from "./CollectionSettings";
 
 export const LensPost: FunctionComponent<LensPostProps> = ({
   prompt,
@@ -20,12 +21,11 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
   referral,
   currencies,
 }): JSX.Element => {
-  console.log("here", collectionModule);
   return (
-    <div className="relative text-xs font-sourceReg bg-grad3 w-full tablet:h-[31%] rounded-lg tablet:top-[27.3rem] md:top-[40vw] h-[30vw] tablet:mt-0 mt-4">
+    <div className="relative text-xs font-sourceReg bg-grad3 w-full tablet:h-[35%] rounded-lg tablet:top-[27.3rem] md:top-[40vw] h-[30vw] tablet:mt-0 mt-4">
       <form
         onSubmit={onPostData}
-        className="bg-white rounded-t-lg border-solid border-2 left-[5%] top-[5%] border-offBlack relative w-[93%] h-[27vw] tablet:h-[15.3rem]"
+        className="bg-white rounded-t-lg border-solid border-2 left-[5%] top-[17%] border-offBlack relative w-[93%] h-[27vw] tablet:h-[15.3rem]"
       >
         <div>
           <div
@@ -43,102 +43,13 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
             onChange={() => setChanged(true)}
           />
         </div>
-        <div id="collectionModule">
-          <select
-            name="collect"
-            id="collect"
-            defaultValue="free"
-            className="relative m-4 -top-5 right-16"
-            onChange={(e) => setCollectionModule(e.target.value)}
-          >
-            <option value="Free">Free</option>
-            <option value="Revert">Revert</option>
-            <option value="Fee">Fee</option>
-            <option value="Limited Fee">Limited Fee</option>
-            <option value="Limited Timed Fee">Limited Timed Fee</option>
-            <option value="Timed Fee">Timed Fee</option>
-          </select>
-        </div>
-        {collectionModule !== "Revert" && (
-          <div id="followerOnly">
-            <select
-              name="follower"
-              id="follower"
-              defaultValue="false"
-              className="relative m-4 -top-5 right-10"
-            >
-              <option value="False">False</option>
-              <option value="True">True</option>
-            </select>
-          </div>
-        )}
-        {collectionModule !== "Free" && collectionModule !== "Revert" &&
-        collectionModule !== undefined ? (
-          <div>
-            <div id="currencyModule">
-              <select
-                name="currency"
-                id="currency"
-                className="relative m-4 -top-2 right-2"
-              >
-                {currencies?.map((currency, index) => {
-                  return (
-                    <option key={index} value={currency.address}>
-                      {currency.symbol}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-            <input
-              type="number"
-              id="valueAmount"
-              name="valueAmount"
-              min="0"
-              defaultValue="1"
-              className="relative right-6"
-            />
-            <div className="relative right-8 text-offBlack">{referral}</div>
-            <input
-              type="range"
-              id="referral"
-              name="referral"
-              min="0"
-              max="100"
-              step="0.01"
-              defaultValue="0"
-              className="relative right-10"
-              onChange={(e: any) => setReferral(e.target.value)}
-            />
-          </div>
-        ) : (
-          <></>
-        )}
-        {collectionModule == "Limited Fee" ||
-        collectionModule == "Limited Timed Fee" ? (
-          <div>
-            input type
-            <input
-              type="number"
-              id="collectLimit"
-              name="collectLimit"
-              min="1"
-              step="1"
-              className="relative right-16"
-              defaultValue="1"
-            />
-          </div>
-        ) : (
-          <></>
-        )}
-        {collectionModule == "Timed Fee" ||
-        collectionModule == "Limited Timed Fee" ? (
-          <div className="relative right-20 text-offBlack">
-            Only 24 hours for people to collect your post!!
-          </div>
-        ) : (
-          <></>
-        )}
+        <CollectionSettings
+          collectionModule={collectionModule}
+          setCollectionModule={setCollectionModule}
+          currencies={currencies}
+          referral={referral}
+          setReferral={setReferral}
+        />
         {(!showPostButton || changed) && (
           <div className="absolute z-100 right-[4.5rem] bottom-[4.5vw] tablet:top-[12.65rem]">
             {/* <div className="absolute z-100 tablet:-right-56 -right-[36vw] bottom-[4.5vw] w-full h-full tablet:top-[8.65rem] flex flex-col justify-end"></div> */}
@@ -180,7 +91,7 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
           </button>
         </div>
       )}
-      <div className="grid top-6 left-5 m-0 auto-rows-min grid-flow-row align-center w-10 absolute overflow-y-scroll h-40 scrollbar-thin scrollbar-thumb-offWhite">
+      <div className="grid top-16 left-5 m-0 auto-rows-min grid-flow-row align-center w-10 absolute overflow-y-scroll h-56 scrollbar-thin scrollbar-thumb-offWhite">
         {imageSelect &&
           imageSelect.map((image: string, index: any) => {
             return (

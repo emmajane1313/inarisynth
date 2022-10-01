@@ -69,6 +69,10 @@ export type useLensPostResult = {
   referral: number;
   setReferral: (e: number) => void;
   currencies: any[];
+  setTimedCollectModal: (e: boolean) => void;
+  setNotAgain: (e: boolean) => void;
+  notAgain: boolean;
+  timedCollectModal: boolean;
 };
 export type LensPostProps = {
   prompt: string;
@@ -175,4 +179,18 @@ export type CommentsProps = {
 export type MirrorsProps = {
   getMoreMirrored: () => Promise<any>;
   mirrorsFeed: any[];
+};
+
+export type CollectionSettingsProps = {
+  collectionModule: string;
+  setCollectionModule: (e: string) => void;
+  referral: number;
+  setReferral: (e: number) => void;
+  currencies: any[];
+};
+
+export type TimedCollectProps = {
+  setTimedCollectModal: (e: boolean) => void;
+  setNotAgain: (e: boolean) => void;
+  notAgain: boolean;
 };

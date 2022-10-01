@@ -11,14 +11,14 @@ export const Footer: FunctionComponent = (): JSX.Element => {
       <div className="text-white p-1 pl-6 pr-6 md:pr-0 md:pl-10 text-xs md:text-base lg:text-xl">
         Make it easy to run your own node, one prompt at a time.
       </div>
-      <div className="flex justify-end">
+      <div className="flex justify-end relative bottom-14">
       <a href="https://diysynth.xyz/">
-        <div className="text-white text-base absolute right-20 flex justify-end tablet:-bottom-[24.2rem] cursor-pointer underline">
+        <div className="text-white text-base absolute right-20 flex justify-end tablet:-bottom-[6.2rem] cursor-pointer underline">
           DIY SYNTH
         </div>
       </a>
       <Link href={"https://twitter.com"} rel="noreferrer" target="_blank">
-        <a className="absolute right-10 tablet:flex tablet:-bottom-96">
+        <a className="absolute right-10 tablet:flex tablet:top-20">
           <GrTwitter
             color="white"
             className="cursor-pointer inline-flex"

@@ -35,8 +35,10 @@ export const useLensPost = (): useLensPostResult => {
   const [changed, setChanged] = useState<boolean>(false);
   const [imageUploadLoading, setImageUploadLoading] = useState<boolean>();
   const [collectionModule, setCollectionModule] = useState<string>();
-  const [referral, setReferral] = useState<number>();
+  const [referral, setReferral] = useState<number>(0);
   const [currencies, setCurrencies] = useState<any[]>();
+  const [timedCollectModal, setTimedCollectModal] = useState<boolean>();
+  const [notAgain, setNotAgain] = useState<boolean>(false);
 
   const { config } = usePrepareContractWrite({
     addressOrName: LENS_HUB_PROXY_ADDRESS_MUMBAI,
@@ -193,6 +195,7 @@ export const useLensPost = (): useLensPostResult => {
   };
 
   const handlePostData = async (e: any): Promise<void> => {
+    console.log(referral);
     e.preventDefault(e);
     setLoadingIPFS(true);
     let collectModuleType: any;
@@ -200,7 +203,10 @@ export const useLensPost = (): useLensPostResult => {
     if (e.target.collect.value == "Free") {
       collectModuleType = {
         freeCollectModule: {
-          followerOnly: Boolean(e.target.follower.value),
+          followerOnly:
+            e.target.follower.value == "0"
+              ? false
+              : Boolean(e.target.follower.value),
         },
       };
     } else if (e.target.collect.value == "Revert") {
@@ -217,8 +223,11 @@ export const useLensPost = (): useLensPostResult => {
           value: e.target.valueAmount.value,
         },
         recipient: address,
-        referralFee: Number(e.target.referral.value),
-        followerOnly: Boolean(e.target.follower.value),
+        referralFee: Number(Number(e.target.referral.value).toFixed(2)),
+        followerOnly:
+          e.target.follower.value == "0"
+            ? false
+            : Boolean(e.target.follower.value),
       };
 
       if (e.target.collect.value == "Fee") {
@@ -241,8 +250,11 @@ export const useLensPost = (): useLensPostResult => {
           value: e.target.valueAmount.value,
         },
         recipient: address,
-        referralFee: Number(e.target.referral.value),
-        followerOnly: Boolean(e.target.follower.value),
+        referralFee: Number(Number(e.target.referral.value).toFixed(2)),
+        followerOnly:
+          e.target.follower.value == "0"
+            ? false
+            : Boolean(e.target.follower.value),
       };
       if (e.target.collect.value == "Limited Fee") {
         collectModuleType = {
@@ -336,6 +348,9 @@ export const useLensPost = (): useLensPostResult => {
 
   useMemo(() => {
     availableCurrencies();
+    if (!notAgain) {
+      setTimedCollectModal(true);
+    }
   }, [collectionModule]);
 
   return {
@@ -356,5 +371,9 @@ export const useLensPost = (): useLensPostResult => {
     referral,
     setReferral,
     currencies,
+    setTimedCollectModal,
+    setNotAgain,
+    notAgain,
+    timedCollectModal,
   };
 };

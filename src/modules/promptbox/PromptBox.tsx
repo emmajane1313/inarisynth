@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CudaMemory } from "../../common/components/modals/CudaMemory";
 import { ImageExpand } from "../../common/components/modals/ImageExpand";
 import { NSFWContent } from "../../common/components/modals/NSFWContent";
+import { TimedCollectModal } from "../../common/components/modals/TimedCollectModal";
 import { EnterPrompt } from "./components/EnterPrompt";
 import { ImageSequence } from "./components/ImageSequence";
 import { LensPost } from "./components/LensPost";
@@ -50,8 +51,21 @@ export const PromptBox = (): JSX.Element => {
     setCollectionModule,
     referral,
     setReferral,
-    currencies
+    currencies,
+    setTimedCollectModal,
+    setNotAgain,
+    notAgain,
+    timedCollectModal,
   } = useLensPost();
+
+  console.log(
+    "timed",
+    timedCollectModal,
+    "not",
+    notAgain,
+    "collect",
+    collectionModule
+  );
 
   return (
     <div className="tablet:w-[70%] w-full md:h-[80vw] tablet:h-[60vw] fixed bg-offBlack z-30 absolute rounded-lg tablet:left-[14%] left-0 tablet:top-[8%] top-[10%] shadow-2xl shadow-black backdrop-blur-lg">
@@ -67,35 +81,35 @@ export const PromptBox = (): JSX.Element => {
         downloadImage={downloadImage}
         init={init}
       />
-        <EnterPrompt
-          setSteps={setSteps}
-          setScale={setScale}
-          scale={scale}
-          steps={steps}
-          onPromptInput={handlePromptInput}
-          onRunPrompt={handleRunPrompt}
+      <EnterPrompt
+        setSteps={setSteps}
+        setScale={setScale}
+        scale={scale}
+        steps={steps}
+        onPromptInput={handlePromptInput}
+        onRunPrompt={handleRunPrompt}
+        prompt={prompt}
+      />
+      {(promptImages?.length !== 0 || sessionStorage.getItem("images")) && (
+        <LensPost
+          removeFromImageArray={removeFromImageArray}
           prompt={prompt}
+          showPostButton={showPostButton}
+          onPostWrite={handlePostWrite}
+          onPostData={handlePostData}
+          imageSelect={imageSelect}
+          loadingIPFS={loadingIPFS}
+          loadingPost={loadingPost}
+          changed={changed}
+          setChanged={setChanged}
+          imageUploadLoading={imageUploadLoading}
+          collectionModule={collectionModule}
+          setCollectionModule={setCollectionModule}
+          referral={referral}
+          setReferral={setReferral}
+          currencies={currencies}
         />
-        {(promptImages?.length !== 0 || sessionStorage.getItem("images")) && (
-          <LensPost
-            removeFromImageArray={removeFromImageArray}
-            prompt={prompt}
-            showPostButton={showPostButton}
-            onPostWrite={handlePostWrite}
-            onPostData={handlePostData}
-            imageSelect={imageSelect}
-            loadingIPFS={loadingIPFS}
-            loadingPost={loadingPost}
-            changed={changed}
-            setChanged={setChanged}
-            imageUploadLoading={imageUploadLoading}
-            collectionModule={collectionModule}
-            setCollectionModule={setCollectionModule}
-            referral={referral}
-            setReferral={setReferral}
-            currencies={currencies}
-          />
-        )}
+      )}
       {imageOpen && (
         <ImageExpand
           onImageModalClose={handleImageModalClose}
@@ -108,6 +122,16 @@ export const PromptBox = (): JSX.Element => {
         <CudaMemory setCudaMemoryModal={setCudaMemoryModal} />
       )}
       {nsfwModal && <NSFWContent setNsfwModal={setNsfwModal} />}
+      {(collectionModule == "Timed Fee" ||
+        collectionModule == "Limited Timed Fee") &&
+        sessionStorage.getItem("notAgain") !== "true" &&
+        timedCollectModal && (
+          <TimedCollectModal
+            setTimedCollectModal={setTimedCollectModal}
+            setNotAgain={setNotAgain}
+            notAgain={notAgain}
+          />
+        )}
     </div>
   );
 };
