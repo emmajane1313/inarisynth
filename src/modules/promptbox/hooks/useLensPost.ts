@@ -18,7 +18,8 @@ import { splitSignature, omit } from "../../../lib/lens/helpers";
 import createPostTypedData from "../../../graphql/mutations/createPost";
 import getDefaultProfile from "../../../graphql/queries/userProfile";
 import checkIndexed from "../../../graphql/queries/indexer";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
+import enabledCurrencies from "../../../graphql/queries/enabledCurrencies";
 
 export const useLensPost = (): useLensPostResult => {
   const [args, setArgs] = useState<PostArgsType | undefined>();
@@ -33,9 +34,12 @@ export const useLensPost = (): useLensPostResult => {
   const [loadingPost, setLoadingPost] = useState<boolean>();
   const [changed, setChanged] = useState<boolean>(false);
   const [imageUploadLoading, setImageUploadLoading] = useState<boolean>();
+  const [collectionModule, setCollectionModule] = useState<string>();
+  const [referral, setReferral] = useState<number>();
+  const [currencies, setCurrencies] = useState<any[]>();
 
   const { config } = usePrepareContractWrite({
-    addressOrName: LENS_HUB_PROXY_ADDRESS_MATIC,
+    addressOrName: LENS_HUB_PROXY_ADDRESS_MUMBAI,
     contractInterface: LensHubProxy,
     functionName: "postWithSig",
     onError(error) {
@@ -71,7 +75,6 @@ export const useLensPost = (): useLensPostResult => {
   const mapNewImageArray = async (imagesArray: string[]): Promise<any> => {
     let finalImages: any[] = [];
     imagesArray.map(async (img: any, index: number) => {
-      
       const base64: any = await getBase64FromUrl(img);
       const res: Response = await fetch(base64);
       const blob: Blob = await res.blob();
@@ -97,7 +100,7 @@ export const useLensPost = (): useLensPostResult => {
         console.error(err.message);
       }
     });
-    
+
     setImages(finalImages);
     return finalImages;
   };
@@ -190,8 +193,68 @@ export const useLensPost = (): useLensPostResult => {
   };
 
   const handlePostData = async (e: any): Promise<void> => {
-    e.preventDefault();
+    e.preventDefault(e);
     setLoadingIPFS(true);
+    let collectModuleType: any;
+    let subCollectType: any;
+    if (e.target.collect.value == "Free") {
+      collectModuleType = {
+        freeCollectModule: {
+          followerOnly: Boolean(e.target.follower.value),
+        },
+      };
+    } else if (e.target.collect.value == "Revert") {
+      collectModuleType = {
+        revertCollectModule: true,
+      };
+    } else if (
+      e.target.collect.value == "Fee" ||
+      e.target.collect.value == "Timed Fee"
+    ) {
+      subCollectType = {
+        amount: {
+          currency: e.target.currency.value,
+          value: e.target.valueAmount.value,
+        },
+        recipient: address,
+        referralFee: Number(e.target.referral.value),
+        followerOnly: Boolean(e.target.follower.value),
+      };
+
+      if (e.target.collect.value == "Fee") {
+        collectModuleType = {
+          feeCollectModule: subCollectType,
+        };
+      } else if (e.target.collect.value == "Timed Fee") {
+        collectModuleType = {
+          timedFeeCollectModule: subCollectType,
+        };
+      }
+    } else if (
+      e.target.collect.value == "Limited Fee" ||
+      e.target.collect.value == "Limited Timed Fee"
+    ) {
+      subCollectType = {
+        collectLimit: e.target.collectLimit.value,
+        amount: {
+          currency: e.target.currency.value,
+          value: e.target.valueAmount.value,
+        },
+        recipient: address,
+        referralFee: Number(e.target.referral.value),
+        followerOnly: Boolean(e.target.follower.value),
+      };
+      if (e.target.collect.value == "Limited Fee") {
+        collectModuleType = {
+          limitedFeeCollectModule: subCollectType,
+        };
+      } else if (e.target.collect.value == "Limited Timed Fee") {
+        collectModuleType = {
+          limitedTimedFeeCollectModule: subCollectType,
+        };
+      }
+    }
+
     try {
       const contentURI: string = await uploadFiles(e);
       console.log("content uri here", contentURI);
@@ -201,9 +264,7 @@ export const useLensPost = (): useLensPostResult => {
       const result: any = await createPostTypedData({
         profileId: profile.data.defaultProfile.id,
         contentURI: "ipfs://" + contentURI,
-        collectModule: {
-          revertCollectModule: true,
-        },
+        collectModule: collectModuleType,
         referenceModule: {
           followerOnlyReferenceModule: false,
         },
@@ -268,6 +329,15 @@ export const useLensPost = (): useLensPostResult => {
     setShowPostButton(false);
   };
 
+  const availableCurrencies = async (): Promise<void> => {
+    const response = await enabledCurrencies();
+    setCurrencies(response.data.enabledModuleCurrencies);
+  };
+
+  useMemo(() => {
+    availableCurrencies();
+  }, [collectionModule]);
+
   return {
     handlePostWrite,
     handlePostData,
@@ -281,5 +351,10 @@ export const useLensPost = (): useLensPostResult => {
     changed,
     setChanged,
     imageUploadLoading,
+    collectionModule,
+    setCollectionModule,
+    referral,
+    setReferral,
+    currencies,
   };
 };

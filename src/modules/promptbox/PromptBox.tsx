@@ -45,7 +45,12 @@ export const PromptBox = (): JSX.Element => {
     loadingPost,
     changed,
     setChanged,
-    imageUploadLoading
+    imageUploadLoading,
+    collectionModule,
+    setCollectionModule,
+    referral,
+    setReferral,
+    currencies
   } = useLensPost();
 
   return (
@@ -84,6 +89,11 @@ export const PromptBox = (): JSX.Element => {
             changed={changed}
             setChanged={setChanged}
             imageUploadLoading={imageUploadLoading}
+            collectionModule={collectionModule}
+            setCollectionModule={setCollectionModule}
+            referral={referral}
+            setReferral={setReferral}
+            currencies={currencies}
           />
         )}
       {imageOpen && (

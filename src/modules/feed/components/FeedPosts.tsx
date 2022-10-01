@@ -9,7 +9,7 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
   publicationsFeed,
   getMoreFeed,
   setStream,
-  setId
+  setId,
 }): JSX.Element => {
   return (
     <InfiniteScroll
@@ -21,9 +21,9 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
       scrollableTarget="scrollableDiv"
     >
       {publicationsFeed?.map((publication: any, index: number) => {
-        const splitContent = publication.metadata.content.split("\n", + 10);
+        const splitContent = publication.metadata.content.split("\n", +10);
         const prompt = splitContent[0];
-        const description = splitContent.slice(2,10);
+        const description = splitContent.slice(2, 10);
         let profileImage: any;
         if (!publication.profile.picture) {
           profileImage = <></>;
@@ -82,11 +82,20 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
                   {publication.metadata.media.map(
                     (media: any, index: number) => {
                       const newLink = media.original.url.split("/");
+                      const imageSource =
+                        "https://" + newLink[2] + ".ipfs.dweb.link/";
                       return (
-                        <div key={index} className="mt-6 mb-4 relative flex justify-center">
-                          <img
-                            src={"https://" + newLink[2] + ".ipfs.dweb.link/"}
-                          />
+                        <div
+                          key={index}
+                          className="mt-6 mb-4 relative flex justify-center cursor-pointer"
+                        >
+                          <a
+                            href={imageSource}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <img src={imageSource} />
+                          </a>
                         </div>
                       );
                     }
@@ -94,22 +103,24 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
                 </div>
               )}
               <ul className="mt-2 inline-block cursor-pointer font-sourceReg text-sm sm:text-base">
-                <li className="float-left ml-0 sm:m-1"
-                onClick={() => {
-                  setStream("Collects");
-                  setId(publication.id);
-                }}
+                <li
+                  className="float-left ml-0 sm:m-1"
+                  onClick={() => {
+                    setStream("Collects");
+                    setId(publication.id);
+                  }}
                 >
                   <HiCollection className="float-left relative top-[0.15rem] m-2 ml-0 align-middle" />
                   <span className="relative top-2 text-xs sm:top-1">
                     {publication.stats.totalAmountOfCollects}
                   </span>
                 </li>
-                <li className="float-left sm:m-1"
-                onClick={() => {
-                  setStream("Comments");
-                  setId(publication.id);
-                }}
+                <li
+                  className="float-left sm:m-1"
+                  onClick={() => {
+                    setStream("Comments");
+                    setId(publication.id);
+                  }}
                 >
                   <FaComments className="float-left relative top-1 text-xs m-2 align-middle" />
                   <span className="relative top-2 text-xs sm:top-1">

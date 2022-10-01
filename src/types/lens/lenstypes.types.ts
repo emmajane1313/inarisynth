@@ -64,6 +64,11 @@ export type useLensPostResult = {
   changed: boolean;
   setChanged: (e: boolean) => void;
   imageUploadLoading: boolean;
+  collectionModule: string;
+  setCollectionModule: (e: string) => void;
+  referral: number;
+  setReferral: (e: number) => void;
+  currencies: any[];
 };
 export type LensPostProps = {
   prompt: string;
@@ -77,6 +82,11 @@ export type LensPostProps = {
   changed: boolean;
   setChanged: (e: boolean) => void;
   imageUploadLoading: boolean;
+  collectionModule: string;
+  setCollectionModule: (e: string) => void;
+  referral: number;
+  setReferral: (e: number) => void;
+  currencies: any[];
 };
 export type PostData = {
   prompt: string;

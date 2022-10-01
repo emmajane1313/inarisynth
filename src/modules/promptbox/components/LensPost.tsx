@@ -14,7 +14,13 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
   changed,
   setChanged,
   imageUploadLoading,
+  collectionModule,
+  setCollectionModule,
+  setReferral,
+  referral,
+  currencies,
 }): JSX.Element => {
+  console.log("here", collectionModule);
   return (
     <div className="relative text-xs font-sourceReg bg-grad3 w-full tablet:h-[31%] rounded-lg tablet:top-[27.3rem] md:top-[40vw] h-[30vw] tablet:mt-0 mt-4">
       <form
@@ -37,6 +43,102 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
             onChange={() => setChanged(true)}
           />
         </div>
+        <div id="collectionModule">
+          <select
+            name="collect"
+            id="collect"
+            defaultValue="free"
+            className="relative m-4 -top-5 right-16"
+            onChange={(e) => setCollectionModule(e.target.value)}
+          >
+            <option value="Free">Free</option>
+            <option value="Revert">Revert</option>
+            <option value="Fee">Fee</option>
+            <option value="Limited Fee">Limited Fee</option>
+            <option value="Limited Timed Fee">Limited Timed Fee</option>
+            <option value="Timed Fee">Timed Fee</option>
+          </select>
+        </div>
+        {collectionModule !== "Revert" && (
+          <div id="followerOnly">
+            <select
+              name="follower"
+              id="follower"
+              defaultValue="false"
+              className="relative m-4 -top-5 right-10"
+            >
+              <option value="False">False</option>
+              <option value="True">True</option>
+            </select>
+          </div>
+        )}
+        {collectionModule !== "Free" && collectionModule !== "Revert" &&
+        collectionModule !== undefined ? (
+          <div>
+            <div id="currencyModule">
+              <select
+                name="currency"
+                id="currency"
+                className="relative m-4 -top-2 right-2"
+              >
+                {currencies?.map((currency, index) => {
+                  return (
+                    <option key={index} value={currency.address}>
+                      {currency.symbol}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <input
+              type="number"
+              id="valueAmount"
+              name="valueAmount"
+              min="0"
+              defaultValue="1"
+              className="relative right-6"
+            />
+            <div className="relative right-8 text-offBlack">{referral}</div>
+            <input
+              type="range"
+              id="referral"
+              name="referral"
+              min="0"
+              max="100"
+              step="0.01"
+              defaultValue="0"
+              className="relative right-10"
+              onChange={(e: any) => setReferral(e.target.value)}
+            />
+          </div>
+        ) : (
+          <></>
+        )}
+        {collectionModule == "Limited Fee" ||
+        collectionModule == "Limited Timed Fee" ? (
+          <div>
+            input type
+            <input
+              type="number"
+              id="collectLimit"
+              name="collectLimit"
+              min="1"
+              step="1"
+              className="relative right-16"
+              defaultValue="1"
+            />
+          </div>
+        ) : (
+          <></>
+        )}
+        {collectionModule == "Timed Fee" ||
+        collectionModule == "Limited Timed Fee" ? (
+          <div className="relative right-20 text-offBlack">
+            Only 24 hours for people to collect your post!!
+          </div>
+        ) : (
+          <></>
+        )}
         {(!showPostButton || changed) && (
           <div className="absolute z-100 right-[4.5rem] bottom-[4.5vw] tablet:top-[12.65rem]">
             {/* <div className="absolute z-100 tablet:-right-56 -right-[36vw] bottom-[4.5vw] w-full h-full tablet:top-[8.65rem] flex flex-col justify-end"></div> */}
