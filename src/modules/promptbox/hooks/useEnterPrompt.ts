@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InputType } from "./../../../types/stablediffusion/sdtypes.types";
 import { UseEnterPromptResult } from "./../../../types/stablediffusion/sdtypes.types";
 import { saveAs } from "file-saver";
@@ -8,8 +8,8 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
   const [promptImages, setPromptImages] = useState<string[]>([]);
   const [imageOpen, setImageOpen] = useState<boolean>(false);
   const [expandedImage, setExpandedImage] = useState<string>("");
-  const [steps, setSteps] = useState<number>();
-  const [scale, setScale] = useState<number>();
+  const [steps, setSteps] = useState<number>(75);
+  const [scale, setScale] = useState<number>(10);
   const [init, setInit] = useState<any>();
   const [strength, setStrength] = useState<number>(0.5);
   const [loading, setLoading] = useState<boolean>();
@@ -96,6 +96,14 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
     const name = splitImage.pop();
     saveAs(image, "inarisynth/" + name);
   };
+
+
+  useEffect(() => {
+    if (!sessionStorage.getItem("scale") && !sessionStorage.getItem("steps")) {
+      sessionStorage.setItem("scale", String(scale))
+      sessionStorage.setItem("steps", String(steps))
+    }
+  },[])
 
   return {
     prompt,

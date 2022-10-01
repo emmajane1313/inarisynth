@@ -40,7 +40,10 @@ export const EnterPrompt: FunctionComponent<EnterPromptProps> = ({
             max="100"
             defaultValue="75"
             className="w-1/2"
-            onChange={(e: any) => setSteps(e.target.value)}
+            onChange={(e: any) => {
+              setSteps(e.target.value);
+              sessionStorage.setItem("steps", e.target.value);
+            }}
           />
         </div>
         <div className="w-full p-4 pl-8">
@@ -62,7 +65,10 @@ export const EnterPrompt: FunctionComponent<EnterPromptProps> = ({
             max="20"
             className="w-1/2"
             defaultValue="10"
-            onChange={(e: any) => setScale(e.target.value)}
+            onChange={(e: any) => {
+              setScale(e.target.value);
+              sessionStorage.setItem("scale", e.target.value);
+            }}
           />
         </div>
         <div>

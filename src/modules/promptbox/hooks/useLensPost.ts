@@ -140,8 +140,20 @@ export const useLensPost = (): useLensPostResult => {
     });
 
     const promptValue = sessionStorage.getItem("prompt");
+    const scaleValue = sessionStorage.getItem("scale");
+    const stepsValue = sessionStorage.getItem("steps");
     const allContent =
-      "Prompt: " + promptValue + "\n\n" + e.target.description.value;
+      "Prompt: " +
+      promptValue +
+      "\n\n" +
+      "Inference Steps: " +
+      stepsValue +
+      "    " +
+      "Guidance Scale: " +
+      scaleValue +
+      "\n\n" +
+      e.target.description.value;
+     
 
     enum postTags {
       INARISYNTH = "INARISYNTH",
@@ -195,7 +207,6 @@ export const useLensPost = (): useLensPostResult => {
   };
 
   const handlePostData = async (e: any): Promise<void> => {
-    console.log(referral);
     e.preventDefault(e);
     setLoadingIPFS(true);
     let collectModuleType: any;
@@ -244,7 +255,7 @@ export const useLensPost = (): useLensPostResult => {
       e.target.collect.value == "Limited Timed Fee"
     ) {
       subCollectType = {
-        collectLimit: e.target.collectLimit.value,
+        collectLimit: e.target.collectLimit.value ? e.target.collectLimit.value : "10",
         amount: {
           currency: e.target.currency.value,
           value: e.target.valueAmount.value,
@@ -269,7 +280,6 @@ export const useLensPost = (): useLensPostResult => {
 
     try {
       const contentURI: string = await uploadFiles(e);
-      console.log("content uri here", contentURI);
 
       const profile: any = await getDefaultProfile(address);
 
@@ -326,12 +336,9 @@ export const useLensPost = (): useLensPostResult => {
 
       setTimeout(async () => {
         const result = await checkIndexed(tx?.hash);
-        if (result.data) {
-          console.log(result.data);
-        } else {
-          alert("Transaction failed please try again");
-        }
-        console.log(result);
+        if (!result.data) {
+          alert("Transaction Failed. Please Try Again.");
+        } 
       }, 10000);
     } catch (err) {
       console.error(err);

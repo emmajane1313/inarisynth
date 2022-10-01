@@ -187,6 +187,7 @@ export type CollectionSettingsProps = {
   referral: number;
   setReferral: (e: number) => void;
   currencies: any[];
+  setChanged: (e: boolean) => void;
 };
 
 export type TimedCollectProps = {

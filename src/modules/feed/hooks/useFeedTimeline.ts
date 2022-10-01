@@ -41,12 +41,10 @@ export const useFeedTimeline = (): useFeedTimelineResult => {
         sortCriteria: "LATEST",
         noRandomize: true,
       });
-      console.log(response);
       const arr: any[] = [...response.data.explorePublications.items];
       const sortedArr: any[] = arr.sort(
         (a: any, b: any) => Date.parse(b.createdAt) - Date.parse(a.createdAt)
       );
-      console.log(sortedArr);
       setPublicationsFeed(sortedArr);
       setPageInfo(response.data.explorePublications.pageInfo);
       return sortedArr;

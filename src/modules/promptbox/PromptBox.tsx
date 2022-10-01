@@ -58,15 +58,6 @@ export const PromptBox = (): JSX.Element => {
     timedCollectModal,
   } = useLensPost();
 
-  console.log(
-    "timed",
-    timedCollectModal,
-    "not",
-    notAgain,
-    "collect",
-    collectionModule
-  );
-
   return (
     <div className="tablet:w-[70%] w-full md:h-[80vw] tablet:h-[60vw] fixed bg-offBlack z-30 absolute rounded-lg tablet:left-[14%] left-0 tablet:top-[8%] top-[10%] shadow-2xl shadow-black backdrop-blur-lg">
       <ImageSequence

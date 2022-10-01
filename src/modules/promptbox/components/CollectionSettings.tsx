@@ -6,7 +6,8 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
   setCollectionModule,
   currencies,
   referral,
-  setReferral
+  setReferral,
+  setChanged,
 }): JSX.Element => {
   return (
     <div className="relative -top-8 flex justify-start mb-2">
@@ -16,7 +17,10 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
           id="collect"
           defaultValue="free"
           className="relative mr-4"
-          onChange={(e) => setCollectionModule(e.target.value)}
+          onChange={(e) => {
+            setCollectionModule(e.target.value);
+            setChanged(true);
+          }}
         >
           <option value="Free">Free</option>
           <option value="Revert">Revert</option>
@@ -33,6 +37,7 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
             id="follower"
             defaultValue="0"
             className="relative mr-4"
+            onChange={() => setChanged(true)}
           >
             <option value="0" disabled>
               Only Followers
@@ -47,7 +52,12 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
       collectionModule !== undefined ? (
         <div className="relative flex">
           <div id="currencyModule" className="relative m-0 justify-start">
-            <select name="currency" id="currency" className="relative mr-4">
+            <select
+              name="currency"
+              id="currency"
+              className="relative mr-4"
+              onChange={() => setChanged(true)}
+            >
               {currencies?.map((currency, index) => {
                 return (
                   <option key={index} value={currency.address}>
@@ -66,7 +76,9 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
             required
             step="0.00001"
             defaultValue="1"
+            placeholder="1"
             className="relative mr-4 w-16 pl-1"
+            onChange={() => setChanged(true)}
           />
           <div className="flex">
             <div className="relative mr-3 w-fit text-offBlack">{`Referral Fee: ${Number(
@@ -80,8 +92,12 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
               max="100"
               step="0.01"
               defaultValue="0"
-              className="mr-4 w-16"
-              onChange={(e: any) => setReferral(e.target.value)}
+              placeholder="0%"
+              className="mr-4 w-16 pl-1"
+              onChange={(e: any) => {
+                setReferral(e.target.value);
+                setChanged(true);
+              }}
             />
           </div>
         </div>
@@ -91,17 +107,19 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
       {collectionModule == "Limited Fee" ||
       collectionModule == "Limited Timed Fee" ? (
         <div className="relative flex">
-        <p className="relative mr-3 w-fit">Collect Limit: </p>
+          <p className="relative mr-3 w-fit">Collect Limit: </p>
           <input
             type="number"
             id="collectLimit"
             name="collectLimit"
             min="1"
             step="1"
-            className="mr-4 w-16"
-            defaultValue="1"
+            className="mr-4 w-16 pl-1"
+            defaultValue="10"
+            placeholder="10"
+            onChange={() => setChanged(true)}
           />
-          </div>
+        </div>
       ) : (
         <></>
       )}

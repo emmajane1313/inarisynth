@@ -23,7 +23,8 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
       {publicationsFeed?.map((publication: any, index: number) => {
         const splitContent = publication.metadata.content.split("\n", +10);
         const prompt = splitContent[0];
-        const description = splitContent.slice(2, 10);
+        const meta = splitContent.slice(2, 3);
+        const description = splitContent.slice(4, 10);
         let profileImage: any;
         if (!publication.profile.picture) {
           profileImage = <></>;
@@ -74,6 +75,9 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
               <div className="text-black text-base m-2 font-sourceReg">
                 <b>{prompt}</b>
               </div>
+              <div className="text-xs mt-3 text-offBlack font-sourceReg">
+                {meta}
+              </div>
               <div className="text-base mt-10 text-offBlack font-sourceReg">
                 {description}
               </div>
@@ -87,12 +91,13 @@ export const FeedPosts: FunctionComponent<FeedPostsProps> = ({
                       return (
                         <div
                           key={index}
-                          className="mt-6 mb-4 relative flex justify-center cursor-pointer"
+                          className="mt-6 mb-4 relative flex justify-center"
                         >
                           <a
                             href={imageSource}
                             target="_blank"
                             rel="noreferrer"
+                            className="cursor-pointer"
                           >
                             <img src={imageSource} />
                           </a>

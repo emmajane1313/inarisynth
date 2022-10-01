@@ -49,6 +49,7 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
           currencies={currencies}
           referral={referral}
           setReferral={setReferral}
+          setChanged={setChanged}
         />
         {(!showPostButton || changed) && (
           <div className="absolute z-100 right-[4.5rem] bottom-[4.5vw] tablet:top-[12.65rem]">
