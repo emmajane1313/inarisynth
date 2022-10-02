@@ -8,7 +8,8 @@ import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { Header } from "../common/components/layout/Header";
 import { Footer } from "../common/components/layout/Footer";
-import 'tailwindcss/tailwind.css'
+import { Menu } from "../common/components/modals/Menu";
+import "tailwindcss/tailwind.css";
 
 export const GlobalProfileContextDefault = {
   profileExists: false,
@@ -34,14 +35,17 @@ const wagmiClient = createClient({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [profileExists, setProfileExists] = useState(GlobalProfileContextDefault.profileExists);
+  const [profileExists, setProfileExists] = useState(
+    GlobalProfileContextDefault.profileExists
+  );
+  const [menuModal, setMenuModal] = useState<boolean>(false);
+  console.log(menuModal);
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
-        <GlobalContext.Provider
-          value={{ profileExists, setProfileExists }}
-        >
-          <Header />
+        <GlobalContext.Provider value={{ profileExists, setProfileExists }}>
+          {menuModal && <Menu setMenuModal={setMenuModal} />}
+          <Header setMenuModal={setMenuModal} />
           <Component {...pageProps} />
           <Footer />
         </GlobalContext.Provider>

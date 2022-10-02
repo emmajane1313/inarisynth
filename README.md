@@ -31,8 +31,8 @@ However, creative freedom that is finally both social and enables you to decentr
 
 Upcoming releases will focus on:
 
-- [ ] Full implementation of Lens mirror and collection post types and reactions
-- [ ] Full mobile responsiveness
+- [x] Full implementation of collection module on post
+- [x] Full mobile responsiveness
 - [ ] Stream image optimisation
 - [x] Implement Apollo Retry Link for Lens Api Issue
 - [ ] UI enhancements to User Stream

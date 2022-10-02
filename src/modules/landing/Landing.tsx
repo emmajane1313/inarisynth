@@ -8,7 +8,7 @@ import { RiArrowUpLine } from "react-icons/ri";
 export const Landing: FunctionComponent = (): JSX.Element => {
   const { profileExists } = useContext(GlobalContext);
   return (
-    <div className="flex text-center relative w-full tablet:h-[80vw] min-h-screen h-[120vw]">
+    <div className="inline-flex sm:flex text-center relative w-full tablet:h-[80vw] min-h-screen lg:h-[105vw] h-[350vw] sm:h-[300vw]">
       <HomeAnimation />
       {!profileExists && (
         <div>
@@ -21,7 +21,7 @@ export const Landing: FunctionComponent = (): JSX.Element => {
               alt="logo"
             />
           </div>
-          <div className="text-distro text-offBlack top-1/2 sm:top-[43%] w-full text-7xl sm:text-9xl absolute justify-center">
+          <div className="text-distro text-offBlack top-[37%] sm:top-[34%] lg:top-[43%] w-full text-7xl sm:text-9xl absolute justify-center">
             INARI SYNTH
           </div>
         </div>

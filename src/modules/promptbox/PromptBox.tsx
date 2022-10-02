@@ -59,7 +59,7 @@ export const PromptBox = (): JSX.Element => {
   } = useLensPost();
 
   return (
-    <div className="tablet:w-[70%] w-full md:h-[80vw] tablet:h-[60vw] fixed bg-offBlack z-30 absolute rounded-lg tablet:left-[14%] left-0 tablet:top-[8%] top-[10%] shadow-2xl shadow-black backdrop-blur-lg">
+    <div className="tablet:w-[70%] w-full h-[240vw] sm:h-[215vw] lg:h-[80vw] tablet:h-[60vw] fixed bg-offBlack z-30 absolute rounded-lg tablet:left-[14%] left-0 tablet:top-[8%] top-[10%] shadow-2xl shadow-black backdrop-blur-lg">
       <ImageSequence
         setStrength={setStrength}
         strength={strength}

@@ -10,119 +10,127 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
   setChanged,
 }): JSX.Element => {
   return (
-    <div className="relative -top-8 flex justify-start mb-2">
-      <div id="collectionModule">
-        <select
-          name="collect"
-          id="collect"
-          defaultValue="free"
-          className="relative mr-4"
-          onChange={(e) => {
-            setCollectionModule(e.target.value);
-            setChanged(true);
-          }}
-        >
-          <option value="Free">Free</option>
-          <option value="Revert">Revert</option>
-          <option value="Fee">Fee</option>
-          <option value="Limited Fee">Limited Fee</option>
-          <option value="Limited Timed Fee">Limited Timed Fee</option>
-          <option value="Timed Fee">Timed Fee</option>
-        </select>
-      </div>
-      {collectionModule !== "Revert" && (
-        <div id="followerOnly">
+    <div className="absolute -top-28 sm:-top-[13vw] md:-top-16 grid grid-flow-row auto-rows-auto justify-start">
+      <div className="relative sm:flex sm:flex-row mb-3 block">
+        <div id="collectionModule">
           <select
-            name="follower"
-            id="follower"
-            defaultValue="0"
+            name="collect"
+            id="collect"
+            defaultValue="free"
             className="relative mr-4"
-            onChange={() => setChanged(true)}
+            onChange={(e) => {
+              setCollectionModule(e.target.value);
+              setChanged(true);
+            }}
           >
-            <option value="0" disabled>
-              Only Followers
-            </option>
-            <option value="False">False</option>
-            <option value="True">True</option>
+            <option value="Free">Free</option>
+            <option value="Revert">Revert</option>
+            <option value="Fee">Fee</option>
+            <option value="Limited Fee">Limited Fee</option>
+            <option value="Limited Timed Fee">Limited Timed Fee</option>
+            <option value="Timed Fee">Timed Fee</option>
           </select>
         </div>
-      )}
-      {collectionModule !== "Free" &&
-      collectionModule !== "Revert" &&
-      collectionModule !== undefined ? (
-        <div className="relative flex">
-          <div id="currencyModule" className="relative m-0 justify-start">
+        {collectionModule !== "Revert" && (
+          <div id="followerOnly">
             <select
-              name="currency"
-              id="currency"
+              name="follower"
+              id="follower"
+              defaultValue="0"
               className="relative mr-4"
               onChange={() => setChanged(true)}
             >
-              {currencies?.map((currency, index) => {
-                return (
-                  <option key={index} value={currency.address}>
-                    {currency.symbol}
-                  </option>
-                );
-              })}
+              <option value="0" disabled>
+                Only Followers
+              </option>
+              <option value="False">False</option>
+              <option value="True">True</option>
             </select>
           </div>
-          <p className="mr-1 top-0.5 relative">$</p>
-          <input
-            type="number"
-            id="valueAmount"
-            name="valueAmount"
-            min="0"
-            required
-            step="0.00001"
-            defaultValue="1"
-            placeholder="1"
-            className="relative mr-4 w-16 pl-1"
-            onChange={() => setChanged(true)}
-          />
-          <div className="flex">
-            <div className="relative mr-3 w-fit text-offBlack">{`Referral Fee: ${Number(
-              referral
-            ).toFixed(2)}%`}</div>
+        )}
+      </div>
+      <div className="relative sm:flex sm:flex-row block">
+        {collectionModule !== "Free" &&
+        collectionModule !== "Revert" &&
+        collectionModule !== undefined ? (
+          <div className="relative sm:flex block">
+            <div id="currencyModule" className="relative m-0 justify-start">
+              <select
+                name="currency"
+                id="currency"
+                className="relative mr-4"
+                onChange={() => setChanged(true)}
+              >
+                {currencies?.map((currency, index) => {
+                  return (
+                    <option key={index} value={currency.address}>
+                      {currency.symbol}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <p className="mr-1 top-0.5 relative">$</p>
             <input
               type="number"
-              id="referral"
-              name="referral"
+              id="valueAmount"
+              name="valueAmount"
               min="0"
-              max="100"
-              step="0.01"
-              defaultValue="0"
-              placeholder="0%"
-              className="mr-4 w-16 pl-1"
-              onChange={(e: any) => {
-                setReferral(e.target.value);
-                setChanged(true);
-              }}
+              required
+              step="0.00001"
+              defaultValue="1"
+              placeholder="1"
+              className="relative mr-4 w-16 pl-1"
+              onChange={() => setChanged(true)}
             />
+            <div className="sm:flex block">
+              <div className="relative mr-3 right-[10rem] sm:right-0  text-offBlack whitespace-nowrap">{`Referral Fee: ${Number(
+                referral
+              ).toFixed(2)}%`}</div>
+              <input
+                type="number"
+                id="referral"
+                name="referral"
+                min="0"
+                max="100"
+                step="0.01"
+                defaultValue="0"
+                placeholder="0%"
+                className="mr-4 w-16 pl-1 right-[10rem] sm:right-0 relative"
+                onChange={(e: any) => {
+                  setReferral(e.target.value);
+                  setChanged(true);
+                }}
+              />
+            </div>
           </div>
+        ) : (
+          <></>
+        )}
+        <div className="relative sm:flex block">
+          {collectionModule == "Limited Fee" ||
+          collectionModule == "Limited Timed Fee" ? (
+            <div className="relative sm:flex block sm:right-auto right-10">
+              <p className="relative right-[25rem] sm:right-0 top-8 sm:top-auto sm:mr-3 w-fit whitespace-nowrap">
+                Collect Limit:{" "}
+              </p>
+              <input
+                type="number"
+                id="collectLimit"
+                name="collectLimit"
+                min="1"
+                step="1"
+                className="mr-4 w-16 pl-1 right-[25rem] top-8 sm:top-auto sm:right-0 relative"
+                defaultValue="10"
+                placeholder="10"
+                onChange={() => setChanged(true)}
+              />
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
-      ) : (
-        <></>
-      )}
-      {collectionModule == "Limited Fee" ||
-      collectionModule == "Limited Timed Fee" ? (
-        <div className="relative flex">
-          <p className="relative mr-3 w-fit">Collect Limit: </p>
-          <input
-            type="number"
-            id="collectLimit"
-            name="collectLimit"
-            min="1"
-            step="1"
-            className="mr-4 w-16 pl-1"
-            defaultValue="10"
-            placeholder="10"
-            onChange={() => setChanged(true)}
-          />
-        </div>
-      ) : (
-        <></>
-      )}
+      </div>
     </div>
   );
 };

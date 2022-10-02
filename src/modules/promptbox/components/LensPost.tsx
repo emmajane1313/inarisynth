@@ -22,14 +22,14 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
   currencies,
 }): JSX.Element => {
   return (
-    <div className="relative text-xs font-sourceReg bg-grad3 w-full tablet:h-[35%] rounded-lg tablet:top-[27.3rem] md:top-[40vw] h-[30vw] tablet:mt-0 mt-4">
+    <div className="relative text-xs font-sourceReg bg-grad3 w-full lg:h-[35%] rounded-lg tablet:top-[27.3rem] lg:top-[40vw] top-[175vw] h-[80vw] sm:top-[157vw] sm:h-[50vw]  tablet:mt-0 mt-4">
       <form
         onSubmit={onPostData}
-        className="bg-white rounded-t-lg border-solid border-2 left-[5%] top-[17%] border-offBlack relative w-[93%] h-[27vw] tablet:h-[15.3rem]"
+        className="bg-white rounded-t-lg border-solid border-2 left-[10%] lg:left-[5%] top-[40%] md:top-[25%] border-offBlack relative w-[85%] lg:w-[93%] h-[40vw] sm:h-[26vw] lg:h-[67%]"
       >
-        <div>
+        <div className="flex">
           <div
-            className="absolute border-b-2 border-solid border-offBlack w-full h-[7rem] p-4 flex overflow-scroll text-base"
+            className="absolute border-b-2 border-solid border-offBlack w-full break-all h-[30%] p-4 flex overflow-y-scroll overflow-x-hidden text-sm text-left"
             id="prompt"
           >
             Prompt: {prompt ? prompt : sessionStorage.getItem("prompt")}
@@ -38,11 +38,12 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
             placeholder="Select an image to share. Have more to say? Describe your synthed images and share what’s on your mind."
             name={"description"}
             className={
-              "resize-none flex justify-start overflow-y-scroll p-4 top-28 absolute w-full h-[6.5rem] focus:outline-0 text-base"
+              "resize-none flex justify-start overflow-y-scroll p-4 top-16 absolute w-full md:min-h-[7rem] min-h-[0.1rem] max-h-max focus:outline-0 text-base relative"
             }
             onChange={() => setChanged(true)}
           />
         </div>
+        <div className="sm:relative sm:-top-28 absolute w-1/2">
         <CollectionSettings
           collectionModule={collectionModule}
           setCollectionModule={setCollectionModule}
@@ -51,8 +52,9 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
           setReferral={setReferral}
           setChanged={setChanged}
         />
+        </div>
         {(!showPostButton || changed) && (
-          <div className="absolute z-100 right-[4.5rem] bottom-[4.5vw] tablet:top-[12.65rem]">
+          <div className="absolute z-100 right-[4.4rem] bottom-10">
             {/* <div className="absolute z-100 tablet:-right-56 -right-[36vw] bottom-[4.5vw] w-full h-full tablet:top-[8.65rem] flex flex-col justify-end"></div> */}
             <button
               type="submit"
@@ -76,7 +78,7 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
         )}
       </form>
       {showPostButton && !changed && (
-        <div className="absolute z-100 right-[5.8rem] top-[13.65rem]">
+        <div className="absolute z-100 right-[5.9rem] top-[16.18rem]">
           <button
             onClick={onPostWrite}
             className="absolute p-2 text-white text-base w-[4.5rem] h-10 bg-offBlack"
@@ -92,7 +94,7 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
           </button>
         </div>
       )}
-      <div className="grid top-16 left-5 m-0 auto-rows-min grid-flow-row align-center w-10 absolute overflow-y-scroll h-56 scrollbar-thin scrollbar-thumb-offWhite">
+      <div className="relative grid -top-[10%] md:-top-[25%] lg:-top-[40%] left-4 md:left-8 lg:left-5 m-0 auto-rows-min grid-flow-row align-center w-10 absolute overflow-y-scroll h-[65%] scrollbar-thin scrollbar-thumb-offWhite">
         {imageSelect &&
           imageSelect.map((image: string, index: any) => {
             return (

@@ -43,7 +43,7 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
 
   return (
     <div>
-      <div className="grid top-52 grid-cols-2 md:grid-cols-4 align-center gap-4 w-full absolute max-h-fit font-sourceReg justify-items-center">
+      <div className="grid sm:top-52 top-64 grid-cols-2 lg:grid-cols-4 align-center gap-4 w-full absolute max-h-fit font-sourceReg justify-items-center">
         {promptImagesToShow?.map((image: any, index: any) => {
           return (
             <div
@@ -59,45 +59,51 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
                 onClick={() => onImageClick(image)}
               />
               <div className="group absolute bottom-0 left-0 w-full h-2/3">
-                <div className="bg-offBlack bg-opacity-70 w-full h-full align-center justify-center flex-col invisible flex group-hover:visible">
+                <div className="bg-offBlack bg-opacity-70 w-full h-full align-center justify-center flex-col flex invisible group-hover:visible">
                   <button
-                    className={`absolute bg-grad2 rounded-lg w-3/4 text-offBlack hover:opacity-80 focus:bg-grad3 active:bg-grad3 text-base top-6 left-8 && ${
+                    className={`absolute bg-grad2 rounded-lg w-3/4 text-offBlack hover:opacity-80 focus:bg-grad3 active:bg-grad3 text-xs md:text-base lg:text-sm md:h-fit lg:h-fit w-full top-6 left-[12%] lg:left-8 ${
                       init === image && "bg-grad3"
                     }`}
                     onClick={() => onReSynth(image)}
                   >
-                    ADD AS INIT TO RESYNTH
+                    <p className="p-2 md:p-4">
+                      ADD AS INIT TO<br></br>RESYNTH
+                    </p>
                   </button>
-                  <input
-                    type="range"
-                    min="0"
-                    max="1"
-                    step=".1"
-                    id="strength"
-                    defaultValue="0.5"
-                    name="strength"
-                    className="absolute bottom-24 left-5 w-5/6"
-                    onChange={(e: any) => setStrength(e.target.value)}
-                  />
-                  {strength ? (
-                    <div className="text-white top-28 absolute text-base w-full whitespace-nowrap">
-                      Strength: {strength}
-                    </div>
-                  ) : (
-                    <div className="text-white top-28 absolute text-base w-full whitespace-nowrap">
-                      Strength: 0.5
-                    </div>
-                  )}
-                  <IoMdDownload
-                    className="relative top-[7.3rem] left-1"
-                    color="white"
-                    onClick={() => downloadImage(image)}
-                  />
-                  <IoMdExpand
-                    className="relative top-[6.3rem] left-6"
-                    onClick={() => onImageModalOpen(image)}
-                    color="white"
-                  />
+                  <div className="h-1/2">
+                    <input
+                      type="range"
+                      min="0"
+                      max="1"
+                      step=".1"
+                      id="strength"
+                      defaultValue="0.5"
+                      name="strength"
+                      className="absolute top-2/3 left-[7%] lg:left-5 w-5/6"
+                      onChange={(e: any) => setStrength(e.target.value)}
+                    />
+                    {strength ? (
+                      <div className="text-white top-1/2 relative text-base w-full whitespace-nowrap">
+                        Strength: {strength}
+                      </div>
+                    ) : (
+                      <div className="text-white top-1/2 absolute text-base w-full whitespace-nowrap">
+                        Strength: 0.5
+                      </div>
+                    )}
+                  </div>
+                  <div className="relative -bottom-[6vw] sm:-bottom-[8vw] lg:-bottom-[4vw] tablet:-bottom-[2vw]">
+                    <IoMdDownload
+                      className="absolute left-1"
+                      color="white"
+                      onClick={() => downloadImage(image)}
+                    />
+                    <IoMdExpand
+                      className="absolute left-6"
+                      onClick={() => onImageModalOpen(image)}
+                      color="white"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

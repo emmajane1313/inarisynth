@@ -22,13 +22,13 @@ export const EnterPrompt: FunctionComponent<EnterPromptProps> = ({
           onChange={onPromptInput}
           placeholder="Craft what you want to create, with words first. Add modifiers for more spectacular results."
         />
-        <div className="sm:w-full sm:p-4 sm:pt-8 sm:pl-8 w-3/4">
+        <div className="w-full p-4 pt-8 pl-8">
           {steps ? (
-            <div className="text-white float-left absolute text-base">
+            <div className="text-white float-left absolute text-xs lg:text-base left-[4%] lg:left-16">
               Inference Steps: {steps}
             </div>
           ) : (
-            <div className="text-white float-left absolute text-base">
+            <div className="text-white float-left absolute text-xs lg:text-base left-[4%] lg:left-16">
               Inference Steps: 75
             </div>
           )}
@@ -39,7 +39,7 @@ export const EnterPrompt: FunctionComponent<EnterPromptProps> = ({
             min="10"
             max="100"
             defaultValue="75"
-            className="w-1/2"
+            className="w-1/2 lg:left-0 sm:right-[1vw] -right-[15vw] relative"
             onChange={(e: any) => {
               setSteps(e.target.value);
               sessionStorage.setItem("steps", e.target.value);
@@ -48,11 +48,11 @@ export const EnterPrompt: FunctionComponent<EnterPromptProps> = ({
         </div>
         <div className="w-full p-4 pl-8">
           {scale ? (
-            <div className="text-white float-left absolute text-base">
+            <div className="text-white float-left absolute text-xs lg:text-base left-[4%] lg:left-16">
               Guidance Scale: {scale}
             </div>
           ) : (
-            <div className="text-white float-left absolute text-base">
+            <div className="text-white float-left absolute text-xs lg:text-base left-[4%] lg:left-16">
               Guidance Scale: 10
             </div>
           )}
@@ -63,7 +63,7 @@ export const EnterPrompt: FunctionComponent<EnterPromptProps> = ({
             name="scale"
             min="6"
             max="20"
-            className="w-1/2"
+            className="w-1/2 lg:left-0 sm:right-[1vw] -right-[15vw] relative"
             defaultValue="10"
             onChange={(e: any) => {
               setScale(e.target.value);
@@ -71,36 +71,32 @@ export const EnterPrompt: FunctionComponent<EnterPromptProps> = ({
             }}
           />
         </div>
-        <div>
-          <div className="absolute right-24 top-28">
-            <div className="text-white float-left text-base">Width: </div>
+        <div className="relative top-24 sm:top-0">
+          <div className="absolute left-[4%] sm:left-auto right-0 sm:right-[3%] lg:right-24 -top-20">
+            <div className="text-white float-left text-xs lg:text-base">Width: </div>
             <select
               name="width"
               id="width"
               defaultValue="512"
-              className="relative m-4 -top-3"
+              className="relative m-4 -top-4 lg:-top-3 sm:right-auto right-[35%]"
             >
               <option value="768">768</option>
               <option value="512">512</option>
               <option value="256">256</option>
             </select>
           </div>
-          <div className="absolute right-6 top-36">
-            <div className="text-white relative right-32 top-4 float-left text-base">
-              Height:{" "}
-            </div>
-            <div id="dimensionsHeight">
-              <select
-                name="height"
-                id="height"
-                defaultValue="768"
-                className="relative m-4 -top-5 right-16"
-              >
-                <option value="768">768</option>
-                <option value="512">512</option>
-                <option value="256">256</option>
-              </select>
-            </div>
+          <div className="absolute left-[37%] sm:left-auto right-[3%] lg:right-24 -top-20 sm:-top-9">
+            <div className="text-white float-left text-xs lg:text-base">Height: </div>
+            <select
+              name="height"
+              id="height"
+              defaultValue="768"
+              className="relative m-4 -top-4 lg:-top-3 sm:right-auto right-[25%]"
+            >
+              <option value="768">768</option>
+              <option value="512">512</option>
+              <option value="256">256</option>
+            </select>
           </div>
         </div>
         {prompt ? (
