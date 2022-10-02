@@ -29,11 +29,11 @@ module.exports = {
         homeAnim: "0 0",
       },
       screens: {
-        tablet: "1270px",
         iphone: "400px",
         sm: "640px",
         md: "768px",
         lg: "1024px",
+        tablet: "1270px",
       },
     },
   },
