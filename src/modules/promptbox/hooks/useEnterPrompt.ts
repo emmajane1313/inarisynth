@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { InputType } from "./../../../types/stablediffusion/sdtypes.types";
 import { UseEnterPromptResult } from "./../../../types/stablediffusion/sdtypes.types";
 import { saveAs } from "file-saver";
@@ -11,6 +11,7 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
   const [steps, setSteps] = useState<number>(75);
   const [scale, setScale] = useState<number>(10);
   const [init, setInit] = useState<any>();
+  const [initBool, setInitBool] = useState<boolean>(false);
   const [strength, setStrength] = useState<number>(0.5);
   const [loading, setLoading] = useState<boolean>();
   const [cudaMemoryModal, setCudaMemoryModal] = useState<boolean>();
@@ -79,7 +80,11 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
   };
 
   const onReSynth = (image: string): void => {
-    setInit(image);
+    if (initBool) {
+      setInit(image);
+    } else {
+      setInit(undefined);
+    }
   };
 
   const handleImageModalOpen = (image: string): void => {
@@ -97,13 +102,12 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
     saveAs(image, "inarisynth/" + name);
   };
 
-
   useEffect(() => {
     if (!sessionStorage.getItem("scale") && !sessionStorage.getItem("steps")) {
-      sessionStorage.setItem("scale", String(scale))
-      sessionStorage.setItem("steps", String(steps))
+      sessionStorage.setItem("scale", String(scale));
+      sessionStorage.setItem("steps", String(steps));
     }
-  },[])
+  }, []);
 
   return {
     prompt,
@@ -128,6 +132,8 @@ export const useEnterPrompt = (): UseEnterPromptResult => {
     nsfwModal,
     setNsfwModal,
     height,
-    init
+    init,
+    setInitBool,
+    initBool,
   };
 };

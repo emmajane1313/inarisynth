@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     GlobalProfileContextDefault.profileExists
   );
   const [menuModal, setMenuModal] = useState<boolean>(false);
-  console.log(menuModal);
+
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>

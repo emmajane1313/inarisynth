@@ -34,7 +34,7 @@ Upcoming releases will focus on:
 - [x] Full implementation of collection module on post
 - [x] Full mobile responsiveness
 - [ ] Stream image optimisation
-- [ ] Fix removal of init of resynth
+- [x] Fix removal of init of resynth
 - [x] Implement Apollo Retry Link for Lens Api Issue
 - [ ] UI enhancements to User Stream
 - [ ] Inpainting and outpainting capabilities

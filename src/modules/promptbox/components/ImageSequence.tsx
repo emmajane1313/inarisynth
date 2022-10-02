@@ -14,6 +14,8 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
   loading,
   downloadImage,
   init,
+  setInitBool,
+  initBool,
 }): JSX.Element => {
   if (loading) {
     return (
@@ -64,7 +66,10 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
                     className={`absolute bg-grad2 rounded-lg w-3/4 text-offBlack hover:opacity-80 focus:bg-grad3 active:bg-grad3 text-xs md:text-base lg:text-sm md:h-fit lg:h-fit w-full top-6 left-[12%] lg:left-8 ${
                       init === image && "bg-grad3"
                     }`}
-                    onClick={() => onReSynth(image)}
+                    onClick={() => {
+                      setInitBool(!initBool);
+                      onReSynth(image);
+                    }}
                   >
                     <p className="p-2 md:p-4">
                       ADD AS INIT TO<br></br>RESYNTH
