@@ -17,21 +17,25 @@ module.exports = {
         grad4: "#EB91F4",
         lensLight: "#ABFE2C",
         lensDark: "#00501E",
-        themeBlue: "#9FD4FB"
+        themeBlue: "#9FD4FB",
       },
       fontFamily: {
         distro: "Distro Mix",
         space: "Space Grotesk",
         sourceReg: "Source Code Pro",
-        sourceSemi: "Source Code Semi"
+        sourceSemi: "Source Code Semi",
       },
       transformOrigin: {
-        homeAnim: '0 0'
+        homeAnim: "0 0",
       },
       screens: {
-        tablet: '1270px'
-      }
+        tablet: "1270px",
+        iphone: "400px",
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+      },
     },
   },
   plugins: [],
-}
+};

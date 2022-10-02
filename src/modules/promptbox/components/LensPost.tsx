@@ -22,10 +22,10 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
   currencies,
 }): JSX.Element => {
   return (
-    <div className="relative text-xs font-sourceReg bg-grad3 w-full lg:h-[35%] rounded-lg tablet:top-[27.3rem] lg:top-[40vw] top-[175vw] h-[80vw] sm:top-[157vw] sm:h-[50vw]  tablet:mt-0 mt-4">
+    <div className="relative text-xs font-sourceReg bg-grad3 w-full lg:h-[35%] rounded-lg tablet:top-[27.3rem] lg:top-[40vw] top-[175vw] h-[100vw] sm:top-[157vw] sm:h-[50vw]  tablet:mt-0 mt-4">
       <form
         onSubmit={onPostData}
-        className="bg-white rounded-t-lg border-solid border-2 left-[10%] lg:left-[5%] top-[40%] md:top-[25%] border-offBlack relative w-[85%] lg:w-[93%] h-[40vw] sm:h-[26vw] lg:h-[67%]"
+        className="bg-white rounded-t-lg border-solid border-2 left-[10%] lg:left-[5%] top-[40%] md:top-[25%] border-offBlack relative w-[85%] lg:w-[93%] h-[53vw] sm:h-[26vw] lg:h-[67%]"
       >
         <div className="flex">
           <div
@@ -44,14 +44,14 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
           />
         </div>
         <div className="sm:relative sm:-top-28 absolute w-1/2">
-        <CollectionSettings
-          collectionModule={collectionModule}
-          setCollectionModule={setCollectionModule}
-          currencies={currencies}
-          referral={referral}
-          setReferral={setReferral}
-          setChanged={setChanged}
-        />
+          <CollectionSettings
+            collectionModule={collectionModule}
+            setCollectionModule={setCollectionModule}
+            currencies={currencies}
+            referral={referral}
+            setReferral={setReferral}
+            setChanged={setChanged}
+          />
         </div>
         {(!showPostButton || changed) && (
           <div className="absolute z-100 right-[4.4rem] bottom-10">
@@ -78,10 +78,10 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
         )}
       </form>
       {showPostButton && !changed && (
-        <div className="absolute z-100 right-[5.9rem] top-[16.18rem]">
+        <div className="absolute right-5 bottom-7 z-100 w-fit sm:bottom-[8%] md:bottom-[23%] sm:right-[5%] lg:right-[2%] lg:bottom-[8%] tablet:bottom-auto tablet:left-auto tablet:right-[5.83rem] tablet:top-[15.65rem]">
           <button
             onClick={onPostWrite}
-            className="absolute p-2 text-white text-base w-[4.5rem] h-10 bg-offBlack"
+            className="relative tablet:absolute p-2 text-white text-base w-[4.5rem] h-10 bg-offBlack"
           >
             {" "}
             {loadingPost ? (
@@ -94,7 +94,7 @@ export const LensPost: FunctionComponent<LensPostProps> = ({
           </button>
         </div>
       )}
-      <div className="relative grid -top-[10%] md:-top-[25%] lg:-top-[40%] left-4 md:left-8 lg:left-5 m-0 auto-rows-min grid-flow-row align-center w-10 absolute overflow-y-scroll h-[65%] scrollbar-thin scrollbar-thumb-offWhite">
+      <div className="relative grid -top-[10%] md:-top-[25%] lg:-top-[40%] left-2 sm:left-4 md:left-8 lg:left-5 m-0 auto-rows-min grid-flow-row align-center w-10 absolute overflow-y-scroll h-[50%] lg:h-[65%] scrollbar-thin scrollbar-thumb-offWhite">
         {imageSelect &&
           imageSelect.map((image: string, index: any) => {
             return (

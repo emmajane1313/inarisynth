@@ -17,17 +17,17 @@ export const ImageSequence: FunctionComponent<ImageSequenceProps> = ({
 }): JSX.Element => {
   if (loading) {
     return (
-      <div className="grid top-48 grid-cols-4 align-center gap-4 w-full absolute h-fit left-[10%]">
+      <div className="w-fit tablet:w-full grid top-48 grid-cols-2 lg:grid-cols-4 align-center tablet:gap-4 gap-60 w-full absolute h-fit left-[16%] sm:left-[30%] md:left-[35%] lg:left-[17%] tablet:left-[10%]">
         <div className="animate-spin h-5 w-5 relative top-24">
           <AiOutlineLoading color="white" />
         </div>
         <div className="animate-spin h-5 w-5 relative top-24">
           <AiOutlineLoading color="white" />
         </div>
-        <div className="animate-spin h-5 w-5 relative top-24">
+        <div className="animate-spin h-5 w-5 relative top-56 lg:top-24">
           <AiOutlineLoading color="white" />
         </div>
-        <div className="animate-spin h-5 w-5 relative top-24">
+        <div className="animate-spin h-5 w-5 relative top-56 lg:top-24">
           <AiOutlineLoading color="white" />
         </div>
       </div>

@@ -10,8 +10,8 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
   setChanged,
 }): JSX.Element => {
   return (
-    <div className="absolute -top-28 sm:-top-[13vw] md:-top-16 grid grid-flow-row auto-rows-auto justify-start">
-      <div className="relative sm:flex sm:flex-row mb-3 block">
+    <div className="absolute -top-52 sm:-top-[10vw] md:-top-16 grid grid-flow-row auto-rows-auto justify-start">
+      <div className="relative sm:flex-row mb-3 flex">
         <div id="collectionModule">
           <select
             name="collect"
@@ -49,11 +49,11 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
           </div>
         )}
       </div>
-      <div className="relative sm:flex sm:flex-row block">
+      <div className="relative flex sm:flex-row sm:right-auto right-[11.6%]">
         {collectionModule !== "Free" &&
         collectionModule !== "Revert" &&
         collectionModule !== undefined ? (
-          <div className="relative sm:flex block">
+          <div className="relative sm:flex">
             <div id="currencyModule" className="relative m-0 justify-start">
               <select
                 name="currency"
@@ -70,7 +70,9 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
                 })}
               </select>
             </div>
-            <p className="mr-1 top-0.5 relative">$</p>
+            <p className="mr-1 sm:top-0.5 relative -top-4 sm:right-auto -right-10">
+              $
+            </p>
             <input
               type="number"
               id="valueAmount"
@@ -80,11 +82,11 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
               step="0.00001"
               defaultValue="1"
               placeholder="1"
-              className="relative mr-4 w-16 pl-1"
+              className="relative mr-4 w-16 pl-1 sm:top-auto -top-8 sm:right-auto -right-[58%]"
               onChange={() => setChanged(true)}
             />
             <div className="sm:flex block">
-              <div className="relative mr-3 right-[10rem] sm:right-0  text-offBlack whitespace-nowrap">{`Referral Fee: ${Number(
+              <div className="relative mr-3 -right-[23%] -top-4 sm:top-auto sm:right-0 text-offBlack whitespace-nowrap">{`Referral Fee: ${Number(
                 referral
               ).toFixed(2)}%`}</div>
               <input
@@ -96,7 +98,7 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
                 step="0.01"
                 defaultValue="0"
                 placeholder="0%"
-                className="mr-4 w-16 pl-1 right-[10rem] sm:right-0 relative"
+                className="mr-4 w-16 pl-1 -right-[104%] -top-8 sm:top-auto sm:right-0 relative"
                 onChange={(e: any) => {
                   setReferral(e.target.value);
                   setChanged(true);
@@ -111,7 +113,7 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
           {collectionModule == "Limited Fee" ||
           collectionModule == "Limited Timed Fee" ? (
             <div className="relative sm:flex block sm:right-auto right-10">
-              <p className="relative right-[25rem] sm:right-0 top-8 sm:top-auto sm:mr-3 w-fit whitespace-nowrap">
+              <p className="relative right-[73%] sm:right-0 top-16 sm:top-auto sm:mr-3 w-fit whitespace-nowrap">
                 Collect Limit:{" "}
               </p>
               <input
@@ -120,7 +122,7 @@ export const CollectionSettings: FunctionComponent<CollectionSettingsProps> = ({
                 name="collectLimit"
                 min="1"
                 step="1"
-                className="mr-4 w-16 pl-1 right-[25rem] top-8 sm:top-auto sm:right-0 relative"
+                className="mr-4 w-16 pl-1 -right-[20%] sm:right-0 top-12 sm:top-auto relative"
                 defaultValue="10"
                 placeholder="10"
                 onChange={() => setChanged(true)}
