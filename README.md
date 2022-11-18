@@ -53,4 +53,3 @@ To learn more about Inari Synth and get further hooked on the do it yourself eth
 If you're interested in submitting new features requests, synthesis research, bug fixes, or desired enhancements to decentralized interfaces, DIY nodes, and Stable Diffusion integrations, please follow the contribution steps before submitting a pull request:
 
 See [`How to Contribute`](./CONTRIBUTING.md) 🛠
-Open up an issue or merge/test/submit a pull request!
